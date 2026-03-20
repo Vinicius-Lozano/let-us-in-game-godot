@@ -1,0 +1,34 @@
+[gd_scene format=3 uid="uid://d4iwqt4vgpg0p"]
+
+[ext_resource type="Script" uid="uid://dtkpu01685l8x" path="res://backpack_ui.gd" id="1_ba4lr"]
+
+[node name="BackpackUI" type="CanvasLayer" unique_id=139984260]
+script = ExtResource("1_ba4lr")
+
+[node name="MainPanel" type="Control" parent="." unique_id=1680549630]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="Grid" type="TextureRect" parent="MainPanel" unique_id=1352395604]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="itemsContainer" type="Control" parent="MainPanel" unique_id=213584504]
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="cursor" type="ColorRect" parent="MainPanel" unique_id=81299137]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+
+[node name="test" type="ColorRect" parent="MainPanel" unique_id=1238671891]
+layout_mode = 0
+offset_left = 487.0
+offset_top = 298.0
+offset_right = 527.0
+offset_bottom = 338.0

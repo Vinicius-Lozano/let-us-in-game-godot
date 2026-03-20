@@ -1,0 +1,18 @@
+# Godot 4+ specific ignores
+.godot/
+/android/
+
+.DS_Store
+Thumbs.db
+
+.vscode/
+
+*.exe
+*.zip
+*.pck
+*.apk
+*.ipa
+bin/
+build/
+
+*.log
