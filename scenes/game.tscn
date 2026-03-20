@@ -6,10 +6,11 @@
 [ext_resource type="PackedScene" uid="uid://d4iwqt4vgpg0p" path="res://scenes/backpack_ui.tscn" id="3_u5sy4"]
 [ext_resource type="Resource" uid="uid://cew376b3k51lr" path="res://items/bola.tres" id="4_p57ef"]
 [ext_resource type="Resource" uid="uid://uify4b48uvhc" path="res://items/prisma.tres" id="5_u5sy4"]
+[ext_resource type="Shader" uid="uid://bn8ilbrj23vh8" path="res://gfx/ps1_model.gdshader" id="6_0tnpc"]
 [ext_resource type="Resource" uid="uid://qo2fdnjftn0w" path="res://items/quadrado.tres" id="6_gee14"]
 
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_lbhrr"]
-albedo_color = Color(0.013834221, 0.29343286, 0.57870704, 1)
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtaks"]
+albedo_color = Color(0.39057732, 0.92649233, 0.99999994, 1)
 albedo_texture = ExtResource("1_yqjtg")
 uv1_triplanar = true
 
@@ -22,11 +23,38 @@ volumetric_fog_enabled = true
 volumetric_fog_density = 0.02
 volumetric_fog_length = 20.0
 
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_kvpfn"]
+render_priority = 0
+shader = ExtResource("6_0tnpc")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
+
 [sub_resource type="SphereMesh" id="SphereMesh_lnu2h"]
+material = SubResource("ShaderMaterial_kvpfn")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_0tnpc"]
+render_priority = 0
+shader = ExtResource("6_0tnpc")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="PrismMesh" id="PrismMesh_lnu2h"]
+material = SubResource("ShaderMaterial_0tnpc")
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_gee14"]
+render_priority = 0
+shader = ExtResource("6_0tnpc")
+shader_parameter/affine_mapping = false
+shader_parameter/alpha_scissor = 0.5
+shader_parameter/jitter = 0.25
+shader_parameter/resolution = Vector2i(320, 240)
 
 [sub_resource type="BoxMesh" id="BoxMesh_lbhrr"]
+material = SubResource("ShaderMaterial_gee14")
 
 [node name="game" type="Node3D" unique_id=1722158228]
 
@@ -34,7 +62,7 @@ volumetric_fog_length = 20.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
 use_collision = true
 size = Vector3(20, 1, 20)
-material = SubResource("StandardMaterial3D_lbhrr")
+material = SubResource("StandardMaterial3D_vtaks")
 
 [node name="player" parent="." unique_id=2123675130 instance=ExtResource("2_lnu2h")]
 can_sprint = true
