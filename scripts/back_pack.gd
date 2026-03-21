@@ -1,5 +1,4 @@
 extends CanvasLayer
-
 var inventory_state = false
 
 func _ready() -> void:

@@ -1,24 +1,26 @@
 @tool
 extends RigidBody3D
 
-@export var item_data: Resource
-@export var item_mesh: Mesh:
+@export var item_data: Resource:
 	set(value):
-		item_mesh = value
-		atualizar_item()
+		item_data = value
+		update_item()
 
 func _ready() -> void:
-	atualizar_item()
+	update_item()
 
-func atualizar_item():
+func update_item():
 	var mesh_instance = get_node_or_null("MeshInstance3D")
 	var collision_shape = get_node_or_null("CollisionShape3D")
 	
+	if item_data == null:
+		return
+	
 	if mesh_instance:
-		mesh_instance.mesh = item_mesh	
+		mesh_instance.mesh = item_data.mesh
 	
 	if collision_shape:
-		if item_mesh != null:
-			collision_shape.shape = item_mesh.create_convex_shape()
+		if item_data.mesh != null:
+			collision_shape.shape = item_data.mesh.create_convex_shape()
 		else: 
 			collision_shape.shape = null

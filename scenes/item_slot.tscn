@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://c6br7rg6tkmq4"]
+
+[ext_resource type="Script" uid="uid://0h4oyehweiw2" path="res://item_slot.gd" id="1_567tv"]
+
+[node name="ItemSlot" type="Panel" unique_id=1312562774]
+custom_minimum_size = Vector2(40, 40)
+script = ExtResource("1_567tv")
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=82540389]
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 40.0
+expand_mode = 1
+stretch_mode = 5

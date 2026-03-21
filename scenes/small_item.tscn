@@ -7,6 +7,7 @@
 [node name="small_item" type="RigidBody3D" unique_id=617685090]
 physics_material_override = SubResource("PhysicsMaterial_bx2qi")
 script = ExtResource("1_taefm")
+item_mesh = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=382088013]
 

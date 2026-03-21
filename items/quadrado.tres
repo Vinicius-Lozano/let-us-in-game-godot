@@ -1,8 +1,13 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://qo2fdnjftn0w"]
 
 [ext_resource type="Script" uid="uid://ku7j1ug8sub8" path="res://scripts/item_data.gd" id="1_ckr66"]
+[ext_resource type="Texture2D" uid="uid://d0vcr6pnf3gxf" path="res://gfx/cubo_teste.png" id="2_sv6gw"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_mxxov"]
 
 [resource]
 script = ExtResource("1_ckr66")
 name = "quadrado"
+sprite = ExtResource("2_sv6gw")
+mesh = SubResource("BoxMesh_mxxov")
 metadata/_custom_type_script = "uid://ku7j1ug8sub8"

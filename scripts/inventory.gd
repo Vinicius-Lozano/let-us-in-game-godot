@@ -10,5 +10,5 @@ func add_item(item: ItemData):
 	inventory_updated.emit()
 
 func remove_item(item: ItemData):
-	item.erase(item)
+	items.erase(item)
 	inventory_updated.emit()

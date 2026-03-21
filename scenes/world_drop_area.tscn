@@ -1,0 +1,12 @@
+[gd_scene format=3 uid="uid://dbem12qq7togp"]
+
+[ext_resource type="Script" uid="uid://bbkhduqwmvd7o" path="res://scripts/world_drop.gd" id="1_54tla"]
+
+[node name="WorldDropArea" type="Control" unique_id=1341420869]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_54tla")

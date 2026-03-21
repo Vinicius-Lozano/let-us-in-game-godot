@@ -1,8 +1,13 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cew376b3k51lr"]
 
 [ext_resource type="Script" uid="uid://ku7j1ug8sub8" path="res://scripts/item_data.gd" id="1_0oexv"]
+[ext_resource type="Texture2D" uid="uid://d128ubn11hl0k" path="res://gfx/bola_teste.png" id="2_e7wr2"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_d6bvf"]
 
 [resource]
 script = ExtResource("1_0oexv")
 name = "bola"
+sprite = ExtResource("2_e7wr2")
+mesh = SubResource("SphereMesh_d6bvf")
 metadata/_custom_type_script = "uid://ku7j1ug8sub8"

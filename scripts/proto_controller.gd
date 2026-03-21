@@ -85,7 +85,6 @@ func _physics_process(delta: float) -> void:
 		if Input.is_action_just_pressed('interact'):
 			Inventory.add_item(focus_object.item_data)
 			focus_object.queue_free()
-			print(Inventory.items.map(func(i): return i.name))
 		
 	# If freeflying, handle freefly and nothing else
 	if can_freefly and freeflying:
