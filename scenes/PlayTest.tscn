@@ -1,0 +1,51 @@
+[gd_scene format=3 uid="uid://o5oj2wb25ojq"]
+
+[ext_resource type="Texture2D" uid="uid://b3jux7yrfc4ar" path="res://gfx/checkboard.png" id="1_r44sk"]
+[ext_resource type="PackedScene" uid="uid://vwqs1dteoobi" path="res://scenes/player.tscn" id="2_1d7nu"]
+[ext_resource type="PackedScene" uid="uid://wgjymdinw7jw" path="res://tools/item_tools/small_item.tscn" id="3_ht20j"]
+[ext_resource type="Resource" uid="uid://cew376b3k51lr" path="res://items/bola.tres" id="4_jfhmk"]
+[ext_resource type="Resource" uid="uid://uify4b48uvhc" path="res://items/prisma.tres" id="5_brxev"]
+[ext_resource type="Resource" uid="uid://qo2fdnjftn0w" path="res://items/quadrado.tres" id="6_60vh3"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_vtaks"]
+albedo_color = Color(0.39057732, 0.92649233, 0.99999994, 1)
+albedo_texture = ExtResource("1_r44sk")
+uv1_triplanar = true
+
+[sub_resource type="Environment" id="Environment_yqjtg"]
+background_mode = 1
+background_color = Color(1.0829419e-07, 0.17458716, 0.2308569, 1)
+ambient_light_source = 3
+ambient_light_color = Color(0.5619718, 0.6772926, 0.7538646, 1)
+volumetric_fog_enabled = true
+volumetric_fog_density = 0.02
+volumetric_fog_length = 20.0
+
+[node name="PlayTest" type="Node3D" unique_id=1722158228]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=843494818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = SubResource("StandardMaterial3D_vtaks")
+
+[node name="player" parent="." unique_id=2123675130 instance=ExtResource("2_1d7nu")]
+can_sprint = true
+
+[node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1033707717]
+environment = SubResource("Environment_yqjtg")
+
+[node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1446218802]
+transform = Transform3D(1, 0, 0, 0, 0.76656026, 0.6421724, 0, -0.6421724, 0.76656026, 0, 105.77607, 0)
+
+[node name="small_item" parent="." unique_id=617685090 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 0)
+item_data = ExtResource("4_jfhmk")
+
+[node name="small_item3" parent="." unique_id=1447512421 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, -2)
+item_data = ExtResource("5_brxev")
+
+[node name="small_item2" parent="." unique_id=1879454343 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 2)
+item_data = ExtResource("6_60vh3")

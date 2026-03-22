@@ -1,5 +1,7 @@
 extends CharacterBody3D
 
+@onready var inventory_controller: InventoryController = $InventoryController
+
 ## Can we move around?
 @export var can_move : bool = true
 ## Are we affected by gravity?
@@ -59,7 +61,7 @@ func _unhandled_input(event: InputEvent) -> void:
 	#inventory
 	if Inventory.is_open:
 		return
-	# Mouse capturing
+	 #Mouse capturing
 	if Input.is_mouse_button_pressed(MOUSE_BUTTON_LEFT):
 		capture_mouse()
 	if Input.is_key_pressed(KEY_ESCAPE):
@@ -80,11 +82,21 @@ func _physics_process(delta: float) -> void:
 	
 	# object Picking
 	var focus_object = ray_cast_3d.get_collider()
-	
+
 	if focus_object != null and 'item_data' in focus_object:
 		if Input.is_action_just_pressed('interact'):
-			Inventory.add_item(focus_object.item_data)
-			focus_object.queue_free()
+			
+			# 1. Pergunta ao NOVO controller se tem espaço
+			if inventory_controller.has_free_slot():
+				
+				# 2. Manda o controller pegar o item
+				inventory_controller.pickup_item(focus_object.item_data)
+				
+				# 3. Destrói o item 3D do chão
+				focus_object.queue_free()
+				print("Item coletado com sucesso!")
+			else:
+				print("Inventário Cheio!")
 		
 	# If freeflying, handle freefly and nothing else
 	if can_freefly and freeflying:

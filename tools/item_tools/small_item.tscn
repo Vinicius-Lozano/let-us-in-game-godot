@@ -1,13 +1,12 @@
 [gd_scene format=3 uid="uid://wgjymdinw7jw"]
 
-[ext_resource type="Script" uid="uid://bhychgjkb7buv" path="res://scripts/small_item.gd" id="1_taefm"]
+[ext_resource type="Script" uid="uid://bhychgjkb7buv" path="res://tools/item_tools/small_item.gd" id="1_taefm"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bx2qi"]
 
 [node name="small_item" type="RigidBody3D" unique_id=617685090]
 physics_material_override = SubResource("PhysicsMaterial_bx2qi")
 script = ExtResource("1_taefm")
-item_mesh = null
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=382088013]
 

@@ -1,7 +1,7 @@
 @tool
 extends RigidBody3D
 
-@export var item_data: Resource:
+@export var item_data: ItemData:
 	set(value):
 		item_data = value
 		update_item()

@@ -1,13 +1,19 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://uify4b48uvhc"]
 
-[ext_resource type="Script" uid="uid://ku7j1ug8sub8" path="res://scripts/item_data.gd" id="1_dvl2c"]
+[ext_resource type="Script" uid="uid://c6ue7od5rce1r" path="res://tools/inventory_scripts/inspectable_action.gd" id="1_ftf4l"]
+[ext_resource type="Script" uid="uid://ku7j1ug8sub8" path="res://tools/inventory_scripts/item_data.gd" id="2_2f1i5"]
 [ext_resource type="Texture2D" uid="uid://d1hrpl70bncdd" path="res://gfx/prisma_test.png" id="2_b4be1"]
+
+[sub_resource type="Resource" id="Resource_0hpam"]
+script = ExtResource("1_ftf4l")
+metadata/_custom_type_script = "uid://c6ue7od5rce1r"
 
 [sub_resource type="PrismMesh" id="PrismMesh_dvl2c"]
 
 [resource]
-script = ExtResource("1_dvl2c")
+script = ExtResource("2_2f1i5")
 name = "prisma"
 sprite = ExtResource("2_b4be1")
 mesh = SubResource("PrismMesh_dvl2c")
+action_data = SubResource("Resource_0hpam")
 metadata/_custom_type_script = "uid://ku7j1ug8sub8"

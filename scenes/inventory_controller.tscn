@@ -1,0 +1,66 @@
+[gd_scene format=3 uid="uid://dhnjexy6jsmr8"]
+
+[ext_resource type="Script" uid="uid://c44p1pxs067bn" path="res://scripts/inventory_controller.gd" id="1_hnk7b"]
+
+[sub_resource type="StyleBoxFlat" id="StyleBoxFlat_en4lt"]
+bg_color = Color(0.1, 0.1, 0.1, 0.6)
+border_width_left = 3
+border_width_top = 3
+border_width_right = 3
+border_width_bottom = 3
+border_color = Color(0.09803922, 0.09803922, 0.09803922, 0.2627451)
+border_blend = true
+corner_radius_top_left = 3
+corner_radius_top_right = 3
+corner_radius_bottom_right = 3
+corner_radius_bottom_left = 3
+corner_detail = 5
+expand_margin_left = 2.0
+expand_margin_top = 8.0
+expand_margin_right = 2.0
+expand_margin_bottom = 8.0
+
+[node name="InventoryController" type="Node" unique_id=2017358997]
+script = ExtResource("1_hnk7b")
+
+[node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1234567405]
+
+[node name="InventoryUI" type="Control" parent="CanvasLayer" unique_id=498426828]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="Panel" type="Panel" parent="CanvasLayer/InventoryUI" unique_id=1721969458]
+layout_mode = 1
+anchors_preset = 6
+anchor_left = 1.0
+anchor_top = 0.5
+anchor_right = 1.0
+anchor_bottom = 0.5
+offset_left = -220.0
+offset_top = -198.0
+offset_right = -6.0
+offset_bottom = 226.0
+grow_horizontal = 0
+grow_vertical = 2
+theme_override_styles/panel = SubResource("StyleBoxFlat_en4lt")
+
+[node name="MarginContainer" type="MarginContainer" parent="CanvasLayer/InventoryUI/Panel" unique_id=889164635]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 5
+theme_override_constants/margin_top = 5
+theme_override_constants/margin_right = 5
+theme_override_constants/margin_bottom = 5
+
+[node name="GridContainer" type="GridContainer" parent="CanvasLayer/InventoryUI/Panel/MarginContainer" unique_id=1652883845]
+layout_mode = 2
+size_flags_horizontal = 4
+columns = 3
