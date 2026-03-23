@@ -3,6 +3,7 @@ class_name InventoryController
 
 @onready var canvas: CanvasLayer = $CanvasLayer
 @onready var grid: GridContainer = $CanvasLayer/InventoryUI/Panel/MarginContainer/GridContainer
+@onready var context_menu: PopupMenu = PopupMenu.new()
 
 var item_slots_count: int = 18
 var inventory_slot_prefab: PackedScene = load("res://scenes/inventory_slot.tscn")
@@ -23,7 +24,11 @@ func _ready() -> void:
 		slot.on_item_double_clicked.connect(_on_item_double_clicked)
 		slot.on_item_right_clicked.connect(_on_item_right_clicked)
 		inventory_slots.append(slot)
-
+	
+	# PopupMenu
+	add_child(context_menu)
+	context_menu.connect('id_pressed', Callable(self, "_on_context_menu_selected"))
+	
 func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed('toggle_inventory'):
 		canvas.visible = not canvas.visible
@@ -55,7 +60,70 @@ func _on_item_swapped_on_slot(from_slot_id: int, to_slot_id: int) -> void:
 	inventory_slots[from_slot_id].fill_slot(to_slot_item)
 	
 func _on_item_double_clicked(slot_id: int) -> void:
-	return
+	var slot: InventorySlot = inventory_slots[slot_id]
+	if slot.slot_data == null:
+		return
+	match _get_item_action_type(slot.slot_data):
+		ActionData.ActionType.CONSUMABLE:
+			#use_collectable
+			print("I eat a ball")
+		ActionData.ActionType.EQUIPPABLE:
+			#equipped_collectable
+			print("I'm holding a block")
+		ActionData.ActionType.INSPECTABLE:
+			#inspect_collectable
+			print("I'm looking at it, It's a prism")
+	context_menu.set_meta('slot_id', slot_id)
 
 func _on_item_right_clicked(slot_id: int) -> void:
-	return
+	var slot: InventorySlot = inventory_slots[slot_id]
+	if slot.slot_data == null:
+		return
+	
+	context_menu.clear()
+	match _get_item_action_type(slot.slot_data):
+		ActionData.ActionType.CONSUMABLE:
+			context_menu.add_item("Use", 0)
+			context_menu.add_item("Drop", 1)
+		ActionData.ActionType.EQUIPPABLE:
+			context_menu.add_item("Equip", 0)
+			context_menu.add_item("Drop", 1)
+		ActionData.ActionType.INSPECTABLE:
+			context_menu.add_item("View", 0)
+			context_menu.add_item("Drop", 1)
+	context_menu.set_meta('slot_id', slot_id)
+	var mouse_pos: Vector2 = get_viewport().get_mouse_position()
+	var rect: Rect2i = Rect2i(mouse_pos.floor(), Vector2i(1,1))
+	context_menu.popup(rect)
+	
+func _on_context_menu_selected(id: int) -> void:
+	var slot_id = context_menu.get_meta('slot_id')
+	var slot: InventorySlot = inventory_slots[slot_id]
+	if slot.slot_data == null:
+		return
+	
+	match _get_item_action_type(slot.slot_data):
+		ActionData.ActionType.CONSUMABLE:
+			match id:
+				0: #use_collectable
+					print("I eat a ball")
+				1: #drop_collectable
+					print("Drop the thing")
+		ActionData.ActionType.EQUIPPABLE:
+			match id:
+				0: #equipped_collectable
+					print("I'm holding a block")
+				1: #drop_collectable
+					print("Drop the thing")
+		ActionData.ActionType.INSPECTABLE:
+			match id:
+				0: #inspect_collectable
+					print("I'm looking at it, It's a prism")
+				1: #drop_collectable
+					print("Drop the thing")
+	
+func _get_item_action_type(item_data: ItemData) -> ActionData.ActionType:
+	if not item_data or not item_data.item_model_prefab == null:
+		return ActionData.ActionType.INVALID
+		
+	return item_data.action_data.action_type
