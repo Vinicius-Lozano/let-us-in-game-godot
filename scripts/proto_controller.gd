@@ -1,6 +1,6 @@
 extends CharacterBody3D
 
-@onready var inventory_controller: InventoryController = $InventoryController
+@onready var inventory_controller: InventoryController = $InventoryController/CanvasLayer/InventoryUI
 
 ## Can we move around?
 @export var can_move : bool = true

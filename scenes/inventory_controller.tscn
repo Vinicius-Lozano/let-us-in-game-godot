@@ -20,8 +20,7 @@ expand_margin_top = 8.0
 expand_margin_right = 2.0
 expand_margin_bottom = 8.0
 
-[node name="InventoryController" type="Node" unique_id=2017358997]
-script = ExtResource("1_hnk7b")
+[node name="InventoryController" type="Node" unique_id=307339063]
 
 [node name="CanvasLayer" type="CanvasLayer" parent="." unique_id=1234567405]
 
@@ -32,6 +31,7 @@ anchor_right = 1.0
 anchor_bottom = 1.0
 grow_horizontal = 2
 grow_vertical = 2
+script = ExtResource("1_hnk7b")
 
 [node name="Panel" type="Panel" parent="CanvasLayer/InventoryUI" unique_id=1721969458]
 layout_mode = 1
