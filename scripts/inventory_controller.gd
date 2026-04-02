@@ -2,7 +2,7 @@ extends Control
 class_name InventoryController
 
 # Try to add the sanity controller via signals
-@onready var player_camera: Camera3D = $"../../../Head/Camera3D" #change for the new player after
+@onready var player_camera: Camera3D = $"../../../Head/Eyes/Camera3D"
 #@onready var hand: Marker3D = # add 'Hand' later
 @onready var canvas: CanvasLayer = get_parent()
 @onready var grid: GridContainer = $Panel/MarginContainer/GridContainer

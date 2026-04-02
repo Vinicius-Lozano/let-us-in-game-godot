@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bkogvbjpuynh7"]
+
+[ext_resource type="Texture2D" uid="uid://b3jux7yrfc4ar" path="res://gfx/checkboard.png" id="1_7qo5y"]
+
+[resource]
+albedo_color = Color(0.2991941, 0.60160685, 0.3758899, 1)
+albedo_texture = ExtResource("1_7qo5y")
+uv1_triplanar = true
