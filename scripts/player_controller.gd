@@ -16,12 +16,21 @@ const SPRINTING_SPEED: float = 5.0
 const CROUCHING_SPEED: float = 1.0
 const CROUCHING_DEPTH: float = -0.9
 const JUMP_VELOCITY: float = 4.0
+const HEAD_BOBBING_SPRINTING_SPEED: float = 22.0
+const HEAD_BOBBING_WALKING_SPEED: float = 14.0
+const HEAD_BOBBING_CROUCHING_SPEED: float = 10.0
+const HEAD_BOBBING_SPRINTING_INTENSITY: float = 0.2
+const HEAD_BOBBING_WALKING_INTENSITY: float = 0.1
+const HEAD_BOBBING_CROUCHING_INTENSITY: float = 0.05
 
 var current_speed: float = 0.0
 var moving: bool = false
 var input_dir: Vector2 = Vector2.ZERO
 var direction: Vector3 = Vector3.ZERO
 var lerp_speed: float = 10.0
+var head_bobbing_current_intensity: float = 0.0
+var head_bobbing_vector: Vector2 = Vector2.ZERO
+var head_bobbing_index: float = 0.0
 
 # Player Settings
 var base_fov: float = 90
@@ -137,12 +146,32 @@ func updateCamera(delta: float) -> void:
 	if player_state == PlayerState.CROUCHING or player_state == PlayerState.IDLE_CROUCH:
 		head.position.y = lerp(head.position.y, 1.8 + CROUCHING_DEPTH, delta * lerp_speed)
 		camera_3d.fov = lerp(camera_3d.fov, base_fov*0.95, delta * lerp_speed)
+		head_bobbing_current_intensity = HEAD_BOBBING_CROUCHING_INTENSITY
+		head_bobbing_index += HEAD_BOBBING_CROUCHING_SPEED * delta
 	elif player_state == PlayerState.IDLE_STAND:
 		head.position.y = lerp(head.position.y, 1.8, delta * lerp_speed)
 		camera_3d.fov = lerp(camera_3d.fov, base_fov, delta * lerp_speed)
+		head_bobbing_current_intensity = HEAD_BOBBING_WALKING_INTENSITY
+		head_bobbing_index += HEAD_BOBBING_WALKING_SPEED * delta
 	elif player_state == PlayerState.WALKING:
 		head.position.y = lerp(head.position.y, 1.8, delta * lerp_speed)
 		camera_3d.fov = lerp(camera_3d.fov, base_fov, delta * lerp_speed)
+		head_bobbing_current_intensity = HEAD_BOBBING_WALKING_INTENSITY
+		head_bobbing_index += HEAD_BOBBING_WALKING_SPEED * delta
 	elif player_state == PlayerState.SPRINTING:
 		head.position.y = lerp(head.position.y, 1.8, delta * lerp_speed)
 		camera_3d.fov = lerp(camera_3d.fov, base_fov*1.05, delta * lerp_speed)
+		head_bobbing_current_intensity = HEAD_BOBBING_SPRINTING_INTENSITY
+		head_bobbing_index += HEAD_BOBBING_SPRINTING_SPEED * delta
+	
+	head_bobbing_vector.y = sin(head_bobbing_index)
+	head_bobbing_vector.x = (sin(head_bobbing_index/2.0)+0.5)
+	
+	if moving:
+		eyes.position.y = lerp(eyes.position.y, head_bobbing_vector.y * (head_bobbing_current_intensity/2.0), delta * lerp_speed)
+		eyes.position.x = lerp(eyes.position.x, head_bobbing_vector.x * (head_bobbing_current_intensity), delta * lerp_speed)
+	else:
+		eyes.position.y = lerp(eyes.position.y, 0.0, delta * lerp_speed)
+		eyes.position.x = lerp(eyes.position.x, 0.0, delta * lerp_speed)
+		
+		
