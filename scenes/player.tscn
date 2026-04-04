@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://opb8h0gagqm6" path="res://scripts/player_controller.gd" id="1_3vyb7"]
 [ext_resource type="PackedScene" uid="uid://dhnjexy6jsmr8" path="res://scenes/inventory_controller.tscn" id="2_g2els"]
+[ext_resource type="PackedScene" uid="uid://dlysphdyf8tqb" path="res://scenes/interaction_controller.tscn" id="3_qhqgy"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -43,10 +44,17 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 [node name="Camera3D" type="Camera3D" parent="Head/Eyes" unique_id=1418750175]
 fov = 90.0
 
-[node name="RayCast3D" type="RayCast3D" parent="Head/Eyes/Camera3D" unique_id=1047095304]
+[node name="InteractionRaycast" type="RayCast3D" parent="Head/Eyes/Camera3D" unique_id=1047095304]
 target_position = Vector3(0, 0, -2)
 
-[node name="InventoryController" parent="." unique_id=2017358997 instance=ExtResource("2_g2els")]
+[node name="Hand" type="Marker3D" parent="Head/Eyes/Camera3D" unique_id=174617130]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
 [node name="StandupCheck" type="RayCast3D" parent="." unique_id=27205803]
 target_position = Vector3(0, 2, 0)
+
+[node name="InventoryController" parent="." unique_id=2017358997 instance=ExtResource("2_g2els")]
+
+[node name="InteractionController" parent="." unique_id=2044404468 instance=ExtResource("3_qhqgy")]
+unique_name_in_owner = true
