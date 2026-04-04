@@ -1,6 +1,7 @@
 [gd_scene format=3 uid="uid://wgjymdinw7jw"]
 
 [ext_resource type="Script" uid="uid://bhychgjkb7buv" path="res://tools/item_tools/small_item.gd" id="1_taefm"]
+[ext_resource type="PackedScene" uid="uid://b7fw3rbiqe0y3" path="res://scenes/interaction_component.tscn" id="2_1qevs"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bx2qi"]
 
@@ -11,3 +12,6 @@ script = ExtResource("1_taefm")
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=382088013]
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2111589417]
+
+[node name="InteractionComponent" parent="." unique_id=1549124343 node_paths=PackedStringArray("object_ref") instance=ExtResource("2_1qevs")]
+object_ref = NodePath("..")
