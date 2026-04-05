@@ -8,6 +8,7 @@
 [ext_resource type="Resource" uid="uid://uify4b48uvhc" path="res://items/prisma.tres" id="5_brxev"]
 [ext_resource type="Resource" uid="uid://qo2fdnjftn0w" path="res://items/quadrado.tres" id="6_60vh3"]
 [ext_resource type="Material" uid="uid://cn3cnfgys41f8" path="res://gfx/walls.tres" id="7_ht20j"]
+[ext_resource type="PackedScene" uid="uid://xby13qd6d1a" path="res://items/door.tscn" id="9_jfhmk"]
 
 [sub_resource type="Environment" id="Environment_yqjtg"]
 background_mode = 1
@@ -30,12 +31,6 @@ uv1_triplanar = true
 
 [node name="PlayTest" type="Node3D" unique_id=1722158228]
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=843494818]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
-use_collision = true
-size = Vector3(20, 1, 20)
-material = ExtResource("1_1d7nu")
-
 [node name="player" parent="." unique_id=2123675130 instance=ExtResource("2_1d7nu")]
 
 [node name="WorldEnvironment" type="WorldEnvironment" parent="." unique_id=1033707717]
@@ -46,46 +41,88 @@ transform = Transform3D(1, 0, 0, 0, -0.7736965, 0.6335565, 0, -0.6335565, -0.773
 light_energy = 1.5
 
 [node name="small_item" parent="." unique_id=617685090 instance=ExtResource("3_ht20j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 0)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 1, 5)
 item_data = ExtResource("4_jfhmk")
 
 [node name="small_item3" parent="." unique_id=1447512421 instance=ExtResource("3_ht20j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, -2)
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, -3.5, 1, 3)
 mass = 0.5
 item_data = ExtResource("5_brxev")
 
 [node name="small_item2" parent="." unique_id=1879454343 instance=ExtResource("3_ht20j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, 2)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3.5, 1, 7)
 mass = 5.0
 item_data = ExtResource("6_60vh3")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1338872293]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.19020282, 1.3533516, 5.6429715)
+[node name="Map" type="Node" parent="." unique_id=1383961504]
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map" unique_id=843494818]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.5, 0)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = ExtResource("1_1d7nu")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Map" unique_id=989937628]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -0.5, 0)
+use_collision = true
+size = Vector3(20, 1, 20)
+material = ExtResource("1_1d7nu")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Map" unique_id=1021361330]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -0.5, 0)
+use_collision = true
+size = Vector3(5, 1, 10)
+material = ExtResource("1_1d7nu")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map" unique_id=1338872293]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.1902027, 1.3533516, 5.0429716)
 use_collision = true
 size = Vector3(4.741211, 2.7505722, 0.50393677)
 material = ExtResource("7_ht20j")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D2" unique_id=360030906]
+[node name="CSGBox3D" type="CSGBox3D" parent="Map/CSGBox3D2" unique_id=360030906]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7810538, 0)
 operation = 2
 size = Vector3(1.248, 1.1522217, 1)
 material = SubResource("StandardMaterial3D_1d7nu")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="CSGBox3D2" unique_id=1998121462]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/CSGBox3D2" unique_id=1998121462]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1.7053145, 0.7028606, 0.00061941147)
 operation = 2
 height = 1.1079102
 material = ExtResource("7_ht20j")
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="CSGBox3D2" unique_id=1124041346]
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Map/CSGBox3D2" unique_id=1124041346]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -1.503426, 0.7028606, 0.00061941147)
 operation = 2
 radius = 0.63623047
 height = 1.1079102
 material = ExtResource("7_ht20j")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="CSGBox3D2" unique_id=1760735345]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Map/CSGBox3D2" unique_id=1760735345]
 transform = Transform3D(1.2487804, 0, 0, 0, 1.1725564, 0, 0, 0, 1, 0.30428755, 0.77174497, 0)
 operation = 2
 mesh = SubResource("PrismMesh_ht20j")
 material = ExtResource("7_ht20j")
+
+[node name="WallCabin" type="CSGBox3D" parent="Map" unique_id=1290205208]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.699999, 1.5, 0)
+use_collision = true
+size = Vector3(0.4, 3, 10)
+material = ExtResource("7_ht20j")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map/WallCabin" unique_id=350910467]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20000005, 0.8)
+operation = 2
+size = Vector3(1, 2.6, 1.6)
+material = ExtResource("7_ht20j")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/WallCabin" unique_id=618703034]
+transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, -1.1, -3.7)
+operation = 2
+radius = 0.8
+height = 1.0
+material = ExtResource("7_ht20j")
+
+[node name="Door2" parent="." unique_id=337476497 instance=ExtResource("9_jfhmk")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.7, 0, 0)
