@@ -9,6 +9,9 @@
 [ext_resource type="Resource" uid="uid://qo2fdnjftn0w" path="res://items/quadrado.tres" id="6_60vh3"]
 [ext_resource type="Material" uid="uid://cn3cnfgys41f8" path="res://gfx/walls.tres" id="7_ht20j"]
 [ext_resource type="PackedScene" uid="uid://xby13qd6d1a" path="res://items/door.tscn" id="9_jfhmk"]
+[ext_resource type="PackedScene" uid="uid://bmlcsucujcsji" path="res://scenes/podium.tscn" id="10_brxev"]
+[ext_resource type="PackedScene" uid="uid://dwa4ua85qg5fl" path="res://scenes/switch.tscn" id="11_60vh3"]
+[ext_resource type="Script" uid="uid://rvxaxfytgjgj" path="res://scripts/spot_light_3d.gd" id="12_66nmg"]
 
 [sub_resource type="Environment" id="Environment_yqjtg"]
 background_mode = 1
@@ -124,5 +127,22 @@ radius = 0.8
 height = 1.0
 material = ExtResource("7_ht20j")
 
-[node name="Door2" parent="." unique_id=337476497 instance=ExtResource("9_jfhmk")]
+[node name="Door2" parent="Map" unique_id=337476497 instance=ExtResource("9_jfhmk")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.7, 0, 0)
+
+[node name="Podium" parent="." unique_id=1396601957 instance=ExtResource("10_brxev")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -6)
+
+[node name="Switch" parent="Podium" unique_id=1655505520 instance=ExtResource("11_60vh3")]
+transform = Transform3D(1, 0, 0, 0, 0.6427876, -0.7660444, 0, 0.7660444, 0.6427876, 3.4969048e-08, 1.3, -0.4000001)
+
+[node name="InteractionComponent" parent="Podium/Switch/Switch" parent_id_path=PackedInt32Array(1655505520, 334070891) index="2" unique_id=1549124343 node_paths=PackedStringArray("nodes_to_effect")]
+nodes_to_effect = [NodePath("../../../SpotLight3D")]
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Podium" unique_id=1640311412]
+transform = Transform3D(1, 8.742277e-08, 8.7422784e-08, -8.742278e-08, -4.371139e-08, 1, 8.742278e-08, -1, -4.371138e-08, 0, 3, 0)
+visible = false
+light_energy = 16.0
+script = ExtResource("12_66nmg")
+
+[editable path="Podium/Switch"]

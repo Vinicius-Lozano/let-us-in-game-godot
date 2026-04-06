@@ -2,13 +2,15 @@ extends Node
 
 enum InteractionType {
 	DEFAULT,
-	DOOR
+	DOOR,
+	SWITCH
 }
 
 @export var object_ref: Node3D
 @export var interaction_type: InteractionType = InteractionType.DEFAULT
 @export var maximum_rotation: float = 90
 @export var pivot_point: Node3D
+@export var nodes_to_effect: Array[Node]
 
 var can_interact: bool = true
 var is_interacting: bool = false
@@ -17,11 +19,17 @@ var lock_camera: bool = false
 var starting_rotation: float
 var is_front: bool
 
+var current_angle: float = 0.0
+var initial_transform: Transform3D
+
 func _ready() -> void:
 	match  interaction_type:
 		InteractionType.DOOR:
 			starting_rotation = pivot_point.rotation.x
 			maximum_rotation = deg_to_rad(rad_to_deg(starting_rotation) + maximum_rotation)
+		InteractionType.SWITCH:
+			initial_transform = object_ref.transform
+			maximum_rotation = deg_to_rad(maximum_rotation)
 
 func  preInteract(hand: Marker3D) -> void:
 	is_interacting = true
@@ -29,6 +37,8 @@ func  preInteract(hand: Marker3D) -> void:
 		InteractionType.DEFAULT:
 			player_hand = hand
 		InteractionType.DOOR:
+			lock_camera = true
+		InteractionType.SWITCH:
 			lock_camera = true
 
 func interact() -> void:
@@ -60,7 +70,19 @@ func _input(event: InputEvent) -> void:
 						pivot_point.rotate_y(event.relative.y * .001)
 					
 					pivot_point.rotation.y = clamp(pivot_point.rotation.y, starting_rotation, maximum_rotation)
-
+			InteractionType.SWITCH:
+				if event is InputEventMouseMotion:
+					var percentage: float
+					
+					current_angle -= event.relative.y * .001
+					current_angle = clamp(current_angle, 0.0, maximum_rotation)
+					
+					object_ref.transform = initial_transform
+					object_ref.rotate_object_local(Vector3.RIGHT, current_angle)
+					
+					percentage = inverse_lerp(0.0, maximum_rotation, current_angle)
+					
+					notify_nodes(percentage)
 func _default_interact() -> void:
 	var object_current_position: Vector3 = object_ref.global_transform.origin
 	var player_hand_position: Vector3 = player_hand.global_transform.origin
@@ -90,3 +112,8 @@ func set_direction(_normal: Vector3) -> void:
 		is_front = true
 	else:
 		is_front = false
+
+func notify_nodes(percentage: float) -> void:
+	for node in nodes_to_effect:
+		if node.has_method("execute"):
+			node.call("execute", percentage)

@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dwa4ua85qg5fl"]
+
+[ext_resource type="PackedScene" uid="uid://b7fw3rbiqe0y3" path="res://scenes/interaction_component.tscn" id="1_1i7pn"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_e08h5"]
+size = Vector3(0.1, 0.5, 0.1)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_nnoiq"]
+size = Vector3(0.1, 0.5, 0.1)
+
+[node name="Switch" type="Node3D" unique_id=1655505520]
+
+[node name="Switch" type="StaticBody3D" parent="." unique_id=334070891]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="Switch" unique_id=462342060]
+mesh = SubResource("BoxMesh_e08h5")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="Switch" unique_id=559438735]
+shape = SubResource("BoxShape3D_nnoiq")
+
+[node name="InteractionComponent" parent="Switch" unique_id=1549124343 node_paths=PackedStringArray("object_ref") instance=ExtResource("1_1i7pn")]
+object_ref = NodePath("..")
+interaction_type = 2

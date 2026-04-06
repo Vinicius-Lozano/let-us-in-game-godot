@@ -1,0 +1,31 @@
+[gd_scene format=3 uid="uid://bmlcsucujcsji"]
+
+[ext_resource type="Texture2D" uid="uid://b3jux7yrfc4ar" path="res://gfx/checkboard.png" id="1_v46le"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t1sg8"]
+albedo_color = Color(0.1426642, 0.13577479, 0.24480268, 1)
+albedo_texture = ExtResource("1_v46le")
+uv1_triplanar = true
+
+[sub_resource type="BoxMesh" id="BoxMesh_2mcsk"]
+material = SubResource("StandardMaterial3D_t1sg8")
+size = Vector3(0.6, 1.8, 0.69)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_iytmk"]
+size = Vector3(0.6, 1.8, 0.69)
+
+[node name="Podium" type="Node3D" unique_id=1396601957]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=718020852]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=224247281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+mesh = SubResource("BoxMesh_2mcsk")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=644761962]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
+shape = SubResource("BoxShape3D_iytmk")
+
+[node name="Label3D" type="Label3D" parent="StaticBody3D" unique_id=1374586372]
+transform = Transform3D(-1, 0, 8.742278e-08, 0, 1, 0, -8.742278e-08, 0, -1, 0, 1.6734577, -0.3499815)
+text = "SWITCH"
