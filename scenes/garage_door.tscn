@@ -1,0 +1,35 @@
+[gd_scene format=3 uid="uid://doxb0mf7n670d"]
+
+[ext_resource type="Material" uid="uid://cy0ps3i3473bn" path="res://gfx/Interactable.tres" id="1_3t0k6"]
+[ext_resource type="PackedScene" uid="uid://bv5oawhwobi1p" path="res://scenes/movement_interaction_component.tscn" id="2_g6vjv"]
+
+[sub_resource type="BoxMesh" id="BoxMesh_pqqud"]
+material = ExtResource("1_3t0k6")
+size = Vector3(0.2, 2.7, 3)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_e5elr"]
+size = Vector3(0.2, 2.7, 3)
+
+[node name="GarageDoor" type="Node3D" unique_id=314702371]
+
+[node name="StaticBody3D" type="StaticBody3D" parent="." unique_id=1888785599]
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="StaticBody3D" unique_id=847769025]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+mesh = SubResource("BoxMesh_pqqud")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="StaticBody3D" unique_id=2056238547]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.35, 0)
+shape = SubResource("BoxShape3D_e5elr")
+
+[node name="MovementInteractionComponent" parent="StaticBody3D" unique_id=1802940904 node_paths=PackedStringArray("target_node") instance=ExtResource("2_g6vjv")]
+target_node = NodePath("..")
+
+[node name="Label3D" type="Label3D" parent="StaticBody3D" unique_id=1095396228]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.10973032, 2.2800264, 0)
+text = "UP"
+
+[node name="Label3D2" type="Label3D" parent="StaticBody3D" unique_id=1701966748]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0.10973032, 0.4850464, 0)
+text = "Down
+"
