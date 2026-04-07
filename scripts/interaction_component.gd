@@ -3,7 +3,8 @@ extends Node
 enum InteractionType {
 	DEFAULT,
 	DOOR,
-	SWITCH
+	SWITCH,
+	WHEEL
 }
 
 @export var object_ref: Node3D
@@ -30,6 +31,10 @@ func _ready() -> void:
 		InteractionType.SWITCH:
 			initial_transform = object_ref.transform
 			maximum_rotation = deg_to_rad(maximum_rotation)
+		InteractionType.WHEEL:
+			initial_transform = object_ref.transform
+			maximum_rotation = deg_to_rad(maximum_rotation)
+			current_angle = 0.0
 
 func  preInteract(hand: Marker3D) -> void:
 	is_interacting = true
@@ -39,6 +44,8 @@ func  preInteract(hand: Marker3D) -> void:
 		InteractionType.DOOR:
 			lock_camera = true
 		InteractionType.SWITCH:
+			lock_camera = true
+		InteractionType.WHEEL:
 			lock_camera = true
 
 func interact() -> void:
@@ -83,6 +90,20 @@ func _input(event: InputEvent) -> void:
 					percentage = inverse_lerp(0.0, maximum_rotation, current_angle)
 					
 					notify_nodes(percentage)
+			InteractionType.WHEEL:
+				if event is InputEventMouseMotion:
+					var rotation_speed: float = 0.0001
+					var input_movement = event.relative.x * rotation_speed
+					
+					current_angle += input_movement
+					current_angle = clamp(current_angle, 0.0, maximum_rotation)
+					
+					object_ref.transform = initial_transform
+					object_ref.rotate_object_local(Vector3.LEFT, current_angle)
+					
+					var percentage: float = inverse_lerp(0.0, maximum_rotation, current_angle)
+					notify_nodes(percentage)
+
 func _default_interact() -> void:
 	var object_current_position: Vector3 = object_ref.global_transform.origin
 	var player_hand_position: Vector3 = player_hand.global_transform.origin
