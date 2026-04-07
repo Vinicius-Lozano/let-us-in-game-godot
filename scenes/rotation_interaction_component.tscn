@@ -1,0 +1,6 @@
+[gd_scene format=3 uid="uid://dxtbytdipj66v"]
+
+[ext_resource type="Script" uid="uid://c2mv4udmnkr1t" path="res://scripts/rotation_interaction_component.gd" id="1_toq0j"]
+
+[node name="RotationInteractionComponent" type="Node" unique_id=1014286953]
+script = ExtResource("1_toq0j")
