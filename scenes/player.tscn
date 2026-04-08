@@ -1,8 +1,11 @@
 [gd_scene format=3 uid="uid://vwqs1dteoobi"]
 
 [ext_resource type="Script" uid="uid://opb8h0gagqm6" path="res://scripts/player_controller.gd" id="1_3vyb7"]
+[ext_resource type="Texture2D" uid="uid://yqbh45k73mwg" path="res://gfx/UI/dot_small.svg" id="2_dqkch"]
 [ext_resource type="PackedScene" uid="uid://dhnjexy6jsmr8" path="res://scenes/inventory_controller.tscn" id="2_g2els"]
 [ext_resource type="PackedScene" uid="uid://dlysphdyf8tqb" path="res://scenes/interaction_controller.tscn" id="3_qhqgy"]
+[ext_resource type="Texture2D" uid="uid://2hub34ts8din" path="res://gfx/UI/hand_thin_open.svg" id="3_tuyoq"]
+[ext_resource type="Texture2D" uid="uid://7eeoqfxm3v7r" path="res://gfx/UI/hand_thin_closed.svg" id="4_fjrip"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -20,6 +23,71 @@ height = 1.0
 
 [node name="player" type="CharacterBody3D" unique_id=2123675130]
 script = ExtResource("1_3vyb7")
+
+[node name="GUI" type="Node" parent="." unique_id=2075322658]
+
+[node name="ReticleLayer" type="CanvasLayer" parent="GUI" unique_id=1894839961]
+
+[node name="Control" type="Control" parent="GUI/ReticleLayer" unique_id=1013679226]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+
+[node name="DefaultReticle" type="TextureRect" parent="GUI/ReticleLayer/Control" unique_id=33231531]
+unique_name_in_owner = true
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("2_dqkch")
+stretch_mode = 3
+
+[node name="HandOpen" type="TextureRect" parent="GUI/ReticleLayer/Control" unique_id=1006383904]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("3_tuyoq")
+stretch_mode = 3
+
+[node name="HandClosed" type="TextureRect" parent="GUI/ReticleLayer/Control" unique_id=713744401]
+unique_name_in_owner = true
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -20.0
+offset_top = -20.0
+offset_right = 20.0
+offset_bottom = 20.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("4_fjrip")
+stretch_mode = 3
 
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=2078551516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)

@@ -4,44 +4,73 @@ extends Node
 @onready var interaction_raycast: RayCast3D = $"../Head/Eyes/Camera3D/InteractionRaycast"
 @onready var player_camera: Camera3D = $"../Head/Eyes/Camera3D"
 @onready var hand: Marker3D = %Hand
+@onready var reticle_nodes: Array = [%DefaultReticle, %HandOpen, %HandClosed]
+
+enum ReticleType {DEFAULT, HAND_OPEN, HAND_CLOSED}
 
 var current_object: Object
+var current_reticle: ReticleType
 var last_potential_object: Object
 var interaction_component: Node
 
-func _process(delta: float) -> void:
+
+func _process(_delta: float) -> void:
 	if current_object:
-		if Input.is_action_just_pressed("hand_secondary"):
-			if interaction_component:
-				interaction_component.auxInteract()
-				current_object = null
-		elif Input.is_action_pressed("hand_primary"):
-			if interaction_component:
-				interaction_component.interact()
-		else: 
-			if interaction_component:
-				interaction_component.postInteract()
-				current_object = null
+		handle_active_interactio()
 	else:
-		var potential_object: Object = interaction_raycast.get_collider()
+		handle_raycast_detection()
+
+func handle_active_interactio() -> void:
+	if not interaction_component:
+		current_object = null
+		return
+	
+	if Input.is_action_just_pressed("hand_secondary"):
+		interaction_component.auxInteract()
+		current_object = null
+	elif Input.is_action_pressed("hand_primary"):
+		interaction_component.interact()
+	else:
+		interaction_component.postInteract()
+		current_object = null
+
+func handle_raycast_detection() -> void:
+	var potential_object = interaction_raycast.get_collider()
+	var target_reticle: ReticleType = ReticleType.DEFAULT
+	
+	if potential_object and potential_object is Node:
+		interaction_component = potential_object.get_node_or_null("InteractionComponent")
 		
-		if potential_object and potential_object is Node:
-			interaction_component = potential_object.get_node_or_null("InteractionComponent")
-			if interaction_component:
-				if interaction_component.can_interact == false:
-					return
+		if interaction_component and interaction_component.can_interact:
+			target_reticle = ReticleType.HAND_OPEN
+			last_potential_object = current_object
 			
-				last_potential_object = current_object
-			
-				if Input.is_action_pressed("hand_primary"):
-					current_object = potential_object
-					interaction_component.preInteract(hand)
-					
-					if interaction_component.interaction_type == interaction_component.InteractionType.DOOR:
-						interaction_component.set_direction(current_object.to_local(interaction_raycast.get_collision_point()))
+			if Input.is_action_just_pressed("hand_primary"):
+				current_object = potential_object
+				target_reticle = ReticleType.HAND_CLOSED
+				
+				interaction_component.preInteract(hand)
+				
+				if interaction_component.interaction_type == interaction_component.InteractionType.DOOR:
+					var local_point = current_object.to_local(interaction_raycast.get_collision_point())
+					interaction_component.set_direction(local_point)
+	set_reticle(target_reticle)
 
 func isCameraLocked() -> bool:
-	if interaction_component:
-		if interaction_component.lock_camera and interaction_component.is_interacting:
-			return true
-	return false
+	return interaction_component != null and interaction_component.lock_camera and interaction_component.is_interacting
+
+func set_reticle(reticle_type: ReticleType) -> void:
+	if current_reticle == reticle_type:
+		return
+	current_reticle = reticle_type
+	
+	for r in reticle_nodes:
+		r.visible = false
+	
+	match current_reticle:
+		ReticleType.DEFAULT:
+			%DefaultReticle.visible = true
+		ReticleType.HAND_OPEN:
+			%HandOpen.visible = true
+		ReticleType.HAND_CLOSED:
+			%HandClosed.visible = true
