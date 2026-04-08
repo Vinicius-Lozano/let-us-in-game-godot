@@ -6,6 +6,8 @@
 [ext_resource type="PackedScene" uid="uid://dlysphdyf8tqb" path="res://scenes/interaction_controller.tscn" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://2hub34ts8din" path="res://gfx/UI/hand_thin_open.svg" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://7eeoqfxm3v7r" path="res://gfx/UI/hand_thin_closed.svg" id="4_fjrip"]
+[ext_resource type="Script" uid="uid://djncuvtgibvsd" path="res://scripts/interactable_area_detector.gd" id="7_fjrip"]
+[ext_resource type="Shader" uid="uid://cp1bbm8ih3g67" path="res://gfx/outline.gdshader" id="8_smehm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -20,6 +22,18 @@ radius = 0.4
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_g2els"]
 radius = 0.4
 height = 1.0
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_ur7pv"]
+render_priority = 0
+shader = ExtResource("8_smehm")
+shader_parameter/outline_color = Color(0.61958486, 0.974752, 0.9999998, 1)
+shader_parameter/outline_width = 1.0
+shader_parameter/pulse_speed = 1.0
+shader_parameter/min_alpha = 0.0
+shader_parameter/max_alpha = 1.0
+
+[sub_resource type="SphereShape3D" id="SphereShape3D_tuyoq"]
+radius = 4.0
 
 [node name="player" type="CharacterBody3D" unique_id=2123675130]
 script = ExtResource("1_3vyb7")
@@ -126,3 +140,14 @@ target_position = Vector3(0, 2, 0)
 
 [node name="InteractionController" parent="." unique_id=2044404468 instance=ExtResource("3_qhqgy")]
 unique_name_in_owner = true
+
+[node name="InteractableAreaDetector" type="Area3D" parent="." unique_id=1041521527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+script = ExtResource("7_fjrip")
+highlight_material = SubResource("ShaderMaterial_ur7pv")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableAreaDetector" unique_id=437126544]
+shape = SubResource("SphereShape3D_tuyoq")
+
+[connection signal="body_entered" from="InteractableAreaDetector" to="InteractableAreaDetector" method="_on_body_entered"]
+[connection signal="body_exited" from="InteractableAreaDetector" to="InteractableAreaDetector" method="_on_body_exited"]

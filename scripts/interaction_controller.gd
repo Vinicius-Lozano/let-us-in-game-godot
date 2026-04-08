@@ -1,5 +1,6 @@
 extends Node
 
+@onready var inventory_controller: Node = $"../InventoryController/CanvasLayer/InventoryUI"
 @onready var interaction_controller: Node = %InteractionController
 @onready var interaction_raycast: RayCast3D = $"../Head/Eyes/Camera3D/InteractionRaycast"
 @onready var player_camera: Camera3D = $"../Head/Eyes/Camera3D"
@@ -45,6 +46,13 @@ func handle_raycast_detection() -> void:
 			target_reticle = ReticleType.HAND_OPEN
 			last_potential_object = current_object
 			
+			if "item_data" in potential_object and Input.is_action_just_pressed('interact'):
+				if inventory_controller.has_free_slot():
+					inventory_controller.pickup_item(potential_object.item_data)
+					potential_object.queue_free()
+					set_reticle(ReticleType.DEFAULT)
+					return
+
 			if Input.is_action_just_pressed("hand_primary"):
 				current_object = potential_object
 				target_reticle = ReticleType.HAND_CLOSED

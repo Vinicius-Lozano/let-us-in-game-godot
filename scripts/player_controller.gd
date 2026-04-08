@@ -1,11 +1,8 @@
 extends CharacterBody3D
 
-@onready var inventory_controller: InventoryController = $InventoryController/CanvasLayer/InventoryUI
-
 @onready var head: Node3D = $Head
 @onready var eyes: Node3D = $Head/Eyes
 @onready var camera_3d: Camera3D = $Head/Eyes/Camera3D
-@onready var ray_cast_3d: RayCast3D = $Head/Eyes/Camera3D/InteractionRaycast
 @onready var standing: CollisionShape3D = $Standing
 @onready var crouching: CollisionShape3D = $Crouching
 @onready var standup_check: RayCast3D = $StandupCheck
@@ -84,23 +81,6 @@ func _physics_process(delta: float) -> void:
 	else:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
-	# object Picking
-	var focus_object = ray_cast_3d.get_collider()
-
-	if focus_object != null and 'item_data' in focus_object:
-		if Input.is_action_just_pressed('interact'):
-			
-			# 1. Pergunta ao NOVO controller se tem espaço
-			if inventory_controller.has_free_slot():
-				
-				# 2. Manda o controller pegar o item
-				inventory_controller.pickup_item(focus_object.item_data)
-				
-				# 3. Destrói o item 3D do chão
-				focus_object.queue_free()
-				print("Item coletado com sucesso!")
-			else:
-				print("Inventário Cheio!")
 	move_and_slide()
 
 func updatePlayerState() -> void:

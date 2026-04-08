@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://u6udxrtd5o0d" path="res://tools/inventory_scripts/equippable_action.gd" id="1_mxxov"]
 [ext_resource type="Script" uid="uid://ku7j1ug8sub8" path="res://tools/inventory_scripts/item_data.gd" id="2_1th87"]
+[ext_resource type="Material" uid="uid://n5nxdkrp7fo5" path="res://gfx/colectable.tres" id="2_ca5uy"]
 [ext_resource type="Texture2D" uid="uid://d0vcr6pnf3gxf" path="res://gfx/cubo_teste.png" id="2_sv6gw"]
 
 [sub_resource type="Resource" id="Resource_ca5uy"]
@@ -9,6 +10,7 @@ script = ExtResource("1_mxxov")
 metadata/_custom_type_script = "uid://u6udxrtd5o0d"
 
 [sub_resource type="BoxMesh" id="BoxMesh_mxxov"]
+material = ExtResource("2_ca5uy")
 
 [resource]
 script = ExtResource("2_1th87")
