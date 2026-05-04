@@ -17,16 +17,14 @@
 [ext_resource type="PackedScene" uid="uid://doxb0mf7n670d" path="res://scenes/garage_door.tscn" id="15_8px8v"]
 
 [sub_resource type="Environment" id="Environment_yqjtg"]
-background_mode = 1
-background_color = Color(9.505823e-07, 0.23776913, 0.30721056, 1)
+background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
 ambient_light_source = 3
-ambient_light_color = Color(0.5619718, 0.6772926, 0.7538646, 1)
-ambient_light_sky_contribution = 0.2
-ambient_light_energy = 3.0
+ambient_light_color = Color(0.26133463, 0.55132455, 1, 1)
+reflected_light_source = 2
 fog_enabled = true
-fog_light_color = Color(0.3798054, 0.41081068, 0.46119618, 1)
-fog_light_energy = 3.0
-fog_density = 0.05
+fog_light_color = Color(0.39794886, 0.43006787, 0.4822582, 1)
+fog_light_energy = 0.1
+fog_density = 0.0846
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_1d7nu"]
 albedo_color = Color(0.3011118, 0.18891239, 0.0292853, 1)
@@ -43,8 +41,9 @@ uv1_triplanar = true
 environment = SubResource("Environment_yqjtg")
 
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1446218802]
-transform = Transform3D(1, 0, 0, 0, -0.7736965, 0.6335565, 0, -0.6335565, -0.7736965, 0, 39.457176, -36.481964)
-light_energy = 1.5
+transform = Transform3D(1, 0, 0, 0, -0.7736965, 0.6335565, 0, -0.6335565, -0.7736965, 0, 514.0572, -36.481964)
+light_angular_distance = 6.0
+shadow_enabled = true
 
 [node name="Map" type="Node" parent="." unique_id=1383961504]
 
@@ -57,8 +56,8 @@ material = ExtResource("1_1d7nu")
 [node name="CSGBox3D4" type="CSGBox3D" parent="Map" unique_id=989937628]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, -0.5, 0.4902954)
 use_collision = true
-size = Vector3(20, 1, 20.98059)
-material = ExtResource("1_1d7nu")
+size = Vector3(20, 1, 21)
+material = ExtResource("7_ht20j")
 
 [node name="CSGBox3D3" type="CSGBox3D" parent="Map" unique_id=1021361330]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 12.5, -0.5, 0)
@@ -66,58 +65,141 @@ use_collision = true
 size = Vector3(5, 1, 10)
 material = ExtResource("1_1d7nu")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Map" unique_id=1338872293]
+[node name="IQTest" type="Node" parent="Map" unique_id=1910516308]
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map/IQTest" unique_id=1338872293]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -7.1902027, 1.3533516, 5.0429716)
 use_collision = true
 size = Vector3(4.741211, 2.7505722, 0.50393677)
 material = ExtResource("7_ht20j")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Map/CSGBox3D2" unique_id=360030906]
+[node name="CSGBox3D" type="CSGBox3D" parent="Map/IQTest/CSGBox3D2" unique_id=360030906]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.7810538, 0)
 operation = 2
 size = Vector3(1.248, 1.1522217, 1)
 material = SubResource("StandardMaterial3D_1d7nu")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/CSGBox3D2" unique_id=1998121462]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/IQTest/CSGBox3D2" unique_id=1998121462]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 1.7053145, 0.7028606, 0.00061941147)
 operation = 2
 height = 1.1079102
 material = ExtResource("7_ht20j")
 
-[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Map/CSGBox3D2" unique_id=1124041346]
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="Map/IQTest/CSGBox3D2" unique_id=1124041346]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, -1.503426, 0.7028606, 0.00061941147)
 operation = 2
 radius = 0.63623047
 height = 1.1079102
 material = ExtResource("7_ht20j")
 
-[node name="CSGMesh3D" type="CSGMesh3D" parent="Map/CSGBox3D2" unique_id=1760735345]
+[node name="CSGMesh3D" type="CSGMesh3D" parent="Map/IQTest/CSGBox3D2" unique_id=1760735345]
 transform = Transform3D(1.2487804, 0, 0, 0, 1.1725564, 0, 0, 0, 1, 0.30428755, 0.77174497, 0)
 operation = 2
 mesh = SubResource("PrismMesh_ht20j")
 material = ExtResource("7_ht20j")
 
-[node name="WallCabin" type="CSGBox3D" parent="Map" unique_id=1290205208]
+[node name="Cube" parent="Map/IQTest" unique_id=617685090 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 7.4)
+item_data = ExtResource("6_60vh3")
+
+[node name="Ball" parent="Map/IQTest" unique_id=619638497 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 3.4)
+item_data = ExtResource("4_jfhmk")
+
+[node name="Prism" parent="Map/IQTest" unique_id=2119026919 instance=ExtResource("3_ht20j")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5, 1, 5.4)
+item_data = ExtResource("5_brxev")
+
+[node name="Cabin" type="Node" parent="Map" unique_id=2000058493]
+
+[node name="WallCabin" type="CSGBox3D" parent="Map/Cabin" unique_id=1290205208]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 14.699999, 1.5, 0)
 use_collision = true
 size = Vector3(0.4, 3, 10)
 material = ExtResource("7_ht20j")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Map/WallCabin" unique_id=350910467]
+[node name="CSGBox3D" type="CSGBox3D" parent="Map/Cabin/WallCabin" unique_id=350910467]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.20000005, 0.8)
 operation = 2
 size = Vector3(1, 2.6, 1.6)
 material = ExtResource("7_ht20j")
 
-[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/WallCabin" unique_id=618703034]
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="Map/Cabin/WallCabin" unique_id=618703034]
 transform = Transform3D(-4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0, 1, 0, -1.1, -3.7)
 operation = 2
 radius = 0.8
 height = 1.0
 material = ExtResource("7_ht20j")
 
-[node name="Door2" parent="Map" unique_id=337476497 instance=ExtResource("9_jfhmk")]
+[node name="CSGBox3D2" type="CSGBox3D" parent="Map/Cabin" unique_id=1999499597]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.14258, 1.5, 7.869128)
+use_collision = true
+size = Vector3(0.5, 3, 6.234644)
+material = ExtResource("7_ht20j")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map/Cabin/CSGBox3D2" unique_id=959462726]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100000024, -0.3670001)
+operation = 2
+size = Vector3(1, 2.7, 3)
+material = ExtResource("7_ht20j")
+
+[node name="GarageDoor" parent="Map/Cabin/CSGBox3D2" unique_id=314702371 instance=ExtResource("15_8px8v")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1.4440248, -0.3670001)
+
+[node name="MovementInteractionComponent" parent="Map/Cabin/CSGBox3D2/GarageDoor/StaticBody3D" parent_id_path=PackedInt32Array(314702371, 1888785599) index="2" unique_id=1802940904]
+end_position = Vector3(0, 2.4, 0)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map/Cabin" unique_id=2092200945]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16.4, 1.5, 5)
+use_collision = true
+size = Vector3(0.5, 3, 3)
+material = ExtResource("7_ht20j")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Map/Cabin/CSGBox3D" unique_id=805539385]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2999997, 0, 0)
+size = Vector3(0.2, 1, 1)
+material = ExtResource("7_ht20j")
+
+[node name="Wheel" parent="Map/Cabin/CSGBox3D/CSGBox3D" unique_id=598620660 instance=ExtResource("13_d04jo")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15478134, 0, 0)
+
+[node name="InteractionComponent" parent="Map/Cabin/CSGBox3D/CSGBox3D/Wheel" index="5" unique_id=1549124343 node_paths=PackedStringArray("object_ref", "nodes_to_effect")]
+object_ref = NodePath("..")
+maximum_rotation = 360.0
+nodes_to_effect = [NodePath("../../../../CSGBox3D2/GarageDoor/StaticBody3D/MovementInteractionComponent")]
+
+[node name="Door2" parent="Map/Cabin" unique_id=337476497 instance=ExtResource("9_jfhmk")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.7, 0, 0)
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Map/Cabin" unique_id=674255049]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 24.75, 3, 0.4500002)
+use_collision = true
+size = Vector3(20.5, 0.5, 20.9)
+material = ExtResource("7_ht20j")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="Map/Cabin" unique_id=1739516880]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1.4, 10.700001)
+use_collision = true
+size = Vector3(20, 2.8, 0.5)
+material = ExtResource("7_ht20j")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="Map/Cabin" unique_id=677133790]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 34.7, 1.4, 0.45000076)
+use_collision = true
+size = Vector3(0.6, 2.8, 20)
+material = ExtResource("7_ht20j")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="Map/Cabin" unique_id=1237217344]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 15.000001, 1.4, -7.049999)
+use_collision = true
+size = Vector3(0.2, 2.8, 5)
+material = ExtResource("7_ht20j")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Map/Cabin" unique_id=1020682974]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 25, 1.4, -9.75)
+use_collision = true
+size = Vector3(20, 2.8, 0.5)
+material = ExtResource("7_ht20j")
 
 [node name="Podium" parent="Map" unique_id=1396601957 instance=ExtResource("10_brxev")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, -6)
@@ -157,62 +239,13 @@ end_rotation_degrees = Vector3(0, 0, 50)
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 11, 1.1, 6.4)
 text = "Rotation Component"
 
-[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=2092200945]
-transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 16.4, 1.5, 5)
-use_collision = true
-size = Vector3(0.5, 3, 3)
-material = ExtResource("7_ht20j")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D" unique_id=805539385]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.2999997, 0, 0)
-size = Vector3(0.2, 1, 1)
-material = ExtResource("7_ht20j")
-
-[node name="Wheel" parent="CSGBox3D/CSGBox3D" unique_id=598620660 instance=ExtResource("13_d04jo")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15478134, 0, 0)
-
-[node name="InteractionComponent" parent="CSGBox3D/CSGBox3D/Wheel" index="5" unique_id=1549124343 node_paths=PackedStringArray("object_ref", "nodes_to_effect")]
-object_ref = NodePath("..")
-maximum_rotation = 360.0
-nodes_to_effect = [NodePath("../../../../CSGBox3D2/GarageDoor/StaticBody3D/MovementInteractionComponent")]
-
 [node name="Label3D2" type="Label3D" parent="." unique_id=1104038106]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 17.84258, 2.0559752, 10.002129)
 text = "Movement Component"
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="." unique_id=1999499597]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 18.14258, 1.5, 7.869128)
-use_collision = true
-size = Vector3(0.5, 3, 6.234644)
-material = ExtResource("7_ht20j")
-
-[node name="CSGBox3D" type="CSGBox3D" parent="CSGBox3D2" unique_id=959462726]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.100000024, -0.3670001)
-operation = 2
-size = Vector3(1, 2.7, 3)
-material = ExtResource("7_ht20j")
-
-[node name="GarageDoor" parent="CSGBox3D2" unique_id=314702371 instance=ExtResource("15_8px8v")]
-transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, -1.4440248, -0.3670001)
-
-[node name="MovementInteractionComponent" parent="CSGBox3D2/GarageDoor/StaticBody3D" parent_id_path=PackedInt32Array(314702371, 1888785599) index="2" unique_id=1802940904]
-end_position = Vector3(0, 2.4, 0)
-
-[node name="small_item" parent="." unique_id=617685090 instance=ExtResource("3_ht20j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 7)
-item_data = ExtResource("6_60vh3")
-
-[node name="small_item2" parent="." unique_id=272441907 instance=ExtResource("3_ht20j")]
-transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, -5, 1, 5)
-item_data = ExtResource("5_brxev")
-
-[node name="small_item3" parent="." unique_id=619638497 instance=ExtResource("3_ht20j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 0.9, 3)
-item_data = ExtResource("4_jfhmk")
-
+[editable path="Map/Cabin/CSGBox3D2/GarageDoor"]
+[editable path="Map/Cabin/CSGBox3D/CSGBox3D/Wheel"]
 [editable path="Map/Podium/Switch"]
 [editable path="Map/Podium2"]
 [editable path="Map/Podium2/Wheel"]
 [editable path="Map/PivptBridge"]
-[editable path="CSGBox3D/CSGBox3D/Wheel"]
-[editable path="CSGBox3D2/GarageDoor"]

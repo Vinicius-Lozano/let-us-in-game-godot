@@ -7,6 +7,7 @@
 [ext_resource type="Texture2D" uid="uid://2hub34ts8din" path="res://gfx/UI/hand_thin_open.svg" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://7eeoqfxm3v7r" path="res://gfx/UI/hand_thin_closed.svg" id="4_fjrip"]
 [ext_resource type="Script" uid="uid://djncuvtgibvsd" path="res://scripts/interactable_area_detector.gd" id="7_fjrip"]
+[ext_resource type="PackedScene" uid="uid://kbnh57s607ew" path="res://scenes/sanity_controller.tscn" id="7_ur7pv"]
 [ext_resource type="Shader" uid="uid://cp1bbm8ih3g67" path="res://gfx/outline.gdshader" id="8_smehm"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
@@ -23,14 +24,22 @@ radius = 0.4
 radius = 0.4
 height = 1.0
 
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y4r1p"]
+
+[sub_resource type="SphereMesh" id="SphereMesh_d2wvv"]
+material = SubResource("StandardMaterial3D_y4r1p")
+radius = 0.25
+height = 0.6
+radial_segments = 4
+rings = 1
+
 [sub_resource type="ShaderMaterial" id="ShaderMaterial_ur7pv"]
 render_priority = 0
 shader = ExtResource("8_smehm")
-shader_parameter/outline_color = Color(0.61958486, 0.974752, 0.9999998, 1)
-shader_parameter/outline_width = 1.0
-shader_parameter/pulse_speed = 1.0
-shader_parameter/min_alpha = 0.0
-shader_parameter/max_alpha = 1.0
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 1.0
+shader_parameter/shine_speed = 3.0
+shader_parameter/shine_width = 3.0
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_tuyoq"]
 radius = 4.0
@@ -103,6 +112,12 @@ grow_vertical = 2
 texture = ExtResource("4_fjrip")
 stretch_mode = 3
 
+[node name="Debug" type="Label" parent="GUI/ReticleLayer/Control" unique_id=983333602]
+unique_name_in_owner = true
+layout_mode = 0
+offset_right = 40.0
+offset_bottom = 23.0
+
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=2078551516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 visible = false
@@ -124,6 +139,7 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.8, 0)
 [node name="Eyes" type="Node3D" parent="Head" unique_id=1466013662]
 
 [node name="Camera3D" type="Camera3D" parent="Head/Eyes" unique_id=1418750175]
+cull_mask = 524287
 fov = 90.0
 
 [node name="InteractionRaycast" type="RayCast3D" parent="Head/Eyes/Camera3D" unique_id=1047095304]
@@ -133,12 +149,35 @@ target_position = Vector3(0, 0, -2)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
+[node name="SubViewport" type="SubViewport" parent="." unique_id=833928016]
+unique_name_in_owner = true
+handle_input_locally = false
+size = Vector2i(16, 16)
+render_target_update_mode = 4
+
+[node name="LightDetection" type="Node3D" parent="SubViewport" unique_id=365521682]
+unique_name_in_owner = true
+
+[node name="LightCamera" type="Camera3D" parent="SubViewport/LightDetection" unique_id=255341741]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 1.8, 0)
+fov = 20.0
+far = 1.0
+
+[node name="MeshInstance3D" type="MeshInstance3D" parent="SubViewport/LightDetection" unique_id=1311917171]
+transform = Transform3D(0.70710677, 0, 0.70710677, 0, 1, 0, -0.70710677, 0, 0.70710677, 0, 0.818694, 0)
+layers = 524288
+mesh = SubResource("SphereMesh_d2wvv")
+
 [node name="StandupCheck" type="RayCast3D" parent="." unique_id=27205803]
 target_position = Vector3(0, 2, 0)
 
 [node name="InventoryController" parent="." unique_id=2017358997 instance=ExtResource("2_g2els")]
 
 [node name="InteractionController" parent="." unique_id=2044404468 instance=ExtResource("3_qhqgy")]
+unique_name_in_owner = true
+
+[node name="SanityController" parent="." unique_id=1713050903 instance=ExtResource("7_ur7pv")]
 unique_name_in_owner = true
 
 [node name="InteractableAreaDetector" type="Area3D" parent="." unique_id=1041521527]
