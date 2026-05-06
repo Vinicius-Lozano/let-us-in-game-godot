@@ -3,6 +3,8 @@ extends Node
 @onready var light_detection_viewport: SubViewport = %SubViewport
 @onready var light_detection: Node3D = %LightDetection
 @onready var debug: Label = %Debug
+@onready var distortion: Sprite2D = $Distortion
+@onready var distortion_material: ShaderMaterial = distortion.material
 
 var light_level: float = 0.0
 var sanity: float = 100.0
@@ -20,6 +22,7 @@ func _process(delta: float) -> void:
 	light_level = get_light_level()
 	
 	update_sanity(delta)
+	update_distortion(sanity)
 	
 	debug.text = str("FPS: %d \nLight Level: %.2f \nSanity: %.2f") % [
 		Engine.get_frames_per_second(),
@@ -49,6 +52,16 @@ func update_sanity(delta: float) -> void:
 				sanity += SANITY_REGEN_RATE * SANITY_DRAIN_INTERVAL
 				sanity = clamp(sanity, 0.0, SANITY_REGEN_TARGET)
 				time_since_sanity_change = 0.0
+
+func update_distortion(sanity: float) -> void:
+	var distortion: float = 0.0
+	if sanity < 50.0:
+		var t: float = (50.0 - sanity) / 50
+		t = pow(t, 2.5)
+		distortion = t * 0.05
+	
+	distortion_material.set_shader_parameter("distortion_strength", distortion)
+
 
 func get_average_color(texture: ViewportTexture) -> Color:
 	var image = texture.get_image()

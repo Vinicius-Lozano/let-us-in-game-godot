@@ -100,6 +100,7 @@ material = ExtResource("7_ht20j")
 
 [node name="Cube" parent="Map/IQTest" unique_id=617685090 instance=ExtResource("3_ht20j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 7.4)
+mass = 10.0
 item_data = ExtResource("6_60vh3")
 
 [node name="Ball" parent="Map/IQTest" unique_id=619638497 instance=ExtResource("3_ht20j")]
