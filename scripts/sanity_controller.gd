@@ -5,6 +5,8 @@ extends Node
 @onready var debug: Label = %Debug
 @onready var distortion: Sprite2D = $Distortion
 @onready var distortion_material: ShaderMaterial = distortion.material
+@onready var player_camera: Camera3D = %Camera3D
+
 
 var light_level: float = 0.0
 var sanity: float = 100.0
@@ -23,6 +25,11 @@ func _process(delta: float) -> void:
 	
 	update_sanity(delta)
 	update_distortion(sanity)
+	
+	for enemy in get_tree().get_nodes_in_group("enemy"):
+		if is_enemy_on_screen(enemy):
+			if is_enemy_in_view(enemy, 10.0):
+				drain_sanity(delta * 8.0)
 	
 	debug.text = str("FPS: %d \nLight Level: %.2f \nSanity: %.2f") % [
 		Engine.get_frames_per_second(),
@@ -62,6 +69,47 @@ func update_distortion(sanity: float) -> void:
 	
 	distortion_material.set_shader_parameter("distortion_strength", distortion)
 
+func is_enemy_on_screen(enemy: Node3D) -> bool:
+	var viewport: Viewport = player_camera.get_viewport()
+	var screen_size: Vector2 = viewport.size
+	
+	var enemy_position: Vector3 = enemy.global_transform.origin
+	var camera_position: Vector3 = player_camera.global_transform.origin
+	var to_enemy: Vector3 = enemy_position - camera_position
+	
+	var forward: Vector3 = -player_camera.global_basis.z
+	
+	if forward.dot(to_enemy) < 0.0:
+		return false
+	
+	var screen_pos: Vector2 = player_camera.unproject_position(enemy_position)
+	
+	if screen_pos.x < 0.0 or screen_pos.x > screen_size.x:
+		return false
+	if screen_pos.y < 0.0 or screen_pos.y > screen_size.y:
+		return false
+	
+	return true
+
+func is_enemy_in_view(enemy: Node3D, tolerance_degrees: float) -> bool:
+	var enemy_position: Vector3 = enemy.global_transform.origin
+	var camera_position: Vector3 = player_camera.global_transform.origin
+	
+	var to_enemy: Vector3 = (enemy_position - camera_position).normalized()
+	
+	var forward: Vector3 = -player_camera.global_basis.z
+	
+	var angle_deg: float = rad_to_deg(acos(forward.dot(to_enemy)))
+	
+	return angle_deg <= tolerance_degrees
+
+func drain_sanity(amount: float) -> void:
+	sanity -= amount
+	sanity = clamp(sanity, 0.0, 100.0)
+
+func add_sanity(amount: float) -> void:
+	sanity += amount
+	sanity = clamp(sanity, 0.0, 100.0)
 
 func get_average_color(texture: ViewportTexture) -> Color:
 	var image = texture.get_image()

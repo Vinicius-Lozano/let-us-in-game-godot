@@ -15,6 +15,7 @@
 [ext_resource type="PackedScene" uid="uid://c2tg8d8ihoer0" path="res://scenes/wheel.tscn" id="13_d04jo"]
 [ext_resource type="PackedScene" uid="uid://brtrt0x1v2wto" path="res://scenes/pivot_bridge.tscn" id="14_8px8v"]
 [ext_resource type="PackedScene" uid="uid://doxb0mf7n670d" path="res://scenes/garage_door.tscn" id="15_8px8v"]
+[ext_resource type="PackedScene" uid="uid://dsb0y5utu04h7" path="res://scenes/enemy_placeholder.tscn" id="16_qcfeg"]
 
 [sub_resource type="Environment" id="Environment_yqjtg"]
 background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
@@ -243,6 +244,19 @@ text = "Rotation Component"
 [node name="Label3D2" type="Label3D" parent="." unique_id=1104038106]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 17.84258, 2.0559752, 10.002129)
 text = "Movement Component"
+
+[node name="EnemyPlaceholder" parent="." unique_id=1196491773 instance=ExtResource("16_qcfeg")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 9)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=2094800520]
+transform = Transform3D(1, 0, 0, 0, -0.34202015, 0.9396926, 0, -0.9396926, -0.34202015, 33, 3.6, 8)
+light_color = Color(0.9257675, 0.91891, 2.3102762e-06, 1)
+
+[node name="SpotLight3D2" type="SpotLight3D" parent="." unique_id=2051160308]
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, 19, 2.8, 0)
+light_energy = 5.283
+spot_range = 6.023
+spot_angle = 61.12
 
 [editable path="Map/Cabin/CSGBox3D2/GarageDoor"]
 [editable path="Map/Cabin/CSGBox3D/CSGBox3D/Wheel"]
