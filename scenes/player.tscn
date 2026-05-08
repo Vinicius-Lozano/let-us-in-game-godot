@@ -150,6 +150,10 @@ target_position = Vector3(0, 0, -2)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 
+[node name="HeldItem" type="Marker3D" parent="Head/Eyes/Camera3D" unique_id=1054361777]
+unique_name_in_owner = true
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4807002, -0.20762682, -0.5581073)
+
 [node name="SubViewport" type="SubViewport" parent="." unique_id=833928016]
 unique_name_in_owner = true
 handle_input_locally = false
