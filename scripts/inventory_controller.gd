@@ -3,15 +3,20 @@ class_name InventoryController
 
 # Try to add the sanity controller via signals
 @onready var player_camera: Camera3D = $"../../../Head/Eyes/Camera3D"
-#@onready var hand: Marker3D = # add 'Hand' later
+@onready var hand: Marker3D = $"../../../Head/Eyes/Camera3D/HeldItem"
 @onready var canvas: CanvasLayer = get_parent()
 @onready var grid: GridContainer = $Panel/MarginContainer/GridContainer
 @onready var context_menu: PopupMenu = PopupMenu.new()
+@onready var sanity_controller: Node = $"../../../SanityController"
 
 var item_slots_count: int = 18
 var inventory_slot_prefab: PackedScene = load("res://scenes/inventory_slot.tscn")
 var inventory_slots: Array[InventorySlot] = []
 var inventory_full: bool = false
+var active_slot_id: int = -1
+var held_item_instance: MeshInstance3D = null
+
+
 
 func _ready() -> void:
 	# Inventory visibility toggle 
@@ -36,7 +41,11 @@ func _unhandled_input(event: InputEvent) -> void:
 	if event.is_action_pressed('toggle_inventory'):
 		canvas.visible = not canvas.visible
 		Inventory.is_open = canvas.visible
-		
+	
+	if event.is_action_pressed("interact"):
+		if active_slot_id != -1:
+			use_collectable(active_slot_id)
+	
 	if canvas.visible:
 		Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
 	else:
@@ -95,14 +104,16 @@ func _on_item_right_clicked(slot_id: int) -> void:
 	context_menu.clear()
 	match _get_item_action_type(slot.slot_data):
 		ActionData.ActionType.CONSUMABLE:
-			context_menu.add_item("Use", 0)
-			context_menu.add_item("Drop", 1)
+			context_menu.add_item("Equip", 0)
+			context_menu.add_item("Use", 1)
+			context_menu.add_item("Drop", 2)
 		ActionData.ActionType.EQUIPPABLE:
 			context_menu.add_item("Equip", 0)
 			context_menu.add_item("Drop", 1)
 		ActionData.ActionType.INSPECTABLE:
-			context_menu.add_item("View", 0)
-			context_menu.add_item("Drop", 1)
+			context_menu.add_item("Equip", 0)
+			context_menu.add_item("View", 1)
+			context_menu.add_item("Drop", 2)
 	context_menu.set_meta('slot_id', slot_id)
 	var mouse_pos: Vector2 = get_viewport().get_mouse_position()
 	var rect: Rect2i = Rect2i(mouse_pos.floor(), Vector2i(1,1))
@@ -117,37 +128,72 @@ func _on_context_menu_selected(id: int) -> void:
 	match _get_item_action_type(slot.slot_data):
 		ActionData.ActionType.CONSUMABLE:
 			match id:
-				0: use_collectable(slot_id)
-				1: drop_collectable(slot_id)
+				0: equip_item(slot_id)
+				1: use_collectable(slot_id)
+				2: drop_collectable(slot_id)
 		ActionData.ActionType.EQUIPPABLE:
 			match id:
-				0: #equipped_collectable
-					print("I'm holding a block")
+				0: equip_item(slot_id)
 				1: drop_collectable(slot_id)
 		ActionData.ActionType.INSPECTABLE:
 			match id:
-				0: #inspect_collectable
+				0: equip_item(slot_id)
+				1: #inspect_collectable
 					print("I'm looking at it, It's a prism")
-				1: drop_collectable(slot_id)
+				2: drop_collectable(slot_id)
 
 func _get_item_action_type(item_data: ItemData) -> ActionData.ActionType:
-	if not item_data or not item_data.item_model_prefab == null:
+	if item_data == null or item_data.action_data == null:
 		return ActionData.ActionType.INVALID
 		
 	return item_data.action_data.action_type
 
-func use_collectable(slot_id: int) -> void:	
+func use_collectable(slot_id: int) -> void:    
 	var slot: InventorySlot = inventory_slots[slot_id]
 	if slot.slot_data == null:
 		return
+		
 	var action_data: ActionData = slot.slot_data.action_data
+	
 	match action_data.modifier_name:
 		'sanity':
-			#sanity_controller.add_sanity(action_data.modifier_value)
-			print("Sanity +- %d" %[action_data.modifier_value])
+			sanity_controller.add_sanity(action_data.modifier_value)
+			
+	if held_item_instance != null:
+		held_item_instance.queue_free()
 	
-	inventory_full = not has_free_slot()
+	held_item_instance = null
+	active_slot_id = -1
+	
 	slot.fill_slot(null)
+	inventory_full = not has_free_slot()
+
+
+func equip_item(slot_id: int) -> void:
+	var slot: InventorySlot = inventory_slots[slot_id]
+	var item_node = MeshInstance3D.new()
+	
+	if slot.slot_data == null:
+		return
+		
+	if held_item_instance:
+		held_item_instance.queue_free()
+	active_slot_id = slot_id
+	
+	item_node.mesh = slot.slot_data.mesh
+	hand.add_child(item_node)
+	held_item_instance = item_node
+	item_node.position = Vector3.ZERO
+
+func unequip_item() -> void:
+	
+	if active_slot_id == -1 or held_item_instance == null:
+		return
+	
+	held_item_instance.queue_free()
+	
+	held_item_instance = null
+	active_slot_id = -1
 
 func drop_collectable(slot_id: int) -> void:
 	var slot: InventorySlot = inventory_slots[slot_id]
