@@ -2,24 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://dn8mxkox0klqu"
-path.s3tc="res://.godot/imported/Andarilho_Material.png-a393808ca946e23587f9c82b53d162a6.s3tc.ctex"
+uid="uid://dudfikvpwfbfs"
+path="res://.godot/imported/Sanity 4.png-972a858b2406d9291df15ccc2d6c1ae6.ctex"
 metadata={
-"imported_formats": ["s3tc_bptc"],
-"vram_texture": true
-}
-generator_parameters={
-"md5": "7c9878e07d75aff9d39d3e71c918434e"
+"vram_texture": false
 }
 
 [deps]
 
-source_file="res://Andarilho_Material.png"
-dest_files=["res://.godot/imported/Andarilho_Material.png-a393808ca946e23587f9c82b53d162a6.s3tc.ctex"]
+source_file="res://gfx/UI/Sanity 4.png"
+dest_files=["res://.godot/imported/Sanity 4.png-972a858b2406d9291df15ccc2d6c1ae6.ctex"]
 
 [params]
 
-compress/mode=2
+compress/mode=0
 compress/high_quality=false
 compress/lossy_quality=0.7
 compress/uastc_level=0
@@ -27,7 +23,7 @@ compress/rdo_quality_loss=0.0
 compress/hdr_compression=1
 compress/normal_map=0
 compress/channel_pack=0
-mipmaps/generate=true
+mipmaps/generate=false
 mipmaps/limit=-1
 roughness/mode=0
 roughness/src_normal=""
@@ -41,4 +37,4 @@ process/normal_map_invert_y=false
 process/hdr_as_srgb=false
 process/hdr_clamp_exposure=false
 process/size_limit=0
-detect_3d/compress_to=0
+detect_3d/compress_to=1
