@@ -2,7 +2,11 @@
 
 [ext_resource type="Script" uid="uid://dy2hecxrb246h" path="res://scripts/sanity_controller.gd" id="1_yekc6"]
 [ext_resource type="Shader" uid="uid://y15d4kvxcgdd" path="res://scenes/distortion.gdshader" id="2_g7rwn"]
+[ext_resource type="Texture2D" uid="uid://blim0cu0ovgw5" path="res://gfx/UI/Sanity 1.png" id="2_krcbg"]
+[ext_resource type="Texture2D" uid="uid://dob6e6wfl4m4r" path="res://gfx/UI/Sanity 2.png" id="3_0krof"]
 [ext_resource type="Texture2D" uid="uid://b3jux7yrfc4ar" path="res://gfx/checkboard.png" id="3_aaf21"]
+[ext_resource type="Texture2D" uid="uid://djflahn6lto1o" path="res://gfx/UI/Sanity 3.png" id="4_mmgb7"]
+[ext_resource type="Texture2D" uid="uid://dudfikvpwfbfs" path="res://gfx/UI/Sanity 4.png" id="5_0krof"]
 
 [sub_resource type="FastNoiseLite" id="FastNoiseLite_wnrvm"]
 
@@ -26,9 +30,30 @@ shader_parameter/distortion_strength = 0.1
 
 [node name="SanityController" type="Node" unique_id=1713050903]
 script = ExtResource("1_yekc6")
+border_textures = Array[Texture2D]([ExtResource("2_krcbg"), ExtResource("3_0krof"), ExtResource("4_mmgb7"), ExtResource("5_0krof")])
 
 [node name="Distortion" type="Sprite2D" parent="." unique_id=813419315]
+visible = false
 material = SubResource("ShaderMaterial_l3uvl")
 position = Vector2(960, 540)
 scale = Vector2(15, 8.4375)
 texture = ExtResource("3_aaf21")
+
+[node name="SanityUI" type="CanvasLayer" parent="." unique_id=467305006]
+
+[node name="BorderOverlay" type="TextureRect" parent="SanityUI" unique_id=129462146]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1
+
+[node name="FlashOverlay" type="TextureRect" parent="SanityUI" unique_id=415702702]
+visible = false
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+expand_mode = 1

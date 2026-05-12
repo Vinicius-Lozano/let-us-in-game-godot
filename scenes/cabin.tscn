@@ -1,0 +1,165 @@
+[gd_scene format=3 uid="uid://drlktqlxtktaa"]
+
+[ext_resource type="Material" uid="uid://bgu68n3h41si6" path="res://gfx/floor.tres" id="1_em8ck"]
+[ext_resource type="Texture2D" uid="uid://hfx85r1dt105" path="res://gfx/Textures/Wood_12-128x128.png" id="1_hn66x"]
+[ext_resource type="Material" uid="uid://cn3cnfgys41f8" path="res://gfx/walls.tres" id="2_qf7ms"]
+[ext_resource type="Texture2D" uid="uid://dp707iyu6n0fx" path="res://gfx/Textures/Wood_19-128x128.png" id="3_0rnjq"]
+[ext_resource type="PackedScene" uid="uid://xby13qd6d1a" path="res://items/door.tscn" id="4_g3osi"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_on2ml"]
+albedo_texture = ExtResource("3_0rnjq")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fj1ae"]
+albedo_texture = ExtResource("1_hn66x")
+
+[node name="Cabin" type="Node3D" unique_id=1088986452]
+
+[node name="cabin model" type="CSGBox3D" parent="." unique_id=775319144]
+transform = Transform3D(5.7782454, 0, 0, 0, 7.1755652, 0, 0, 0, 5.1979485, -0.6695199, 0.50392246, -2.9358857)
+use_collision = true
+size = Vector3(1, 0.01, 2.2823486)
+material = ExtResource("1_em8ck")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="cabin model" unique_id=497971616]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 1.0186049, 0, -0.63757205)
+size = Vector3(1, 0.01, 1.0400391)
+material = ExtResource("1_em8ck")
+
+[node name="CSGCylinder3D" type="CSGCylinder3D" parent="cabin model" unique_id=1472639841]
+transform = Transform3D(0.62689674, 0, 0, 0, 0.4173241, 0, 0, 0, 0.579711, 0.41898072, -0.05845882, 1.0457567)
+radius = 0.051
+height = 0.254
+material = ExtResource("1_em8ck")
+
+[node name="CSGCylinder3D2" type="CSGCylinder3D" parent="cabin model" unique_id=1032312059]
+transform = Transform3D(0.62689674, 0, 0, 0, 0.4173241, 0, 0, 0, 0.579711, -0.41390774, -0.05845882, 1.0457567)
+radius = 0.051
+height = 0.254
+material = ExtResource("1_em8ck")
+
+[node name="CSGCylinder3D3" type="CSGCylinder3D" parent="cabin model" unique_id=1535152104]
+transform = Transform3D(0.62689674, 0, 0, 0, 0.4173241, 0, 0, 0, 0.579711, -0.41390774, -0.05845882, -1.0654107)
+radius = 0.051
+height = 0.254
+material = ExtResource("1_em8ck")
+
+[node name="CSGCylinder3D4" type="CSGCylinder3D" parent="cabin model" unique_id=633885257]
+transform = Transform3D(0.62689674, 0, 0, 0, 0.4173241, 0, 0, 0, 0.579711, 1.4515233, -0.05845882, -1.0654107)
+radius = 0.051
+height = 0.254
+material = ExtResource("1_em8ck")
+
+[node name="CSGCylinder3D5" type="CSGCylinder3D" parent="cabin model" unique_id=133823467]
+transform = Transform3D(0.62689674, 0, 0, 0, 0.4173241, 0, 0, 0, 0.579711, 1.4515233, -0.05845882, -0.23067945)
+radius = 0.051
+height = 0.254
+material = ExtResource("1_em8ck")
+
+[node name="CSGCylinder3D6" type="CSGCylinder3D" parent="cabin model" unique_id=1475887483]
+transform = Transform3D(0.62689674, 0, 0, 0, 0.4173241, 0, 0, 0, 0.579711, 0.4475264, -0.05845882, -0.23067945)
+radius = 0.051
+height = 0.254
+material = ExtResource("1_em8ck")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="cabin model" unique_id=293599842]
+transform = Transform3D(0.8535716, 0, 0, 0, 0.8535716, 0, 0, 0, 0.8535716, 0.3181387, 0.24005052, 0.48871413)
+size = Vector3(0.42928392, 0.5542173, 0.04)
+material = ExtResource("2_qf7ms")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="cabin model/CSGBox3D2" unique_id=1849740938]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1, -0.75152886, 0, 0)
+size = Vector3(0.4162529, 0.5542173, 0.04)
+material = ExtResource("2_qf7ms")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="cabin model/CSGBox3D2" unique_id=473890835]
+transform = Transform3D(1.0000001, 0, 0, 0, 1, 0, 0, 0, 1.0000004, -0.37775153, 0.21527556, -0.00029245764)
+size = Vector3(0.3407584, 0.12366626, 0.04)
+material = ExtResource("2_qf7ms")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="cabin model/CSGBox3D2" unique_id=859463329]
+transform = Transform3D(-4.3712156e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.9387034, 0, -0.9631572)
+size = Vector3(1.8938285, 0.5542173, 0.04)
+material = ExtResource("2_qf7ms")
+
+[node name="CSGBox3D5" type="CSGBox3D" parent="cabin model/CSGBox3D2" unique_id=1484578565]
+transform = Transform3D(-1.0000001, 0, -8.7423736e-08, 0, 1, 0, 8.7423565e-08, 0, -1.0000001, 0.2390821, 0, -1.8904936)
+size = Vector3(2.3808937, 0.5542173, 0.04)
+material = ExtResource("2_qf7ms")
+
+[node name="CSGBox3D6" type="CSGBox3D" parent="cabin model/CSGBox3D2" unique_id=915128450]
+transform = Transform3D(-1.0000001, 0, -8.742529e-08, 0, 1, 0, 8.7423565e-08, 0, -1.0000001, 0.8039757, 0, -0.7529832)
+size = Vector3(1.2511072, 0.5542173, 0.04)
+material = ExtResource("2_qf7ms")
+
+[node name="CSGBox3D7" type="CSGBox3D" parent="cabin model/CSGBox3D2" unique_id=744527195]
+transform = Transform3D(-4.371263e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, 0.19462162, 0, -0.39448518)
+size = Vector3(0.75648457, 0.5542173, 0.04)
+material = ExtResource("2_qf7ms")
+
+[node name="CSGBox3D8" type="CSGBox3D" parent="cabin model/CSGBox3D2" unique_id=1452948721]
+transform = Transform3D(-4.371308e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, 1.408902, 0, -1.3275038)
+size = Vector3(1.1048048, 0.5542173, 0.04)
+material = ExtResource("2_qf7ms")
+
+[node name="CSGBox3D9" type="CSGBox3D" parent="cabin model/CSGBox3D2" unique_id=790804187]
+transform = Transform3D(-1.0000001, 0, -8.7426656e-08, 0, 1, 0, 8.742386e-08, 0, -1.0000004, 0.7753145, 0.012283891, -0.746382)
+operation = 2
+size = Vector3(0.4367839, 0.21890372, 0.053203125)
+material = SubResource("StandardMaterial3D_on2ml")
+
+[node name="CSGBox3D10" type="CSGBox3D" parent="cabin model/CSGBox3D2" unique_id=2075024609]
+transform = Transform3D(-4.3713637e-08, 0, 1.0000001, 0, 1, 0, -1.0000001, 0, -4.3711392e-08, -0.9389421, 0.035705417, -1.4766171)
+operation = 2
+size = Vector3(0.44780755, 0.21385868, 0.067495115)
+material = SubResource("StandardMaterial3D_on2ml")
+
+[node name="ceiling" type="CSGBox3D" parent="cabin model" unique_id=1380595268]
+transform = Transform3D(1.0000001, 0, 0, 0, 1.0000001, 0, 0, 0, 1.0000001, 0, 0.47909284, -0.31278235)
+size = Vector3(1, 0.01, 1.656784)
+material = ExtResource("1_em8ck")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="cabin model/ceiling" unique_id=12008589]
+transform = Transform3D(-4.3711395e-08, 0, 1.0000002, 0, 1.0000002, 0, -1.0000002, 0, -4.37114e-08, 1.0186051, 0, -0.32478976)
+size = Vector3(1, 0.01, 1.0400391)
+material = ExtResource("1_em8ck")
+
+[node name="floor3" type="CSGBox3D" parent="cabin model/ceiling" unique_id=1185165014]
+transform = Transform3D(0.9200134, 0.48665565, 0, -0.31557417, 0.92001337, 0, 0, 0, 1.0000004, 0.26191485, 0.082742035, 0.105867565)
+size = Vector3(0.5258789, 0.01, 1.9645376)
+material = ExtResource("1_em8ck")
+
+[node name="floor4" type="CSGBox3D" parent="cabin model/ceiling" unique_id=1136464436]
+transform = Transform3D(0.92999506, -0.45646083, 0, 0.29599434, 0.92999494, 0, 0, 0, 1.0000004, -0.23822153, 0.082704544, 0.10622954)
+size = Vector3(0.5656128, 0.01, 1.964321)
+material = ExtResource("1_em8ck")
+
+[node name="floor5" type="CSGBox3D" parent="cabin model/ceiling" unique_id=807087076]
+transform = Transform3D(-5.1894226e-08, 1.2776612e-08, 0.8995723, -0.3155741, 0.9200133, 0, -1.0227234, -0.5409857, -4.3711402e-08, 0.85900635, 0.08259475, -0.6050142)
+size = Vector3(0.5258789, 0.01, 1.8579062)
+material = ExtResource("1_em8ck")
+
+[node name="floor6" type="CSGBox3D" parent="cabin model/ceiling" unique_id=757813840]
+transform = Transform3D(-2.9696848e-08, 5.4370954e-08, 0.8995724, 0.2959943, 0.9299949, 0, -1.0338193, 0.50742, -4.3711402e-08, 0.8585671, 0.082704544, -0.049301803)
+size = Vector3(0.5656128, 0.01, 1.8588828)
+material = ExtResource("1_em8ck")
+
+[node name="CSGPolygon3D" type="CSGPolygon3D" parent="cabin model/ceiling" unique_id=125593828]
+transform = Transform3D(0.17306294, 0, 0, 0, 0.13936186, 0, 0, 0, 0.19238362, 0.11586908, -0.1243307, 0.8239492)
+polygon = PackedVector2Array(-3.418315, 0.90026116, 2.0582325, 0.8995781, -0.54621387, 2.0246253)
+depth = 0.02
+material = SubResource("StandardMaterial3D_fj1ae")
+
+[node name="CSGPolygon3D2" type="CSGPolygon3D" parent="cabin model/ceiling" unique_id=1109565406]
+transform = Transform3D(0.17306294, 0, 0, 0, 0.13936186, 0, 0, 0, 0.19238362, 0.11586908, -0.1243307, -0.8209696)
+polygon = PackedVector2Array(-3.418315, 0.90026116, 2.0582325, 0.8995781, -0.54621387, 2.0246253)
+depth = 0.02
+material = SubResource("StandardMaterial3D_fj1ae")
+
+[node name="CSGPolygon3D3" type="CSGPolygon3D" parent="cabin model/ceiling" unique_id=799306588]
+transform = Transform3D(-0.0014256765, 0, -0.17305706, 0, 0.13936186, 0, 0.19237709, 0, -0.0015848385, 1.492422, -0.1243307, -0.20677853)
+polygon = PackedVector2Array(-3.5028324, 0.86093664, 2.0664024, 0.9249182, -0.64743423, 2.0551572)
+depth = 0.02
+material = SubResource("StandardMaterial3D_fj1ae")
+
+[node name="Door" parent="cabin model/ceiling" unique_id=1558950870 instance=ExtResource("4_g3osi")]
+transform = Transform3D(0.17306294, 0, 0, 0, 0.13936186, 0, 0, 0, 0.19238362, -0.14367875, -0.47388524, 0.7996794)

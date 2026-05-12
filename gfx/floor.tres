@@ -1,0 +1,8 @@
+[gd_resource type="StandardMaterial3D" format=3 uid="uid://bgu68n3h41si6"]
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_qaw7s"]
+load_path = "res://.godot/imported/Wood_12-128x128.png-e714da96085f640ea82f0d81606295a3.s3tc.ctex"
+
+[resource]
+albedo_texture = SubResource("CompressedTexture2D_qaw7s")
+uv1_triplanar = true

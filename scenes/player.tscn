@@ -154,6 +154,13 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4807002, -0.20762682, -0.5581073)
 
+[node name="SpotLight3D" type="SpotLight3D" parent="Head/Eyes/Camera3D" unique_id=1031981750]
+light_color = Color(0.98512834, 0.96238846, 0.8167672, 1)
+light_volumetric_fog_energy = 0.1
+spot_range = 13.434
+spot_attenuation = 1.4
+spot_angle_attenuation = 5.4641595
+
 [node name="SubViewport" type="SubViewport" parent="." unique_id=833928016]
 unique_name_in_owner = true
 handle_input_locally = false
