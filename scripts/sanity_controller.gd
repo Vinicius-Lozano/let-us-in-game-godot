@@ -138,7 +138,7 @@ var light_level: float = 0.0
 var sanity: float = 100.0
 var time_since_sanity_change: float = 0.0
 const SANITY_DRAIN_INTERVAL: float = 0.25
-const DARKNESS_THRESHOLD: float = 0.6
+const DARKNESS_THRESHOLD: float = 0.2
 const SANITY_REGEN_TARGET: float = 100.0
 const SANITY_REGEN_RATE: float = 1.0 / SANITY_DRAIN_INTERVAL
 

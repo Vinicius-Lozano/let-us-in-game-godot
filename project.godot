@@ -31,6 +31,10 @@ window/size/viewport_height=1080
 
 movie_writer/movie_file="C:/Users/henry/Documents/let-us-in/.avi"
 
+[editor_plugins]
+
+enabled=PackedStringArray("res://addons/csg_terrain/plugin.cfg")
+
 [input]
 
 move_left={

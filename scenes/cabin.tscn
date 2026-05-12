@@ -1,4 +1,4 @@
-[gd_scene format=3 uid="uid://drlktqlxtktaa"]
+[gd_scene format=3 uid="uid://cq4rc42nddwng"]
 
 [ext_resource type="Material" uid="uid://bgu68n3h41si6" path="res://gfx/floor.tres" id="1_em8ck"]
 [ext_resource type="Texture2D" uid="uid://hfx85r1dt105" path="res://gfx/Textures/Wood_12-128x128.png" id="1_hn66x"]
@@ -162,4 +162,4 @@ depth = 0.02
 material = SubResource("StandardMaterial3D_fj1ae")
 
 [node name="Door" parent="cabin model/ceiling" unique_id=1558950870 instance=ExtResource("4_g3osi")]
-transform = Transform3D(0.17306294, 0, 0, 0, 0.13936186, 0, 0, 0, 0.19238362, -0.14367875, -0.47388524, 0.7996794)
+transform = Transform3D(0.17306294, 0, 0, 0, 0.13936186, 0, 0, 0, 0.19238362, -0.14367875, -0.47250894, 0.7996794)

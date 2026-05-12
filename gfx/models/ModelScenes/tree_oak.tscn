@@ -1,0 +1,27 @@
+[gd_scene format=3 uid="uid://baf04mw6k4h2l"]
+
+[ext_resource type="PackedScene" uid="uid://ggpx1gxflkbb" path="res://gfx/models/trees/tree04.glb" id="1_jx5m1"]
+[ext_resource type="Texture2D" uid="uid://3wa54r73t6i4" path="res://gfx/models/trees/tree04_fall.png" id="2_lqpxt"]
+[ext_resource type="Texture2D" uid="uid://diynu62onrp86" path="res://gfx/models/trees/tree04_summer.png" id="3_mjy3p"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_0vmc5"]
+albedo_texture = ExtResource("2_lqpxt")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_dxf1f"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("3_mjy3p")
+
+[node name="TreeOak" type="Node3D" unique_id=1636102033]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="tree042" parent="." unique_id=2092669080 instance=ExtResource("1_jx5m1")]
+
+[node name="tree04" parent="tree042" index="0" unique_id=1598848901]
+surface_material_override/0 = SubResource("StandardMaterial3D_0vmc5")
+
+[node name="tree04_top" parent="tree042/tree04" index="0" unique_id=120172301]
+surface_material_override/0 = SubResource("StandardMaterial3D_dxf1f")
+
+[editable path="tree042"]

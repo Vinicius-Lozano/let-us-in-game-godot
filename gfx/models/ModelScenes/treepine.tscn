@@ -1,0 +1,29 @@
+[gd_scene format=3 uid="uid://bpujhfqv3t6mi"]
+
+[ext_resource type="PackedScene" uid="uid://c4p5afs27ptlt" path="res://gfx/models/trees/tree08.glb" id="1_qn06l"]
+[ext_resource type="Texture2D" uid="uid://nhiqg7dgw4pj" path="res://gfx/models/trees/tree08_fall.png" id="2_7j210"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_syp0b"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_7j210")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_if4t2"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_7j210")
+
+[node name="Treepine" type="Node3D" unique_id=1063928543]
+
+[node name="tree082" parent="." unique_id=550002963 instance=ExtResource("1_qn06l")]
+transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
+
+[node name="tree08" parent="tree082" index="0" unique_id=1356069766]
+surface_material_override/0 = SubResource("StandardMaterial3D_syp0b")
+
+[node name="tree08_top" parent="tree082/tree08" index="0" unique_id=507030118]
+surface_material_override/0 = SubResource("StandardMaterial3D_if4t2")
+
+[editable path="tree082"]

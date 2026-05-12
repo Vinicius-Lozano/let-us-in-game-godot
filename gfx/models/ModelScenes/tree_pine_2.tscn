@@ -1,0 +1,26 @@
+[gd_scene format=3 uid="uid://gtxtk357bfr4"]
+
+[ext_resource type="PackedScene" uid="uid://wst3prmlpsae" path="res://gfx/models/trees/tree07.glb" id="1_1on1a"]
+[ext_resource type="Texture2D" uid="uid://wg53sytpav1e" path="res://gfx/models/trees/tree07_summer.png" id="2_cusyo"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_y1ic3"]
+albedo_texture = ExtResource("2_cusyo")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_i7fx5"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_cusyo")
+
+[node name="TreePine2" type="Node3D" unique_id=954831160]
+transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
+
+[node name="tree072" parent="." unique_id=86814035 instance=ExtResource("1_1on1a")]
+
+[node name="tree07" parent="tree072" index="0" unique_id=1238267715]
+surface_material_override/0 = SubResource("StandardMaterial3D_y1ic3")
+
+[node name="tree07_top" parent="tree072/tree07" index="0" unique_id=808564446]
+surface_material_override/0 = SubResource("StandardMaterial3D_i7fx5")
+
+[editable path="tree072"]
