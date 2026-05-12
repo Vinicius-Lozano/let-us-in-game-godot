@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://cx7hfxidc72j2"]
+
+[ext_resource type="PackedScene" uid="uid://bf6u3q0ilagd1" path="res://gfx/models/grass/grass_patch.glb" id="1_j85js"]
+[ext_resource type="Texture2D" uid="uid://ge67jpsv11g7" path="res://gfx/models/grass/grass_winter.png" id="2_wcdhb"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sgowc"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_wcdhb")
+
+[node name="GrassPatchDry" type="Node3D" unique_id=1402451039]
+
+[node name="grass_patch2" parent="." unique_id=1571211297 instance=ExtResource("1_j85js")]
+
+[node name="grass_patch" parent="grass_patch2" index="0" unique_id=1402524529]
+surface_material_override/0 = SubResource("StandardMaterial3D_sgowc")
+
+[editable path="grass_patch2"]

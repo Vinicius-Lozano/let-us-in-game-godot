@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://begreqikxhouq"]
+
+[ext_resource type="PackedScene" uid="uid://bfteesh2doi7b" path="res://gfx/models/grass/grass01.glb" id="1_qcp2d"]
+[ext_resource type="Texture2D" uid="uid://ge67jpsv11g7" path="res://gfx/models/grass/grass_winter.png" id="2_le60h"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_v2pks"]
+transparency = 3
+alpha_hash_scale = 2.0
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_le60h")
+
+[node name="GrassDry" type="Node3D" unique_id=1854960858]
+
+[node name="grass01" parent="." unique_id=2074685019 instance=ExtResource("1_qcp2d")]
+
+[node name="grass1" parent="grass01" index="0" unique_id=242961372]
+surface_material_override/0 = SubResource("StandardMaterial3D_v2pks")
+
+[editable path="grass01"]

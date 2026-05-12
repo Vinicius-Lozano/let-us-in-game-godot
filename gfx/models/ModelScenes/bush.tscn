@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://g38p47mnv3lt"]
+
+[ext_resource type="PackedScene" uid="uid://b45o3tn30tdav" path="res://gfx/models/bushes/bush03.glb" id="1_f487o"]
+[ext_resource type="Texture2D" uid="uid://bf6yvymsm7524" path="res://gfx/models/bushes/bush3_summer.png" id="2_img48"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_fjre6"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_img48")
+
+[node name="bush" type="Node3D" unique_id=2041169460]
+
+[node name="bush03" parent="." unique_id=2107413817 instance=ExtResource("1_f487o")]
+
+[node name="bush3" parent="bush03" index="0" unique_id=1017782714]
+surface_material_override/0 = SubResource("StandardMaterial3D_fjre6")
+
+[editable path="bush03"]

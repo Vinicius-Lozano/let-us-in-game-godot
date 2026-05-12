@@ -1,0 +1,19 @@
+[gd_scene format=3 uid="uid://b48p21roc5osm"]
+
+[ext_resource type="PackedScene" uid="uid://b7eptyqtxf4x5" path="res://gfx/models/bushes/bush02_winter.glb" id="1_x5a8r"]
+[ext_resource type="Texture2D" uid="uid://snu50dc6k5vl" path="res://gfx/models/bushes/bush2_winter.png" id="2_bdxvn"]
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4ck85"]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
+albedo_texture = ExtResource("2_bdxvn")
+
+[node name="DeadBrush2" type="Node3D" unique_id=1926362103]
+
+[node name="bush02_winter" parent="." unique_id=361768732 instance=ExtResource("1_x5a8r")]
+
+[node name="bush2_winter" parent="bush02_winter" index="0" unique_id=1600395442]
+surface_material_override/0 = SubResource("StandardMaterial3D_4ck85")
+
+[editable path="bush02_winter"]
