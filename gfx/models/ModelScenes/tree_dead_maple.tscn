@@ -20,10 +20,10 @@ albedo_texture = ExtResource("2_iedld")
 [node name="tree01_winter" parent="." unique_id=891240570 instance=ExtResource("1_fy8lt")]
 transform = Transform3D(3, 0, 0, 0, 3, 0, 0, 0, 3, 0, 0, 0)
 
-[node name="tree01" parent="tree01_winter" index="0" unique_id=1915031576]
+[node name="tree01" parent="tree01_winter" index="0" unique_id=634584050]
 surface_material_override/0 = SubResource("StandardMaterial3D_t1k8j")
 
-[node name="tree01_top" parent="tree01_winter/tree01" index="0" unique_id=992680332]
+[node name="tree01_top" parent="tree01_winter/tree01" index="0" unique_id=1418016994]
 surface_material_override/0 = SubResource("StandardMaterial3D_5xo75")
 
 [editable path="tree01_winter"]
