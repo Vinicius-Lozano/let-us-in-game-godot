@@ -77,7 +77,7 @@ size = Vector3(14.405518, 10.480957, 22.552765)
 environment = SubResource("Environment_4vfpq")
 
 [node name="CSGTerrain" type="CSGMesh3D" parent="." unique_id=2050458860]
-transform = Transform3D(1.0787168, 0, 0, 0, 1, 0, 0, 0, 1.0585498, 1.2045593, 1.14962, 0.2267456)
+transform = Transform3D(1.0787168, 0, 0, 0, 0.006012967, 0, 0, 0, 1.0585498, 1.2045593, 1.14962, 0.2267456)
 use_collision = true
 mesh = SubResource("ArrayMesh_6adrn")
 material = SubResource("StandardMaterial3D_kdyc3")
