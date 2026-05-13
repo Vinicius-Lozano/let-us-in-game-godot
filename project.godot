@@ -35,6 +35,10 @@ movie_writer/movie_file="C:/Users/henry/Documents/let-us-in/.avi"
 
 enabled=PackedStringArray("res://addons/csg_terrain/plugin.cfg")
 
+[global_group]
+
+enemy=""
+
 [input]
 
 move_left={

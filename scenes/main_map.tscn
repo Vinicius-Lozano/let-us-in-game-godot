@@ -20,6 +20,8 @@
 [ext_resource type="PackedScene" uid="uid://ccjxhfea42dh1" path="res://gfx/models/rock1.glb" id="18_ol44e"]
 [ext_resource type="PackedScene" uid="uid://bo7b2evf5so2c" path="res://gfx/models/rock2.glb" id="19_5ubli"]
 [ext_resource type="Material" uid="uid://dys7dep763416" path="res://gfx/rock.tres" id="20_5ubli"]
+[ext_resource type="PackedScene" uid="uid://drbt7hn5bxid4" path="res://andarilho_placeholder.tscn" id="21_2wvi4"]
+[ext_resource type="PackedScene" uid="uid://dqesbqnoq3bjx" path="res://gfx/models/ModelScenes/rock_1.tscn" id="22_cly8o"]
 
 [sub_resource type="Environment" id="Environment_4vfpq"]
 background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
@@ -976,6 +978,10 @@ transform = Transform3D(-0.5749911, 0, -0.81815976, 0, 1, 0, 0.81815976, 0, -0.5
 [node name="Treepine84" parent="trees/Pine" unique_id=1954344149 instance=ExtResource("7_6adrn")]
 transform = Transform3D(0.10916176, 0, -0.994024, 0, 1, 0, 0.994024, 0, 0.10916176, -6.9789047, 1.076677, 43.347645)
 
+[node name="CharacterBody3D" parent="trees/Pine" unique_id=2143127629 node_paths=PackedStringArray("player") instance=ExtResource("21_2wvi4")]
+transform = Transform3D(-0.81246024, 0, -0.5830166, 0, 1, 0, 0.5830166, 0, -0.81246024, -44.357075, 1.9042761, -42.324265)
+player = NodePath("../../../player")
+
 [node name="Oak" type="Node" parent="trees" unique_id=1726800288]
 
 [node name="TreeOak" parent="trees/Oak" unique_id=1636102033 instance=ExtResource("9_ubaj7")]
@@ -1299,6 +1305,12 @@ transform = Transform3D(3.3372786, -0.029736817, -0.039380744, 0.027383104, 3.33
 
 [node name="rock72" parent="rocks" unique_id=368571112 instance=ExtResource("19_5ubli")]
 transform = Transform3D(-4.2941422, 0.04588009, 0.18059407, 0.035263695, 4.2906704, -0.2515512, -0.18296356, -0.24983318, -4.287013, 56.29997, 2.65205, 0.9823046)
+
+[node name="Rock1" parent="rocks" unique_id=954209982 instance=ExtResource("22_cly8o")]
+transform = Transform3D(0.6152488, 0, 0.788333, -0.21918467, 0.96057075, 0.1710611, -0.7572496, -0.27803564, 0.59099, -49.346348, 2, -45.20724)
+
+[node name="Rock2" parent="rocks" unique_id=1751197610 instance=ExtResource("22_cly8o")]
+transform = Transform3D(0.6152488, -8.286108e-09, 0.788333, 0.1529189, 0.9810059, -0.11934443, -0.7733593, 0.19397752, 0.6035628, -46.346348, 1.8925519, -47.519016)
 
 [node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=344617813]
 material = ExtResource("20_5ubli")

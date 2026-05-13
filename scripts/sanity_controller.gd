@@ -137,6 +137,7 @@ var vignette_material: ShaderMaterial
 var light_level: float = 0.0
 var sanity: float = 100.0
 var time_since_sanity_change: float = 0.0
+
 const SANITY_DRAIN_INTERVAL: float = 0.25
 const DARKNESS_THRESHOLD: float = 0.2
 const SANITY_REGEN_TARGET: float = 100.0
@@ -152,7 +153,6 @@ func create_vignette_effect():
 	var color_rect = ColorRect.new()
 	color_rect.set_anchors_preset(Control.PRESET_FULL_RECT)
 	color_rect.mouse_filter = Control.MOUSE_FILTER_IGNORE 
-	
 	
 	var shader = Shader.new()
 	shader.code = """
@@ -179,8 +179,10 @@ func _process(delta: float) -> void:
 	
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		if is_enemy_on_screen(enemy):
-			if is_enemy_in_view(enemy, 10.0):
+			# Aqui passamos o ângulo desejado (ex: 35 graus para cada lado)
+			if is_enemy_in_view(enemy, 35.0):
 				if has_line_of_sight(enemy): 
+					# Inimigo detectado com sucesso!
 					drain_sanity(delta * 8.0)
 	
 	debug.text = str("FPS: %d \nLight Level: %.2f \nSanity: %.2f") %[
@@ -188,14 +190,17 @@ func _process(delta: float) -> void:
 		light_level,
 		sanity
 	]
+
 func has_line_of_sight(enemy: Node3D) -> bool:
 	var space_state = player_camera.get_world_3d().direct_space_state
 	var camera_pos = player_camera.global_transform.origin
-	var enemy_pos = enemy.global_transform.origin + Vector3(0, 1.0, 0)
+	# Levantamos o ponto do inimigo um pouco para checar o "peito" ou "cabeça"
+	var enemy_pos = enemy.global_transform.origin + Vector3(0, 1.0, 0) 
 	var query = PhysicsRayQueryParameters3D.create(camera_pos, enemy_pos)
+	
 	if get_parent() is CollisionObject3D:
 		query.exclude = [get_parent().get_rid()]
-		query.collision_mask = 1
+		query.collision_mask = 1 # Máscara de colisão. Garanta que as paredes estão no Layer 1!
 	
 	var result = space_state.intersect_ray(query)
 	
@@ -252,6 +257,8 @@ func apply_sanity_effects(delta: float) -> void:
 				flash_overlay.texture = flash_textures.pick_random()
 				flash_overlay.visible = true
 				
+				# Cuidado: await em _process pode acumular se não for bem gerenciado, 
+				# mas funciona bem para protótipos curtos.
 				await get_tree().create_timer(0.1).timeout
 				flash_overlay.visible = false
 				
@@ -284,13 +291,27 @@ func is_enemy_on_screen(enemy: Node3D) -> bool:
 		return false
 	return true
 
+# ==========================================
+# LÓGICA DE FOV OTIMIZADA (DOT PRODUCT PURO)
+# ==========================================
 func is_enemy_in_view(enemy: Node3D, tolerance_degrees: float) -> bool:
 	var enemy_position: Vector3 = enemy.global_transform.origin
 	var camera_position: Vector3 = player_camera.global_transform.origin
+	
+	# Vetor direção normalizado
 	var to_enemy: Vector3 = (enemy_position - camera_position).normalized()
+	
+	# Eixo frontal da câmera
 	var forward: Vector3 = -player_camera.global_basis.z
-	var angle_deg: float = rad_to_deg(acos(forward.dot(to_enemy)))
-	return angle_deg <= tolerance_degrees
+	
+	# O Dot Product puro (retorna entre -1 e 1)
+	var dot_product: float = forward.dot(to_enemy)
+	
+	# Convertendo os graus de tolerância para o limite matemático do cosseno
+	var fov_threshold: float = cos(deg_to_rad(tolerance_degrees))
+	
+	# Se o dot_product for maior ou igual ao limite, o inimigo está no campo de visão!
+	return dot_product >= fov_threshold
 
 func drain_sanity(amount: float) -> void:
 	sanity -= amount

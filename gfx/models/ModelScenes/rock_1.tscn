@@ -1,0 +1,14 @@
+[gd_scene format=3 uid="uid://dqesbqnoq3bjx"]
+
+[ext_resource type="PackedScene" uid="uid://ccjxhfea42dh1" path="res://gfx/models/rock1.glb" id="1_jtdnf"]
+[ext_resource type="Material" uid="uid://dys7dep763416" path="res://gfx/rock.tres" id="2_4gskm"]
+
+[node name="Rock1" type="Node3D" unique_id=954209982]
+
+[node name="rock1" parent="." unique_id=931814704 instance=ExtResource("1_jtdnf")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.5445023, 0)
+
+[node name="Cube" parent="rock1" index="0" unique_id=153312778]
+surface_material_override/0 = ExtResource("2_4gskm")
+
+[editable path="rock1"]
