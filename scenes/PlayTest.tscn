@@ -14,12 +14,14 @@
 [ext_resource type="Script" uid="uid://rvxaxfytgjgj" path="res://scripts/spot_light_3d.gd" id="12_66nmg"]
 [ext_resource type="PackedScene" uid="uid://c2tg8d8ihoer0" path="res://scenes/wheel.tscn" id="13_d04jo"]
 [ext_resource type="PackedScene" uid="uid://brtrt0x1v2wto" path="res://scenes/pivot_bridge.tscn" id="14_8px8v"]
+[ext_resource type="PackedScene" uid="uid://cwu0n6hahihli" path="res://scenes/drop_zone.tscn" id="15_0kaw2"]
 [ext_resource type="PackedScene" uid="uid://doxb0mf7n670d" path="res://scenes/garage_door.tscn" id="15_8px8v"]
 [ext_resource type="PackedScene" uid="uid://dsb0y5utu04h7" path="res://scenes/enemy_placeholder.tscn" id="16_qcfeg"]
 [ext_resource type="Resource" uid="uid://b1jdisiftqwdx" path="res://items/pills.tres" id="17_40kfu"]
 [ext_resource type="PackedScene" uid="uid://cinf620b434cs" path="res://Andarilho.glb" id="18_pduqs"]
 [ext_resource type="PackedScene" uid="uid://ctrbvitl0a7yl" path="res://tools/Rastejador.glb" id="19_rastejador"]
-[ext_resource type="PackedScene" uid="uid://drlktqlxtktaa" path="res://scenes/cabin.tscn" id="20_ckux7"]
+[ext_resource type="PackedScene" uid="uid://cq4rc42nddwng" path="res://scenes/cabin.tscn" id="20_ckux7"]
+[ext_resource type="Resource" uid="uid://co15t3pkol5b4" path="res://items/crank.tres" id="22_jesp8"]
 
 [sub_resource type="Environment" id="Environment_yqjtg"]
 background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
@@ -45,6 +47,9 @@ albedo_texture = ExtResource("1_r44sk")
 uv1_triplanar = true
 
 [sub_resource type="PrismMesh" id="PrismMesh_ht20j"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1ikpe"]
+size = Vector3(1, 1, 1.2)
 
 [sub_resource type="Animation" id="Animation_40kfu"]
 resource_name = "rastejador"
@@ -247,10 +252,19 @@ text = "ROTATE"
 
 [node name="Wheel" parent="Map/Podium2" unique_id=980631790 instance=ExtResource("13_d04jo")]
 transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1, -0.39999962)
+visible = false
 
 [node name="InteractionComponent" parent="Map/Podium2/Wheel" index="5" unique_id=1549124343 node_paths=PackedStringArray("object_ref", "nodes_to_effect")]
 object_ref = NodePath("..")
 nodes_to_effect = [NodePath("../../../PivptBridge/RotationInteractionComponent")]
+
+[node name="DropZone" parent="Map/Podium2" unique_id=2044130385 node_paths=PackedStringArray("scenario_crank") instance=ExtResource("15_0kaw2")]
+transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.19999981, 0, -0.6000004)
+scenario_crank = NodePath("../Wheel")
+
+[node name="CollisionShape3D" parent="Map/Podium2/DropZone" index="0" unique_id=1896517618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.19999981)
+shape = SubResource("BoxShape3D_1ikpe")
 
 [node name="PivptBridge" parent="Map" unique_id=1843348245 instance=ExtResource("14_8px8v")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.1, 8)
@@ -295,9 +309,14 @@ item_data = ExtResource("17_40kfu")
 [node name="Cabin" parent="." unique_id=1088986452 instance=ExtResource("20_ckux7")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4.2109203, 0.17549944, 11.665817)
 
+[node name="Crank" parent="." unique_id=2092665851 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 9)
+item_data = ExtResource("22_jesp8")
+
 [editable path="Map/Cabin/CSGBox3D2/GarageDoor"]
 [editable path="Map/Cabin/CSGBox3D/CSGBox3D/Wheel"]
 [editable path="Map/Podium/Switch"]
 [editable path="Map/Podium2"]
 [editable path="Map/Podium2/Wheel"]
+[editable path="Map/Podium2/DropZone"]
 [editable path="Map/PivptBridge"]

@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://co15t3pkol5b4"]
+
+[ext_resource type="Script" uid="uid://bx6c7uvjjtsvs" path="res://tools/inventory_scripts/puzzle_action.gd" id="1_b2n7r"]
+[ext_resource type="ArrayMesh" uid="uid://ddyhs3pre7wpa" path="res://gfx/models/crank.tres" id="2_r8315"]
+[ext_resource type="Script" uid="uid://ku7j1ug8sub8" path="res://tools/inventory_scripts/item_data.gd" id="3_qaad5"]
+
+[sub_resource type="Resource" id="Resource_nml52"]
+script = ExtResource("1_b2n7r")
+metadata/_custom_type_script = "uid://bx6c7uvjjtsvs"
+
+[resource]
+script = ExtResource("3_qaad5")
+name = "Crank"
+mesh = ExtResource("2_r8315")
+action_data = SubResource("Resource_nml52")
+metadata/_custom_type_script = "uid://ku7j1ug8sub8"
