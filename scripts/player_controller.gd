@@ -7,8 +7,10 @@ extends CharacterBody3D
 @onready var crouching: CollisionShape3D = $Crouching
 @onready var standup_check: RayCast3D = $StandupCheck
 @onready var interaction_controller: Node = %InteractionController
+@onready var footstep_audio: AudioStreamPlayer3D = $FootstepAudio
 
 
+var can_play_step: bool = true
 const WALKING_SPEED: float = 3.0
 const SPRINTING_SPEED: float = 5.0
 const CROUCHING_SPEED: float = 1.0
@@ -122,38 +124,45 @@ func updatePlayerSpeed(_player_state: PlayerState) -> void:
 		current_speed = SPRINTING_SPEED
 
 func updateCamera(delta: float) -> void:
-	if player_state == PlayerState.AIR:
-		pass
-		
 	if player_state == PlayerState.CROUCHING or player_state == PlayerState.IDLE_CROUCH:
 		head.position.y = lerp(head.position.y, 1.8 + CROUCHING_DEPTH, delta * lerp_speed)
 		camera_3d.fov = lerp(camera_3d.fov, base_fov*0.95, delta * lerp_speed)
 		head_bobbing_current_intensity = HEAD_BOBBING_CROUCHING_INTENSITY
-		head_bobbing_index += HEAD_BOBBING_CROUCHING_SPEED * delta
-	elif player_state == PlayerState.IDLE_STAND:
-		head.position.y = lerp(head.position.y, 1.8, delta * lerp_speed)
-		camera_3d.fov = lerp(camera_3d.fov, base_fov, delta * lerp_speed)
-		head_bobbing_current_intensity = HEAD_BOBBING_WALKING_INTENSITY
-		head_bobbing_index += HEAD_BOBBING_WALKING_SPEED * delta
+		if moving: head_bobbing_index += HEAD_BOBBING_CROUCHING_SPEED * delta
+		
 	elif player_state == PlayerState.WALKING:
 		head.position.y = lerp(head.position.y, 1.8, delta * lerp_speed)
 		camera_3d.fov = lerp(camera_3d.fov, base_fov, delta * lerp_speed)
 		head_bobbing_current_intensity = HEAD_BOBBING_WALKING_INTENSITY
-		head_bobbing_index += HEAD_BOBBING_WALKING_SPEED * delta
+		if moving: head_bobbing_index += HEAD_BOBBING_WALKING_SPEED * delta
+		
 	elif player_state == PlayerState.SPRINTING:
 		head.position.y = lerp(head.position.y, 1.8, delta * lerp_speed)
 		camera_3d.fov = lerp(camera_3d.fov, base_fov*1.05, delta * lerp_speed)
 		head_bobbing_current_intensity = HEAD_BOBBING_SPRINTING_INTENSITY
-		head_bobbing_index += HEAD_BOBBING_SPRINTING_SPEED * delta
+		if moving: head_bobbing_index += HEAD_BOBBING_SPRINTING_SPEED * delta
 	
+	elif player_state == PlayerState.IDLE_STAND:
+		head.position.y = lerp(head.position.y, 1.8, delta * lerp_speed)
+		camera_3d.fov = lerp(camera_3d.fov, base_fov, delta * lerp_speed)
+
 	head_bobbing_vector.y = sin(head_bobbing_index)
 	head_bobbing_vector.x = (sin(head_bobbing_index/2.0)+0.5)
 	
-	if moving:
+	if moving and is_on_floor():
 		eyes.position.y = lerp(eyes.position.y, head_bobbing_vector.y * (head_bobbing_current_intensity/2.0), delta * lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, head_bobbing_vector.x * (head_bobbing_current_intensity), delta * lerp_speed)
+		
+		if head_bobbing_vector.y < -0.9:
+			if can_play_step:
+				footstep_audio.pitch_scale = randf_range(0.85, 1.15)
+				footstep_audio.volume_db = randf_range(-2.0, 0.0)
+				footstep_audio.play()
+				can_play_step = false
+		
+		if head_bobbing_vector.y > 0.0:
+			can_play_step = true
 	else:
 		eyes.position.y = lerp(eyes.position.y, 0.0, delta * lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, 0.0, delta * lerp_speed)
-		
-		
+		can_play_step = true 

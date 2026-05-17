@@ -3,6 +3,7 @@
 [ext_resource type="Script" uid="uid://cgbnpksuvkc7l" path="res://andarilho_placeholder.gd" id="1_7uxh5"]
 [ext_resource type="PackedScene" uid="uid://cinf620b434cs" path="res://Andarilho.glb" id="2_02l60"]
 [ext_resource type="Texture2D" uid="uid://dn8mxkox0klqu" path="res://gfx/Textures/Andarilho_Material.png" id="3_l7l7t"]
+[ext_resource type="AudioStream" uid="uid://e0mnuix8ojfx" path="res://gfx/audio/Andarilho.mp3" id="4_02l60"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_22wls"]
 radius = 0.32373047
@@ -23,5 +24,10 @@ transform = Transform3D(-2, 0, -3.019916e-07, 0, 2, 0, 3.019916e-07, 0, -2, 0, -
 
 [node name="Cube_001" parent="Andarilho/rig/Skeleton3D" parent_id_path=PackedInt32Array(801050262, 1598985149) index="0" unique_id=582782672]
 surface_material_override/0 = SubResource("StandardMaterial3D_msfy8")
+
+[node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=1185786817]
+stream = ExtResource("4_02l60")
+volume_db = 5.981
+max_distance = 60.0
 
 [editable path="Andarilho"]

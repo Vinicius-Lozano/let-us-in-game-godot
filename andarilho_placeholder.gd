@@ -13,12 +13,13 @@ var current_state: State = State.WANDER
 @export var safe_zone: Area3D # Arraste a Area3D da cabana pra cá
 @export var patrol_points: Array[Node3D] # Adicione os Marker3D das bordas do mapa aqui
 
+@onready var WalkS = $AudioStreamPlayer3D
+
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var current_patrol_index: int = 0
 var stun_timer: float = 0.0 # <- Variável do atordoamento
 
 func _physics_process(delta: float) -> void:
-	# 1. APLICAR GRAVIDADE
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 		
@@ -39,7 +40,13 @@ func _physics_process(delta: float) -> void:
 			process_chase(delta)
 			
 	move_and_slide()
-
+	
+	if velocity.length() > 0.2:
+		if not WalkS.playing:
+			WalkS.play()
+	else:
+		# Se ele parar (ou estiver atordoado), o som para
+		WalkS.stop()
 
 func process_wander(_delta: float) -> void:
 	if can_see_player() and not is_player_in_safe_zone():

@@ -9,23 +9,23 @@ var player_camera: Camera3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var stun_timer: float = 0.0
 
-var is_hidden_waiting: bool = false # NOVO: Evita que ele teleporte todo frame
+var is_hidden_waiting: bool = false 
 
 func _ready():
 	player_camera = get_viewport().get_camera_3d()
-	
-	# NOVO: Teleporta para um ponto aleatório logo que o jogo começa.
-	# O call_deferred garante que o mapa já carregou antes dele tentar mover.
-	call_deferred("teleport_to_random_point")
 
+	call_deferred("teleport_to_random_point")
 func _physics_process(delta: float) -> void:
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 
 	if player == null or player_camera == null:
 		return
-		
-	# 1. Checa se tomou machadada (Atordoado)
+	
+
+	handle_monster_audio()
+
+
 	if stun_timer > 0:
 		stun_timer -= delta
 		velocity.x = 0
@@ -33,31 +33,54 @@ func _physics_process(delta: float) -> void:
 		move_and_slide()
 		return
 
-	# 2. LÓGICA DA CABANA (SAFE ZONE)
+	# 3. LÓGICA DA CABANA (SAFE ZONE)
 	if is_player_in_safe_zone():
 		if is_hidden_waiting:
-			# Ele já teleportou e está num canto do mapa, parado, esperando você sair
 			velocity.x = 0
 			velocity.z = 0
 			move_and_slide()
 			return
 			
 		if is_being_looked_at():
-			# Você entrou na cabana, mas está encarando ele. Ele congela.
 			velocity.x = 0
 			velocity.z = 0
 			look_at_target(player.global_position)
 		else:
-			# Você entrou na cabana e desviou o olhar. Ele some!
 			teleport_to_random_point()
-			is_hidden_waiting = true # Marca que ele já sumiu, pra não ficar teleportando sem parar
+			is_hidden_waiting = true 
 			
 		move_and_slide()
 		return
 
-	# 3. LÓGICA FORA DA CABANA (CAÇANDO)
+	is_hidden_waiting = false 
+
+	if is_being_looked_at():
+		velocity.x = 0
+		velocity.z = 0
+	else:
+		# MOVE EM DIREÇÃO AO JOGADOR
+		look_at_target(player.global_position)
+		var target_pos = player.global_position
+		target_pos.y = global_position.y
+		var direction = (target_pos - global_position).normalized()
+		velocity.x = direction.x * speed
+		velocity.z = direction.z * speed
+
+	move_and_slide()
+
+# --- NOVA FUNÇÃO DE ÁUDIO ROBUSTA ---
+func handle_monster_audio():
+	var audio_node = $AudioStreamPlayer3D
+
+	if velocity.length() > 0.1:
+		if not audio_node.playing:
+			audio_node.play()
+	else:
+		if audio_node.playing:
+			audio_node.stop()
+
 	
-	is_hidden_waiting = false # Se o jogador saiu da cabana, ele volta a agir normalmente
+	is_hidden_waiting = false 
 
 	if is_being_looked_at():
 		velocity.x = 0

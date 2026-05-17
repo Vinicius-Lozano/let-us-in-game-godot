@@ -7,6 +7,7 @@
 [ext_resource type="PackedScene" uid="uid://vwqs1dteoobi" path="res://scenes/player.tscn" id="5_2xk3c"]
 [ext_resource type="PackedScene" uid="uid://bvnr7cuucami7" path="res://gfx/models/ModelScenes/tree_dead_pine.tscn" id="6_ulx81"]
 [ext_resource type="PackedScene" uid="uid://bpujhfqv3t6mi" path="res://gfx/models/ModelScenes/treepine.tscn" id="7_6adrn"]
+[ext_resource type="AudioStream" uid="uid://b02qyy140qmkl" path="res://gfx/audio/forest.mp3" id="8_8yhmk"]
 [ext_resource type="PackedScene" uid="uid://gtxtk357bfr4" path="res://gfx/models/ModelScenes/tree_pine_2.tscn" id="8_cyt25"]
 [ext_resource type="PackedScene" uid="uid://baf04mw6k4h2l" path="res://gfx/models/ModelScenes/tree_oak.tscn" id="9_ubaj7"]
 [ext_resource type="PackedScene" uid="uid://cg275pq3j2xcg" path="res://gfx/models/ModelScenes/tree_dead_maple.tscn" id="10_sa572"]
@@ -122,6 +123,11 @@ transform = Transform3D(1.5383686, 0, 0, 0, 1.5383686, 0, 0, 0, 1.5383686, -39.5
 player = NodePath("../player")
 safe_zone = NodePath("../SafeZone")
 teleport_points = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("../Marker3D3"), NodePath("../Marker3D4"), NodePath("../Marker3D5"), NodePath("../Marker3D6"), NodePath("../Marker3D7"), NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D10"), NodePath("../Marker3D11"), NodePath("../Marker3D12"), NodePath("../Marker3D13"), NodePath("../Marker3D14")]
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=999960655]
+stream = ExtResource("8_8yhmk")
+volume_db = 1.0
+autoplay = true
 
 [node name="Bush" type="Node" parent="." unique_id=734882819]
 
