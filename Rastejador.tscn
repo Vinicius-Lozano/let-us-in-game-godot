@@ -1,0 +1,20 @@
+[gd_scene format=3 uid="uid://btnqit5l6i0uf"]
+
+[ext_resource type="Script" uid="uid://d2yre1fyu3j88" path="res://scripts/Rastejador.gd" id="1_teh72"]
+[ext_resource type="PackedScene" uid="uid://ctrbvitl0a7yl" path="res://tools/Rastejador.glb" id="1_vv3v5"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_teh72"]
+radius = 0.122558594
+height = 1.3699341
+
+[node name="Node3D" type="CharacterBody3D" unique_id=612072400]
+script = ExtResource("1_teh72")
+
+[node name="Rastejador" parent="." unique_id=697832711 instance=ExtResource("1_vv3v5")]
+transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 0, 0, 0)
+
+[node name="Skeleton3D" type="Skeleton3D" parent="Rastejador" unique_id=1972823410]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=1470861005]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.7848697, 0.043798268)
+shape = SubResource("CapsuleShape3D_teh72")

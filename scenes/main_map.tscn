@@ -19,8 +19,8 @@
 [ext_resource type="PackedScene" uid="uid://cx7hfxidc72j2" path="res://gfx/models/ModelScenes/grass_patch_dry.tscn" id="17_8yhmk"]
 [ext_resource type="PackedScene" uid="uid://ccjxhfea42dh1" path="res://gfx/models/rock1.glb" id="18_ol44e"]
 [ext_resource type="PackedScene" uid="uid://bo7b2evf5so2c" path="res://gfx/models/rock2.glb" id="19_5ubli"]
-[ext_resource type="Material" uid="uid://dys7dep763416" path="res://gfx/rock.tres" id="20_5ubli"]
 [ext_resource type="PackedScene" uid="uid://drbt7hn5bxid4" path="res://andarilho_placeholder.tscn" id="21_2wvi4"]
+[ext_resource type="PackedScene" uid="uid://btnqit5l6i0uf" path="res://Rastejador.tscn" id="22_8yhmk"]
 [ext_resource type="PackedScene" uid="uid://dqesbqnoq3bjx" path="res://gfx/models/ModelScenes/rock_1.tscn" id="22_cly8o"]
 
 [sub_resource type="Environment" id="Environment_4vfpq"]
@@ -34,10 +34,12 @@ sdfgi_enabled = true
 fog_enabled = true
 fog_light_color = Color(0.39794886, 0.43006787, 0.4822582, 1)
 fog_light_energy = 0.1
+fog_sun_scatter = 0.04
+fog_density = 0.1234
 volumetric_fog_enabled = true
+volumetric_fog_density = 0.1324
 volumetric_fog_albedo = Color(0.8819366, 0.8819366, 0.88193655, 1)
 volumetric_fog_emission = Color(0.39433336, 0.35256398, 0.4190567, 1)
-volumetric_fog_emission_energy = 0.5
 adjustment_enabled = true
 adjustment_contrast = 1.05
 
@@ -108,6 +110,18 @@ spot_range = 8.0
 
 [node name="player" parent="." unique_id=2123675130 instance=ExtResource("5_2xk3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0482903, 1.4156563, 8.744361)
+
+[node name="CharacterBody3D" parent="." unique_id=2143127629 node_paths=PackedStringArray("player", "safe_zone", "patrol_points") instance=ExtResource("21_2wvi4")]
+transform = Transform3D(-0.81246024, 0, -0.5830166, 0, 1, 0, 0.5830166, 0, -0.81246024, -6.0821095, 1.8266945, 40.2834)
+player = NodePath("../player")
+safe_zone = NodePath("../SafeZone")
+patrol_points = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("../Marker3D3"), NodePath("../Marker3D4"), NodePath("../Marker3D5"), NodePath("../Marker3D6"), NodePath("../Marker3D7"), NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D10"), NodePath("../Marker3D11"), NodePath("../Marker3D12"), NodePath("../Marker3D13"), NodePath("../Marker3D14")]
+
+[node name="Node3D" parent="." unique_id=1715384646 node_paths=PackedStringArray("player", "safe_zone", "teleport_points") groups=["enemy"] instance=ExtResource("22_8yhmk")]
+transform = Transform3D(1.5383686, 0, 0, 0, 1.5383686, 0, 0, 0, 1.5383686, -39.570553, 1.1509194, -9.52792)
+player = NodePath("../player")
+safe_zone = NodePath("../SafeZone")
+teleport_points = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("../Marker3D3"), NodePath("../Marker3D4"), NodePath("../Marker3D5"), NodePath("../Marker3D6"), NodePath("../Marker3D7"), NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D10"), NodePath("../Marker3D11"), NodePath("../Marker3D12"), NodePath("../Marker3D13"), NodePath("../Marker3D14")]
 
 [node name="Bush" type="Node" parent="." unique_id=734882819]
 
@@ -981,12 +995,6 @@ transform = Transform3D(-0.5749911, 0, -0.81815976, 0, 1, 0, 0.81815976, 0, -0.5
 [node name="Treepine84" parent="trees/Pine" unique_id=1954344149 instance=ExtResource("7_6adrn")]
 transform = Transform3D(0.10916176, 0, -0.994024, 0, 1, 0, 0.994024, 0, 0.10916176, -6.9789047, 1.076677, 43.347645)
 
-[node name="CharacterBody3D" parent="trees/Pine" unique_id=2143127629 node_paths=PackedStringArray("player", "safe_zone", "patrol_points") instance=ExtResource("21_2wvi4")]
-transform = Transform3D(-0.81246024, 0, -0.5830166, 0, 1, 0, 0.5830166, 0, -0.81246024, -6.0821095, 1.8266945, 40.2834)
-player = NodePath("../../../player")
-safe_zone = NodePath("../../../SafeZone")
-patrol_points = [NodePath("../../../Marker3D"), NodePath("../../../Marker3D2"), NodePath("../../../Marker3D3"), NodePath("../../../Marker3D4"), NodePath("../../../Marker3D5"), NodePath("../../../Marker3D6"), NodePath("../../../Marker3D7"), NodePath("../../../Marker3D8"), NodePath("../../../Marker3D9"), NodePath("../../../Marker3D10"), NodePath("../../../Marker3D11"), NodePath("../../../Marker3D12"), NodePath("../../../Marker3D13"), NodePath("../../../Marker3D14")]
-
 [node name="Oak" type="Node" parent="trees" unique_id=1726800288]
 
 [node name="TreeOak" parent="trees/Oak" unique_id=1636102033 instance=ExtResource("9_ubaj7")]
@@ -1316,9 +1324,6 @@ transform = Transform3D(0.6152488, 0, 0.788333, -0.21918467, 0.96057075, 0.17106
 
 [node name="Rock2" parent="rocks" unique_id=1751197610 instance=ExtResource("22_cly8o")]
 transform = Transform3D(0.6152488, -8.286108e-09, 0.788333, 0.1529189, 0.9810059, -0.11934443, -0.7733593, 0.19397752, 0.6035628, -46.346348, 1.8925519, -47.519016)
-
-[node name="CSGMesh3D" type="CSGMesh3D" parent="." unique_id=344617813]
-material = ExtResource("20_5ubli")
 
 [node name="SafeZone" type="Area3D" parent="." unique_id=1373606739]
 transform = Transform3D(1.7718022, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2968025, -7.053558)

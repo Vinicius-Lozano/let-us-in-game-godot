@@ -19,6 +19,7 @@ transform = Transform3D(4, 0, 0, 0, 4, 0, 0, 0, 4, 0, 0, 0)
 [node name="tree042" parent="." unique_id=2092669080 instance=ExtResource("1_jx5m1")]
 
 [node name="tree04" parent="tree042" index="0" unique_id=909030356]
+visibility_range_end = 30.0
 surface_material_override/0 = SubResource("StandardMaterial3D_0vmc5")
 
 [node name="tree04_top" parent="tree042/tree04" index="0" unique_id=112633053]

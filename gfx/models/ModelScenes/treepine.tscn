@@ -21,6 +21,7 @@ albedo_texture = ExtResource("2_7j210")
 transform = Transform3D(5, 0, 0, 0, 5, 0, 0, 0, 5, 0, 0, 0)
 
 [node name="tree08" parent="tree082" index="0" unique_id=387750379]
+visibility_range_end = 30.0
 surface_material_override/0 = SubResource("StandardMaterial3D_syp0b")
 
 [node name="tree08_top" parent="tree082/tree08" index="0" unique_id=879829078]

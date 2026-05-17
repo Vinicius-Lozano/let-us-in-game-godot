@@ -9,6 +9,8 @@
 [ext_resource type="Script" uid="uid://djncuvtgibvsd" path="res://scripts/interactable_area_detector.gd" id="7_fjrip"]
 [ext_resource type="PackedScene" uid="uid://kbnh57s607ew" path="res://scenes/sanity_controller.tscn" id="7_ur7pv"]
 [ext_resource type="Shader" uid="uid://cp1bbm8ih3g67" path="res://gfx/outline.gdshader" id="8_smehm"]
+[ext_resource type="Texture2D" uid="uid://bcceoay4bygb3" path="res://gfx/Textures/Axe.png" id="10_y4r1p"]
+[ext_resource type="Script" uid="uid://cxbhc0v5qbvle" path="res://scripts/Axe.gd" id="11_d2wvv"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -154,6 +156,10 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4807002, -0.20762682, -0.5581073)
 
+[node name="RayCast3D" type="RayCast3D" parent="Head/Eyes/Camera3D" unique_id=756943984]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2322967, -0.25078237)
+target_position = Vector3(0, 0, -2.5)
+
 [node name="SubViewport" type="SubViewport" parent="." unique_id=833928016]
 unique_name_in_owner = true
 handle_input_locally = false
@@ -192,6 +198,20 @@ highlight_material = SubResource("ShaderMaterial_ur7pv")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="InteractableAreaDetector" unique_id=437126544]
 shape = SubResource("SphereShape3D_tuyoq")
+
+[node name="ArmasUI" type="CanvasLayer" parent="." unique_id=552541138]
+
+[node name="TextureRect" type="TextureRect" parent="ArmasUI" unique_id=1893229669 node_paths=PackedStringArray("raycast")]
+offset_left = 1079.0001
+offset_top = 367.99997
+offset_right = 2103.0
+offset_bottom = 1392.0
+rotation = -0.29054844
+scale = Vector2(0.6577692, 0.6892773)
+pivot_offset = Vector2(325.12, 808.39)
+texture = ExtResource("10_y4r1p")
+script = ExtResource("11_d2wvv")
+raycast = NodePath("../../Head/Eyes/Camera3D/RayCast3D")
 
 [connection signal="body_entered" from="InteractableAreaDetector" to="InteractableAreaDetector" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractableAreaDetector" to="InteractableAreaDetector" method="_on_body_exited"]

@@ -15,13 +15,21 @@ var current_state: State = State.WANDER
 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var current_patrol_index: int = 0
+var stun_timer: float = 0.0 # <- Variável do atordoamento
 
 func _physics_process(delta: float) -> void:
-
+	# 1. APLICAR GRAVIDADE
 	if not is_on_floor():
 		velocity.y -= gravity * delta
 		
 	if player == null:
+		return
+		
+	if stun_timer > 0.0:
+		stun_timer -= delta
+		velocity.x = 0
+		velocity.z = 0
+		move_and_slide() 
 		return
 		
 	match current_state:
@@ -31,6 +39,7 @@ func _physics_process(delta: float) -> void:
 			process_chase(delta)
 			
 	move_and_slide()
+
 
 func process_wander(_delta: float) -> void:
 	if can_see_player() and not is_player_in_safe_zone():
@@ -84,6 +93,9 @@ func can_see_player() -> bool:
 		return true
 		
 	return false
+
+func take_hit() -> void:
+	stun_timer = 2.0
 
 func is_player_in_safe_zone() -> bool:
 	if safe_zone == null:
