@@ -3,5 +3,8 @@
 [ext_resource type="Texture2D" uid="uid://dey22jxmgt2hv" path="res://gfx/Textures/door.png" id="1_und3j"]
 
 [resource]
+transparency = 3
+alpha_hash_scale = 1.0
+alpha_antialiasing_mode = 0
 albedo_texture = ExtResource("1_und3j")
 uv1_scale = Vector3(3, 1.8, 2.2)

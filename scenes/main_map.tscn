@@ -23,6 +23,13 @@
 [ext_resource type="PackedScene" uid="uid://drbt7hn5bxid4" path="res://andarilho_placeholder.tscn" id="21_2wvi4"]
 [ext_resource type="PackedScene" uid="uid://btnqit5l6i0uf" path="res://Rastejador.tscn" id="22_8yhmk"]
 [ext_resource type="PackedScene" uid="uid://dqesbqnoq3bjx" path="res://gfx/models/ModelScenes/rock_1.tscn" id="22_cly8o"]
+[ext_resource type="PackedScene" uid="uid://bmlcsucujcsji" path="res://scenes/podium.tscn" id="23_7eykx"]
+[ext_resource type="PackedScene" uid="uid://c2tg8d8ihoer0" path="res://scenes/wheel.tscn" id="24_36g7h"]
+[ext_resource type="PackedScene" uid="uid://brtrt0x1v2wto" path="res://scenes/pivot_bridge.tscn" id="25_b6lr4"]
+[ext_resource type="PackedScene" uid="uid://cwu0n6hahihli" path="res://scenes/drop_zone.tscn" id="26_ha36p"]
+[ext_resource type="PackedScene" uid="uid://wgjymdinw7jw" path="res://tools/item_tools/small_item.tscn" id="27_jikhd"]
+[ext_resource type="Resource" uid="uid://co15t3pkol5b4" path="res://items/crank.tres" id="28_qvxoj"]
+[ext_resource type="Texture2D" uid="uid://bgxemk7mr5yvx" path="res://gfx/Textures/Stone_11-128x128.png" id="29_jikhd"]
 
 [sub_resource type="Environment" id="Environment_4vfpq"]
 background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
@@ -71,8 +78,22 @@ point_count = 9
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_4vfpq"]
 
+[sub_resource type="BoxShape3D" id="BoxShape3D_ha36p"]
+size = Vector3(18.713379, 1, 101.18778)
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_jikhd"]
+size = Vector3(107.27214, 1, 16.342346)
+
 [sub_resource type="BoxShape3D" id="BoxShape3D_cly8o"]
 size = Vector3(14.405518, 10.480957, 22.552765)
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qvxoj"]
+albedo_texture = ExtResource("29_jikhd")
+uv1_triplanar = true
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_sxppv"]
+albedo_texture = ExtResource("29_jikhd")
+uv1_triplanar = true
 
 [node name="MainMap" type="Node3D" unique_id=2030350230]
 
@@ -1090,15 +1111,15 @@ shape = SubResource("WorldBoundaryShape3D_4vfpq")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -48.647293, 1.0755275, 0)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Border/right" unique_id=1274496608]
-transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, 0, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_4vfpq")
+transform = Transform3D(-4.371139e-08, 1, 0, -1, -4.371139e-08, 0, 0, 0, 1, -2.4723587, 8.856689, 4.0704765)
+shape = SubResource("BoxShape3D_ha36p")
 
 [node name="front" type="StaticBody3D" parent="Border" unique_id=1545815305]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.076, -49.63265)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="Border/front" unique_id=2019856651]
-transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 0, 0, 0)
-shape = SubResource("WorldBoundaryShape3D_4vfpq")
+transform = Transform3D(1, 0, 0, 0, -4.371139e-08, -1, 0, 1, -4.371139e-08, 6.0548325, 7.671173, -2.838028)
+shape = SubResource("BoxShape3D_jikhd")
 
 [node name="Back" type="StaticBody3D" parent="Border" unique_id=154172119]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.076, -45.085823)
@@ -1233,19 +1254,13 @@ transform = Transform3D(-3.8708735, 0, -0.27665266, 0, 3.8807483, 0, 0.27665266,
 transform = Transform3D(-4.297094, 0.040471558, 0.08792898, 0.035263695, 4.290671, -0.25155124, -0.09014386, -0.25076616, -4.289915, -53.344776, 2.65205, -15.800552)
 
 [node name="rock42" parent="rocks" unique_id=44389850 instance=ExtResource("18_ol44e")]
-transform = Transform3D(3.8515642, 0, -0.4750283, 0, 3.8807468, 0, 0.4750283, 0, 3.8515642, -53.056168, 2.372236, -45.474266)
-
-[node name="rock43" parent="rocks" unique_id=333383066 instance=ExtResource("19_5ubli")]
-transform = Transform3D(3.3373861, -0.02551703, 0.0326112, 0.027383108, 3.331809, -0.19533566, -0.031060763, 0.1955882, 3.3317623, -53.126247, 2.65205, -51.44156)
+transform = Transform3D(3.8515642, 0, -0.4750283, 0, 3.8807468, 0, 0.4750283, 0, 3.8515642, -53.056168, 2.372236, -43.30822)
 
 [node name="rock44" parent="rocks" unique_id=333098125 instance=ExtResource("18_ol44e")]
 transform = Transform3D(-3.8708735, 0, -0.27665266, 0, 3.8807483, 0, 0.27665266, 0, -3.8708735, -53.101166, 2.372236, -39.28276)
 
 [node name="rock45" parent="rocks" unique_id=27910230 instance=ExtResource("19_5ubli")]
 transform = Transform3D(0.054390404, 0.19487084, 3.3315053, 0.027383108, 3.3318088, -0.19533566, -3.3370874, 0.030515932, 0.0526965, -30.898247, 2.65205, -52.42685)
-
-[node name="rock46" parent="rocks" unique_id=2014790735 instance=ExtResource("18_ol44e")]
-transform = Transform3D(0.57347715, 0, 3.8381405, 0, 3.8807468, 0, -3.8381405, 0, 0.57347715, -49.891136, 2.372236, -52.167267)
 
 [node name="rock47" parent="rocks" unique_id=2129866701 instance=ExtResource("18_ol44e")]
 transform = Transform3D(0.17746308, 0, -3.8766875, 0, 3.8807483, 0, 3.8766875, 0, 0.17746308, -43.702812, 2.372236, -51.96377)
@@ -1326,10 +1341,10 @@ transform = Transform3D(3.3372786, -0.029736817, -0.039380744, 0.027383104, 3.33
 transform = Transform3D(-4.2941422, 0.04588009, 0.18059407, 0.035263695, 4.2906704, -0.2515512, -0.18296356, -0.24983318, -4.287013, 56.29997, 2.65205, 0.9823046)
 
 [node name="Rock1" parent="rocks" unique_id=954209982 instance=ExtResource("22_cly8o")]
-transform = Transform3D(0.6152488, 0, 0.788333, -0.21918467, 0.96057075, 0.1710611, -0.7572496, -0.27803564, 0.59099, -49.346348, 2, -45.20724)
+transform = Transform3D(0.6152488, 0, 0.788333, -0.21918467, 0.96057075, 0.1710611, -0.7572496, -0.27803564, 0.59099, -49.346348, 0.5697088, -45.20724)
 
 [node name="Rock2" parent="rocks" unique_id=1751197610 instance=ExtResource("22_cly8o")]
-transform = Transform3D(0.6152488, -8.286108e-09, 0.788333, 0.1529189, 0.9810059, -0.11934443, -0.7733593, 0.19397752, 0.6035628, -46.346348, 1.8925519, -47.519016)
+transform = Transform3D(0.6152488, -8.286108e-09, 0.788333, 0.1529189, 0.9810059, -0.11934443, -0.7733593, 0.19397752, 0.6035628, -44.23479, 0.73963666, -47.519016)
 
 [node name="SafeZone" type="Area3D" parent="." unique_id=1373606739]
 transform = Transform3D(1.7718022, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2968025, -7.053558)
@@ -1379,3 +1394,60 @@ transform = Transform3D(1.7718022, 0, 0, 0, 1, 0, 0, 0, 1, -40.791626, 1.8457975
 
 [node name="Marker3D14" type="Marker3D" parent="." unique_id=688735348]
 transform = Transform3D(1.7718022, 0, 0, 0, 1, 0, 0, 0, 1, -24.554754, 1.8457975, 38.192944)
+
+[node name="Puzzle Door" type="Node" parent="." unique_id=1651892674]
+
+[node name="PivptBridge" parent="Puzzle Door" unique_id=1843348245 instance=ExtResource("25_b6lr4")]
+transform = Transform3D(4.3711385e-08, 1, -8.742277e-08, 0.9999999, -4.371139e-08, 0, -3.8213705e-15, -8.742278e-08, -0.99999994, -52.607845, 1.1511234, -49.52566)
+
+[node name="CSGBox3D" parent="Puzzle Door/PivptBridge" index="0" unique_id=1725802133]
+transform = Transform3D(1, 4.004991e-12, -1.359731e-07, -4.004413e-12, 1, 4.246961e-09, 1.359731e-07, -4.246961e-09, 1, 3.7885752, -1.5258789e-05, 0.54790115)
+size = Vector3(7.5771484, 0.2, 2.0958252)
+
+[node name="RotationInteractionComponent" parent="Puzzle Door/PivptBridge" index="1" unique_id=1014286953]
+start_rotation_degrees = Vector3(0, -180, 90)
+end_rotation_degrees = Vector3(0, -180, 0)
+
+[node name="Podium" parent="Puzzle Door" unique_id=1396601957 instance=ExtResource("23_7eykx")]
+transform = Transform3D(-0.10253217, 0, -0.9947297, 0, 1, 0, 0.9947297, 0, -0.10253217, -52.15684, 0.65545774, -47.99781)
+
+[node name="MeshInstance3D" parent="Puzzle Door/Podium/StaticBody3D" parent_id_path=PackedInt32Array(1396601957, 718020852) index="0" unique_id=224247281]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.2654504, 0)
+
+[node name="Label3D" parent="Puzzle Door/Podium/StaticBody3D" parent_id_path=PackedInt32Array(1396601957, 718020852) index="2" unique_id=1374586372]
+visible = false
+text = "WHEEL"
+
+[node name="Wheel" parent="Puzzle Door/Podium" unique_id=980631790 instance=ExtResource("24_36g7h")]
+transform = Transform3D(-4.371139e-08, 0, 1, 0, 1, 0, -1, 0, -4.371139e-08, 0, 1.5, -0.40848923)
+visible = false
+
+[node name="InteractionComponent" parent="Puzzle Door/Podium/Wheel" index="5" unique_id=1549124343 node_paths=PackedStringArray("object_ref", "nodes_to_effect")]
+object_ref = NodePath("..")
+nodes_to_effect = [NodePath("../../../PivptBridge/RotationInteractionComponent")]
+
+[node name="DropZone" parent="Puzzle Door/Podium" unique_id=2044130385 node_paths=PackedStringArray("scenario_object") instance=ExtResource("26_ha36p")]
+scenario_object = NodePath("../Wheel")
+expected_item_name = "Crank"
+
+[node name="CollisionShape3D" parent="Puzzle Door/Podium/DropZone" index="0" unique_id=1896517618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1444092e-05, 1.5, -0.49999237)
+
+[node name="Crank" parent="." unique_id=1855826087 instance=ExtResource("27_jikhd")]
+transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, -6, 3, 7)
+item_data = ExtResource("28_qvxoj")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=566364217]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -70.2, 1.05, -50)
+size = Vector3(20, 0.5, 2)
+material = SubResource("StandardMaterial3D_qvxoj")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="." unique_id=1225772678]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.2, 1.05, -50)
+size = Vector3(20, 0.5, 20)
+material = SubResource("StandardMaterial3D_sxppv")
+
+[editable path="Puzzle Door/PivptBridge"]
+[editable path="Puzzle Door/Podium"]
+[editable path="Puzzle Door/Podium/Wheel"]
+[editable path="Puzzle Door/Podium/DropZone"]

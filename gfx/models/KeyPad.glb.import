@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://cinf620b434cs"
-path="res://.godot/imported/Andarilho.glb-b1625938fe03b05c1d90bfaf886cb17d.scn"
+uid="uid://cljxsus6qd4sa"
+path="res://.godot/imported/KeyPad.glb-fdacf6620202b24677fc37f16d7f74e6.scn"
 
 [deps]
 
-source_file="res://Andarilho.glb"
-dest_files=["res://.godot/imported/Andarilho.glb-b1625938fe03b05c1d90bfaf886cb17d.scn"]
+source_file="res://gfx/models/KeyPad.glb"
+dest_files=["res://.godot/imported/KeyPad.glb-fdacf6620202b24677fc37f16d7f74e6.scn"]
 
 [params]
 
