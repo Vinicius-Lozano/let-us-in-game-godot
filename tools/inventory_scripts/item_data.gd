@@ -7,3 +7,4 @@ class_name ItemData
 @export var action_data: ActionData
 
 @export var item_model_prefab: PackedScene
+@export var world_scale: Vector3 = Vector3.ONE

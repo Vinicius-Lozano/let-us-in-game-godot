@@ -32,6 +32,7 @@
 [ext_resource type="PackedScene" uid="uid://wgjymdinw7jw" path="res://tools/item_tools/small_item.tscn" id="27_jikhd"]
 [ext_resource type="Resource" uid="uid://co15t3pkol5b4" path="res://items/crank.tres" id="28_qvxoj"]
 [ext_resource type="Texture2D" uid="uid://bgxemk7mr5yvx" path="res://gfx/Textures/Stone_11-128x128.png" id="29_jikhd"]
+[ext_resource type="PackedScene" uid="uid://c0vluf0rgxgo5" path="res://scenes/AxeItemWorld.tscn" id="33_xi2te"]
 
 [sub_resource type="Environment" id="Environment_4vfpq"]
 background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
@@ -1471,6 +1472,9 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -90.2, 1.05, -50)
 use_collision = true
 size = Vector3(20, 0.5, 20)
 material = SubResource("StandardMaterial3D_sxppv")
+
+[node name="RigidBody3D" parent="." unique_id=699726080 instance=ExtResource("33_xi2te")]
+transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, -3.6625624, 1.5343759, 10.277524)
 
 [editable path="PuzzleDoor/KeyPad"]
 [editable path="PuzzleDoor/Door"]

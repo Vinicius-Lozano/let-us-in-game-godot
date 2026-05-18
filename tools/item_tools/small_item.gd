@@ -15,10 +15,9 @@ func update_item():
 	
 	if item_data == null:
 		return
-	
+	self.scale = item_data.world_scale
 	if mesh_instance:
 		mesh_instance.mesh = item_data.mesh
-	
 	if collision_shape:
 		if item_data.mesh != null:
 			collision_shape.shape = item_data.mesh.create_convex_shape()

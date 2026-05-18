@@ -1,42 +1,45 @@
-extends TextureRect
-
-@onready var swing_audio = $SwingSound
-@onready var hit_audio = $HitSound
-@onready var enemy_hit = $EnemyHitSound
+extends Node3D
 
 @export var raycast: RayCast3D 
-var can_attack: bool = true
+var can_attack: bool = false # Começa falso até o player pegar o item
+var is_swinging: bool = false
+
+@onready var swing_sound = $SwingSound
+@onready var hit_generic = $HitSound
+@onready var hit_monster = $EnemyHitSound
 
 func _ready():
-	if raycast != null:
-		raycast.add_exception(owner)
+	visible = false # Escondido no início
 
-func _process(_delta: float) -> void:
-	if Input.is_action_just_pressed("atacar"):
-		if can_attack:
-			swing_axe()
+func _process(_delta: float):
+	if visible and Input.is_action_just_pressed("atacar") and not is_swinging:
+		swing_axe()
 
 func swing_axe():
-	can_attack = false
-	swing_audio.play()
+	is_swinging = true
+	
+	swing_sound.pitch_scale = randf_range(0.9, 1.1)
+	swing_sound.play()
 	
 	var tween = create_tween()
-	tween.tween_property(self, "rotation", deg_to_rad(-60), 0.15)
-	tween.tween_property(self, "rotation", 0.0, 0.25)
+	tween.tween_property(self, "rotation_degrees", Vector3(0, 30, 10), 0.1).set_trans(Tween.TRANS_BACK)
+	tween.tween_property(self, "rotation_degrees", Vector3.ZERO, 0.2)
 	
+
 	if raycast != null and raycast.is_colliding():
 		var target = raycast.get_collider()
-		hit_audio.play()
-		# ISSO VAI TE AJUDAR A DESCOBRIR O ERRO:
-		# Olhe o painel "Output" (Saída) embaixo da tela do Godot quando atacar!
-		print("O machado bateu em: ", target.name) 
 		
 		if target.has_method("take_hit"):
-			print("Inimigo atordoado")
+			hit_monster.pitch_scale = randf_range(0.9, 1.1)
+			hit_monster.play()
 			target.take_hit()
-			enemy_hit.play()
 		else:
-			print("O alvo não tem a função 'take_hit'.")
+			hit_generic.pitch_scale = randf_range(0.8, 1.2)
+			hit_generic.play()
 			
-	await get_tree().create_timer(0.5).timeout
+	await tween.finished
+	is_swinging = false
+
+func equip():
+	visible = true
 	can_attack = true

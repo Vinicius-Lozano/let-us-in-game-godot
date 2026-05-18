@@ -1,6 +1,8 @@
 [gd_scene format=3 uid="uid://dlysphdyf8tqb"]
 
 [ext_resource type="Script" uid="uid://b06l7wh0xqau" path="res://scripts/interaction_controller.gd" id="1_l1bxc"]
+[ext_resource type="PackedScene" uid="uid://wgjymdinw7jw" path="res://tools/item_tools/small_item.tscn" id="2_7lv24"]
 
 [node name="InteractionController" type="Node" unique_id=2044404468]
 script = ExtResource("1_l1bxc")
+base_item_prefab = ExtResource("2_7lv24")
