@@ -1,8 +1,9 @@
 [gd_scene format=3 uid="uid://cwu0n6hahihli"]
 
-[ext_resource type="Script" uid="uid://dkco8jkdi4v8x" path="res://drop_zone.gd" id="1_dlln2"]
+[ext_resource type="Script" uid="uid://dkco8jkdi4v8x" path="res://scripts/drop_zone.gd" id="1_dlln2"]
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_dlln2"]
+size = Vector3(1, 2, 2)
 
 [node name="DropZone" type="Area3D" unique_id=2044130385]
 script = ExtResource("1_dlln2")

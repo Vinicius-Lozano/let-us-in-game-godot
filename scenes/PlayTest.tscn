@@ -18,10 +18,11 @@
 [ext_resource type="PackedScene" uid="uid://doxb0mf7n670d" path="res://scenes/garage_door.tscn" id="15_8px8v"]
 [ext_resource type="PackedScene" uid="uid://dsb0y5utu04h7" path="res://scenes/enemy_placeholder.tscn" id="16_qcfeg"]
 [ext_resource type="Resource" uid="uid://b1jdisiftqwdx" path="res://items/pills.tres" id="17_40kfu"]
-[ext_resource type="PackedScene" uid="uid://cinf620b434cs" path="res://Andarilho.glb" id="18_pduqs"]
+[ext_resource type="PackedScene" uid="uid://cinf620b434cs" path="res://gfx/models/Andarilho.glb" id="18_pduqs"]
 [ext_resource type="PackedScene" uid="uid://ctrbvitl0a7yl" path="res://tools/Rastejador.glb" id="19_rastejador"]
 [ext_resource type="PackedScene" uid="uid://cq4rc42nddwng" path="res://scenes/cabin.tscn" id="20_ckux7"]
 [ext_resource type="Resource" uid="uid://co15t3pkol5b4" path="res://items/crank.tres" id="22_jesp8"]
+[ext_resource type="PackedScene" uid="uid://nudw0pvlpvb1" path="res://scenes/key_pad.tscn" id="23_jesp8"]
 
 [sub_resource type="Environment" id="Environment_yqjtg"]
 background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
@@ -191,10 +192,9 @@ material = ExtResource("7_ht20j")
 [node name="Wheel" parent="Map/Cabin/CSGBox3D/CSGBox3D" unique_id=598620660 instance=ExtResource("13_d04jo")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.15478134, 0, 0)
 
-[node name="InteractionComponent" parent="Map/Cabin/CSGBox3D/CSGBox3D/Wheel" index="5" unique_id=1549124343 node_paths=PackedStringArray("object_ref", "nodes_to_effect")]
-object_ref = NodePath("..")
-maximum_rotation = 360.0
-nodes_to_effect = [NodePath("../../../../CSGBox3D2/GarageDoor/StaticBody3D/MovementInteractionComponent")]
+[node name="InteractionComponent" parent="Map/Cabin/CSGBox3D/CSGBox3D/Wheel" index="5" unique_id=1549124343 node_paths=PackedStringArray("object_ref")]
+object_ref = NodePath("../../../../CSGBox3D2/GarageDoor")
+maximum_rotation = 90.0
 
 [node name="Door2" parent="Map/Cabin" unique_id=337476497 instance=ExtResource("9_jfhmk")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 14.7, 0, 0)
@@ -258,19 +258,20 @@ visible = false
 object_ref = NodePath("..")
 nodes_to_effect = [NodePath("../../../PivptBridge/RotationInteractionComponent")]
 
-[node name="DropZone" parent="Map/Podium2" unique_id=2044130385 node_paths=PackedStringArray("scenario_crank") instance=ExtResource("15_0kaw2")]
+[node name="DropZone" parent="Map/Podium2" unique_id=2044130385 node_paths=PackedStringArray("scenario_object") instance=ExtResource("15_0kaw2")]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 0.19999981, 0, -0.6000004)
-scenario_crank = NodePath("../Wheel")
+scenario_object = NodePath("../Wheel")
+expected_item_name = "Crank"
 
 [node name="CollisionShape3D" parent="Map/Podium2/DropZone" index="0" unique_id=1896517618]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0.19999981)
 shape = SubResource("BoxShape3D_1ikpe")
 
 [node name="PivptBridge" parent="Map" unique_id=1843348245 instance=ExtResource("14_8px8v")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 10, -0.1, 8)
+transform = Transform3D(0.25881907, -0.9659258, 0, 0.9659258, 0.25881907, 0, 0, 0, 1, 10, -0.1, 8)
 
 [node name="RotationInteractionComponent" parent="Map/PivptBridge" index="1" unique_id=1014286953]
-end_rotation_degrees = Vector3(0, 0, 50)
+start_rotation_degrees = Vector3(0, 0, 75)
 
 [node name="Label3D" type="Label3D" parent="." unique_id=1868474737]
 transform = Transform3D(-4.371139e-08, 0, -1, 0, 1, 0, 1, 0, -4.371139e-08, 11, 1.1, 6.4)
@@ -313,6 +314,22 @@ transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4.21
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 6, 2, 9)
 item_data = ExtResource("22_jesp8")
 
+[node name="KeyPad" parent="." unique_id=1009954362 instance=ExtResource("23_jesp8")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5, 1, 1)
+
+[node name="Screen" parent="KeyPad" index="13" unique_id=1106918305]
+text = ""
+
+[node name="InteractionComponent" parent="KeyPad" index="14" unique_id=1549124343 node_paths=PackedStringArray("object_ref", "nodes_to_effect")]
+object_ref = NodePath("../BASE")
+nodes_to_effect = [NodePath("../../Door/PivotPoint/Door/InteractionComponent")]
+
+[node name="Door" parent="." unique_id=1558950870 instance=ExtResource("9_jfhmk")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
+
+[node name="InteractionComponent" parent="Door/PivotPoint/Door" parent_id_path=PackedInt32Array(1558950870, 599799928) index="2" unique_id=1549124343]
+is_locked = true
+
 [editable path="Map/Cabin/CSGBox3D2/GarageDoor"]
 [editable path="Map/Cabin/CSGBox3D/CSGBox3D/Wheel"]
 [editable path="Map/Podium/Switch"]
@@ -320,3 +337,5 @@ item_data = ExtResource("22_jesp8")
 [editable path="Map/Podium2/Wheel"]
 [editable path="Map/Podium2/DropZone"]
 [editable path="Map/PivptBridge"]
+[editable path="KeyPad"]
+[editable path="Door"]

@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://drbt7hn5bxid4"]
 
 [ext_resource type="Script" uid="uid://cgbnpksuvkc7l" path="res://andarilho_placeholder.gd" id="1_7uxh5"]
-[ext_resource type="PackedScene" uid="uid://cinf620b434cs" path="res://Andarilho.glb" id="2_02l60"]
+[ext_resource type="PackedScene" uid="uid://cinf620b434cs" path="res://gfx/models/Andarilho.glb" id="2_02l60"]
 [ext_resource type="Texture2D" uid="uid://dn8mxkox0klqu" path="res://gfx/Textures/Andarilho_Material.png" id="3_l7l7t"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_22wls"]
@@ -21,7 +21,7 @@ shape = SubResource("CapsuleShape3D_22wls")
 [node name="Andarilho" parent="." unique_id=801050262 instance=ExtResource("2_02l60")]
 transform = Transform3D(-2, 0, -3.019916e-07, 0, 2, 0, 3.019916e-07, 0, -2, 0, -0.119491786, -0.14476326)
 
-[node name="Cube_001" parent="Andarilho/rig/Skeleton3D" parent_id_path=PackedInt32Array(801050262, 1598985149) index="0" unique_id=582782672]
+[node name="Cube_001" parent="Andarilho/rig/Skeleton3D" parent_id_path=PackedInt32Array(801050262, 1897857446) index="0" unique_id=1267603215]
 surface_material_override/0 = SubResource("StandardMaterial3D_msfy8")
 
 [editable path="Andarilho"]

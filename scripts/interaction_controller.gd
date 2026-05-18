@@ -40,8 +40,13 @@ func handle_raycast_detection() -> void:
 	var target_reticle: ReticleType = ReticleType.DEFAULT
 	
 	if potential_object and potential_object is Node:
-		interaction_component = potential_object.get_node_or_null("InteractionComponent")
-		
+		var node: Node = potential_object
+		interaction_component = null
+		while node:
+			interaction_component = node.get_node_or_null("InteractionComponent")
+			if interaction_component:
+				break
+			node = node.get_parent()
 		if interaction_component and interaction_component.can_interact:
 			target_reticle = ReticleType.HAND_OPEN
 			last_potential_object = current_object
@@ -57,7 +62,7 @@ func handle_raycast_detection() -> void:
 				current_object = potential_object
 				target_reticle = ReticleType.HAND_CLOSED
 				
-				interaction_component.preInteract(hand)
+				interaction_component.preInteract(hand, current_object)
 				
 				if interaction_component.interaction_type == interaction_component.InteractionType.DOOR:
 					var local_point = current_object.to_local(interaction_raycast.get_collision_point())
