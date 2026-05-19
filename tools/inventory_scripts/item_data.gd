@@ -6,4 +6,4 @@ class_name ItemData
 @export var mesh: Mesh
 @export var action_data: ActionData
 
-var item_model_prefab: PackedScene
+@export var item_model_prefab: PackedScene
