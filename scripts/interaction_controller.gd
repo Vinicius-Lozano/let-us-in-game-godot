@@ -3,13 +3,11 @@ extends Node
 @onready var interaction_controller: Node = %InteractionController
 @onready var interaction_raycast: RayCast3D = $"../Head/Eyes/Camera3D/InteractionRaycast"
 @onready var player_camera: Camera3D = $"../Head/Eyes/Camera3D"
+
 @export var base_item_prefab: PackedScene
 @export var sanity_controller: Node
 
-# --- PASSO 5: REFERÊNCIA AO MACHADO ---
-# Certifique-se de que o nome e o caminho correspondam ao nó criado no Passo 3/4
 @onready var weapon_pivot: Node3D = $"../Head/Eyes/Camera3D/WeaponPivot" 
-
 @onready var physics_hand: Marker3D = %Hand 
 @onready var held_item_marker: Marker3D = %HeldItem 
 
@@ -93,24 +91,17 @@ func handle_item_drop() -> void:
 	if Input.is_action_just_pressed("drop_item"):
 		drop_item()
 
-# ==========================================
-# GERENCIAMENTO DO ITEM EQUIPADO (ATUALIZADO)
-# ==========================================
-
 func equip_item(new_item_data: ItemData) -> void:
 	if held_item_data != null:
 		drop_item()
 		
 	held_item_data = new_item_data
 	
-	# --- PASSO 5: LOGICA ESPECIFICA PARA O MACHADO ---
-	if held_item_data.name == "Axe":
-		if weapon_pivot:
-			weapon_pivot.visible = true
-			if weapon_pivot.has_method("equip"):
-				weapon_pivot.equip()
+	# Validação Orientada a Dados: É uma arma?
+	if is_weapon(held_item_data):
+		if weapon_pivot and weapon_pivot.has_method("equip"):
+			weapon_pivot.equip()
 	else:
-		# Lógica original para outros itens (Cria malha genérica)
 		var visual_mesh = MeshInstance3D.new()
 		visual_mesh.mesh = held_item_data.mesh
 		held_item_marker.add_child(visual_mesh)
@@ -126,36 +117,36 @@ func use_held_item() -> void:
 	match action.action_type:
 		ActionData.ActionType.CONSUMABLE:
 			var consumable = action as ConsumableAction
-			if consumable.modifier_name == 'sanity':
-				if sanity_controller != null:
-					sanity_controller.add_sanity(consumable.modifier_value)
-				else:
-					print("[ERRO] SanityController não configurado!")
+			if consumable.modifier_name == 'sanity' and sanity_controller != null:
+				sanity_controller.add_sanity(consumable.modifier_value)
 			clear_held_item()
 			
 		ActionData.ActionType.INSPECTABLE:
 			print("Inspecionando: ", held_item_data.name)
 			
 		ActionData.ActionType.EQUIPPABLE:
-			# --- PASSO 5: ATAQUE COM O MACHADO ---
-			# Como o machado já ouve o clique do mouse no seu próprio script,
-			# aqui podemos adicionar comportamentos extras ao apertar "E" com ele na mão,
-			# ou apenas deixar o print de sucesso.
 			var equippable = action as EquippableAction
 			print(equippable.success_text)
+			
+		ActionData.ActionType.WEAPON:
+			# O ataque é controlado pela action "atacar" no próprio script da arma.
+			# Aqui podemos colocar algo extra se o jogador apertar "E" segurando a arma (ex: inspecionar).
+			pass
 
 func drop_item() -> void:
 	if held_item_data == null:
 		return
 
 	if base_item_prefab == null:
-		print("[ERRO] base_item_prefab não configurado!")
 		return
 
 	var drop_instance = base_item_prefab.instantiate() as RigidBody3D
 	if drop_instance:
 		get_tree().current_scene.add_child(drop_instance)
-		drop_instance.scale = held_item_data.world_scale
+		
+		if "world_scale" in held_item_data:
+			drop_instance.scale = held_item_data.world_scale
+			
 		drop_instance.item_data = held_item_data 
 
 		var drop_distance: float = 1.5
@@ -169,9 +160,8 @@ func drop_item() -> void:
 	clear_held_item()
 
 func clear_held_item() -> void:
-	# --- PASSO 5: RESET DO MACHADO ---
-	if weapon_pivot:
-		weapon_pivot.visible = false
+	if weapon_pivot and weapon_pivot.has_method("unequip"):
+		weapon_pivot.unequip()
 	
 	if held_item_instance:
 		held_item_instance.queue_free()
@@ -179,6 +169,11 @@ func clear_held_item() -> void:
 	held_item_instance = null
 	held_item_data = null
 
+# Função auxiliar para manter o Clean Code
+func is_weapon(item: ItemData) -> bool:
+	return item.action_data != null and item.action_data.action_type == ActionData.ActionType.WEAPON
+
+# Funções de retícula e câmera omitidas para brevidade (mantém-se exatamente iguais)
 func isCameraLocked() -> bool:
 	return interaction_component != null and interaction_component.lock_camera and interaction_component.is_interacting
 

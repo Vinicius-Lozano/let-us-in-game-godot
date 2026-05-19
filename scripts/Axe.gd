@@ -1,21 +1,21 @@
 extends Node3D
 
 @export var raycast: RayCast3D 
-var can_attack: bool = false # Começa falso até o player pegar o item
+var can_attack: bool = false
 var is_swinging: bool = false
 
 @onready var swing_sound = $SwingSound
 @onready var hit_generic = $HitSound
 @onready var hit_monster = $EnemyHitSound
 
-func _ready():
-	visible = false # Escondido no início
+func _ready() -> void:
+	visible = false
 
-func _process(_delta: float):
-	if visible and Input.is_action_just_pressed("atacar") and not is_swinging:
+func _process(_delta: float) -> void:
+	if visible and can_attack and Input.is_action_just_pressed("atacar") and not is_swinging:
 		swing_axe()
 
-func swing_axe():
+func swing_axe() -> void:
 	is_swinging = true
 	
 	swing_sound.pitch_scale = randf_range(0.9, 1.1)
@@ -25,7 +25,6 @@ func swing_axe():
 	tween.tween_property(self, "rotation_degrees", Vector3(0, 30, 10), 0.1).set_trans(Tween.TRANS_BACK)
 	tween.tween_property(self, "rotation_degrees", Vector3.ZERO, 0.2)
 	
-
 	if raycast != null and raycast.is_colliding():
 		var target = raycast.get_collider()
 		
@@ -40,6 +39,11 @@ func swing_axe():
 	await tween.finished
 	is_swinging = false
 
-func equip():
+func equip() -> void:
 	visible = true
 	can_attack = true
+
+func unequip() -> void:
+	visible = false
+	can_attack = false
+	is_swinging = false
