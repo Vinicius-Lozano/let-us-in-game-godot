@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://cwqcsayluagx"
+path="res://.godot/imported/heavy breathing.mp3-c6f2ba5732a368e0a54e07cde6f229cb.mp3str"
+
+[deps]
+
+source_file="res://gfx/audio/heavy breathing.mp3"
+dest_files=["res://.godot/imported/heavy breathing.mp3-c6f2ba5732a368e0a54e07cde6f229cb.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

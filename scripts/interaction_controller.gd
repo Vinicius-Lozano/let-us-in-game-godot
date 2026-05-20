@@ -158,15 +158,22 @@ func use_held_item() -> void:
 			pass
 
 func drop_item() -> void:
-	if held_item_data == null:
+	# 1. Checagens básicas de dados
+	if held_item_data == null or base_item_prefab == null:
 		return
 
-	if base_item_prefab == null:
+	# 2. SEGURANÇA MÁXIMA: Checa se o nó ainda está na árvore e se o "mundo" existe
+	# Isso evita o erro de "null instance" durante o Game Over/Reload
+	if not is_inside_tree() or get_tree() == null:
 		return
 
 	var drop_instance = base_item_prefab.instantiate() as RigidBody3D
 	if drop_instance:
-		get_tree().current_scene.add_child(drop_instance)
+		# Checagem extra para o current_scene
+		var scene_root = get_tree().current_scene
+		if scene_root == null: return
+		
+		scene_root.add_child(drop_instance)
 		
 		if "world_scale" in held_item_data:
 			drop_instance.scale = held_item_data.world_scale

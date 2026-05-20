@@ -5,7 +5,7 @@
 [ext_resource type="AudioStream" uid="uid://e0mnuix8ojfx" path="res://gfx/audio/Andarilho.mp3" id="4_02l60"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_22wls"]
-radius = 1.487793
+radius = 1.0581055
 height = 3.590332
 
 [sub_resource type="Animation" id="Animation_7uxh5"]
@@ -444,45 +444,49 @@ _data = {
 &"hit": SubResource("Animation_02l60")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_7uxh5"]
+radius = 0.7602539
+height = 2.0854492
+
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=2143127629 groups=["enemy"]]
 script = ExtResource("1_7uxh5")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=891984534]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.9320285, -0.5127703)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1.4314759, 0.9533062)
 shape = SubResource("CapsuleShape3D_22wls")
 
 [node name="Andarilho" parent="." unique_id=801050262 instance=ExtResource("2_02l60")]
-transform = Transform3D(0.17778568, -1.9920824, -0.00014617754, -0.08343271, -0.0072994186, -1.9982456, 1.9903344, 0.17763583, -0.08375128, -0.106, 1, -3)
+transform = Transform3D(0.17778566, -1.9920822, -0.00014617752, -0.083432704, -0.007299418, -1.9982455, 1.9903343, 0.17763582, -0.083751276, -0.10561401, 3.38842, 0.16596949)
 
 [node name="rig" parent="Andarilho" index="0" unique_id=1213374538]
-transform = Transform3D(0.99321675, -0.005961412, 0.11612547, -0.016750354, -0.99560374, 0.09215484, 0.1150656, -0.09347486, -0.98895013, 0, 0, 0)
+transform = Transform3D(0.94213206, 0.00062480563, -0.33524138, 0.07285726, -0.97647864, 0.20293155, -0.3272293, -0.21561308, -0.92001736, 0.4316695, 0.7247798, 0.90888673)
 
 [node name="Skeleton3D" parent="Andarilho/rig" index="0" unique_id=296627398]
 bones/0/rotation = Quaternion(0.009516608, 0.018356284, 0.12415829, 0.9920471)
-bones/1/rotation = Quaternion(0.3061827, -0.08427719, -0.10080628, 0.9428614)
-bones/2/rotation = Quaternion(0.0082404865, -0.009365852, 0.000597798, 0.9999221)
-bones/3/rotation = Quaternion(0.41074666, 0.01829072, 0.025380034, 0.91121274)
-bones/4/rotation = Quaternion(0.17187996, -0.041638147, 0.017769208, 0.98407716)
-bones/5/rotation = Quaternion(0.054148305, 0.013467886, -0.014272198, 0.99834013)
-bones/6/rotation = Quaternion(-0.2672311, -0.27018812, 0.02145653, 0.92473006)
-bones/7/rotation = Quaternion(0.846256, 0.37168306, 0.18330927, -0.3348137)
-bones/8/rotation = Quaternion(-0.45630178, 0.5428923, -0.005742938, 0.70499915)
-bones/9/rotation = Quaternion(0.14918466, 0.39815044, -0.22256231, 0.8773176)
-bones/10/rotation = Quaternion(-0.007024384, 0.22115675, 0.041766487, 0.9743182)
-bones/11/rotation = Quaternion(0.81386137, -0.41219386, -0.2833733, -0.29567835)
-bones/12/rotation = Quaternion(-0.40428326, -0.61176705, -0.015411437, 0.679749)
-bones/13/rotation = Quaternion(0.10544414, -0.40578258, 0.15730765, 0.8941344)
-bones/14/rotation = Quaternion(0.07522282, -0.20545982, 0.05596215, 0.9741643)
+bones/1/rotation = Quaternion(0.31554323, -0.10551609, -0.14958332, 0.93108743)
+bones/2/rotation = Quaternion(0.13434696, -0.080409065, -0.050613064, 0.9863689)
+bones/3/rotation = Quaternion(0.52198374, -0.06445286, -0.0011003601, 0.8505161)
+bones/4/rotation = Quaternion(0.1550708, -0.040489547, 0.04356967, 0.9861112)
+bones/5/rotation = Quaternion(0.03789273, 0.02036323, 0.011054303, 0.9990132)
+bones/6/rotation = Quaternion(-0.27572057, -0.2690973, 0.050940197, 0.92139566)
+bones/7/rotation = Quaternion(0.64040625, 0.6930612, 0.082000695, -0.32065868)
+bones/8/rotation = Quaternion(-0.3382751, 0.18433121, -0.71254086, 0.5864107)
+bones/9/rotation = Quaternion(0.12695079, 0.40237558, -0.18939242, 0.8866273)
+bones/10/rotation = Quaternion(0.049836, 0.19196588, -0.023473535, 0.9798544)
+bones/11/rotation = Quaternion(0.70778805, -0.6225947, -0.12871113, -0.30796984)
+bones/12/rotation = Quaternion(-0.2885893, -0.27146578, 0.51606286, 0.7594088)
+bones/13/rotation = Quaternion(0.18996194, -0.3884654, 0.28339604, 0.8559766)
+bones/14/rotation = Quaternion(-0.1113568, -0.3931096, 0.18234512, 0.8943237)
 bones/15/rotation = Quaternion(-0.012884001, 0.97530955, 0.22006723, -0.013256959)
 bones/16/rotation = Quaternion(-0.012884002, 0.97530955, 0.22006723, -0.013256959)
-bones/19/rotation = Quaternion(0.87566817, -0.034346838, 0.08790154, -0.47360224)
-bones/20/rotation = Quaternion(0.59916407, -0.1852373, -0.18954971, 0.7554869)
-bones/21/rotation = Quaternion(-0.93375915, -0.24622108, 0.099527135, 0.23992398)
-bones/22/rotation = Quaternion(-0.039707948, 0.90565294, -0.4212234, 0.028052747)
-bones/24/rotation = Quaternion(0.87981296, -0.0127324, 0.053952184, -0.47207648)
-bones/25/rotation = Quaternion(0.4864127, 0.1747604, 0.0940408, 0.8508924)
-bones/26/rotation = Quaternion(-0.99094146, 0.12838933, -0.039359402, -0.0014615251)
-bones/27/rotation = Quaternion(0.042670112, 0.9954703, -0.08487989, -0.0037021197)
+bones/19/rotation = Quaternion(0.88871914, -0.07690562, 0.033901308, -0.45068246)
+bones/20/rotation = Quaternion(0.418978, -0.32215184, -0.2522762, 0.81057537)
+bones/21/rotation = Quaternion(-0.9441795, -0.18982121, 0.00819203, 0.2691206)
+bones/22/rotation = Quaternion(-0.044612713, 0.958889, -0.2797722, 0.01640635)
+bones/24/rotation = Quaternion(0.8854822, -0.10887586, -0.09505503, -0.4416242)
+bones/25/rotation = Quaternion(0.468347, -0.07097317, -0.16064745, 0.8659137)
+bones/26/rotation = Quaternion(-0.9985473, 0.013440513, 0.05147381, -0.008545304)
+bones/27/rotation = Quaternion(0.044074174, 0.9796811, -0.19534312, -0.011126635)
 
 [node name="AnimationPlayer" type="AnimationPlayer" parent="Andarilho" unique_id=317613844]
 unique_name_in_owner = true
@@ -492,5 +496,15 @@ libraries/ = SubResource("AnimationLibrary_mud5u")
 stream = ExtResource("4_02l60")
 volume_db = 5.981
 max_distance = 60.0
+
+[node name="DamageArea" type="Area3D" parent="." unique_id=1593353527]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, 0.2381556)
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea" unique_id=1281197757]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.20543861, 1.6379981, -0.15622449)
+shape = SubResource("CapsuleShape3D_7uxh5")
+debug_color = Color(0.95968944, 7.70092e-07, 0.52291703, 0.41960785)
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
 
 [editable path="Andarilho"]

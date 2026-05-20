@@ -7,6 +7,18 @@
 radius = 0.22509766
 height = 1.1114502
 
+[sub_resource type="FastNoiseLite" id="FastNoiseLite_sclqb"]
+frequency = 0.0165
+fractal_octaves = 10
+domain_warp_enabled = true
+
+[sub_resource type="NoiseTexture2D" id="NoiseTexture2D_y4kpv"]
+noise = SubResource("FastNoiseLite_sclqb")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_jswu4"]
+albedo_color = Color(0.7708395, 0.77083945, 0.77083945, 1)
+albedo_texture = SubResource("NoiseTexture2D_y4kpv")
+
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_5pthk"]
 resource_name = "Material"
 vertex_color_use_as_albedo = true
@@ -608,6 +620,10 @@ _data = {
 &"Rastejas": SubResource("Animation_c8ejr")
 }
 
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_sclqb"]
+radius = 0.265625
+height = 1.2526855
+
 [node name="CharacterBody3D" type="CharacterBody3D" unique_id=1792788294 groups=["enemy"]]
 script = ExtResource("2_sclqb")
 
@@ -618,7 +634,7 @@ shape = SubResource("CapsuleShape3D_o1pjr")
 [node name="Rastejador" type="Node3D" parent="." unique_id=1637957570 groups=["enemy"]]
 
 [node name="rig" type="Node3D" parent="Rastejador" unique_id=631558344]
-transform = Transform3D(98.229355, 15.789277, -2.9365823, -0.46638384, 20.996552, 97.29258, 16.053268, -96.004, 20.795406, 0.019551821, -0.066150814, -0.15082233)
+transform = Transform3D(98.229355, 15.789284, -2.9365816, -0.4663859, 20.996552, 97.29257, 16.053276, -96.004, 20.795404, 0.019551821, -0.066150814, -0.15082233)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Rastejador/rig" unique_id=1691981392]
 bones/0/name = "spine"
@@ -1142,6 +1158,7 @@ bones/73/scale = Vector3(1, 1, 1)
 
 [node name="Cube" type="MeshInstance3D" parent="Rastejador/rig/Skeleton3D" unique_id=145643613]
 transform = Transform3D(1.0000002, 2.9802322e-08, -3.7252903e-09, 0, 1, -2.9802322e-08, -3.7252903e-09, 0, 1, 0, 0, 0)
+material_override = SubResource("StandardMaterial3D_jswu4")
 mesh = SubResource("ArrayMesh_t4t0m")
 skin = SubResource("Skin_0p4fs")
 skeleton = NodePath("..")
@@ -1154,3 +1171,12 @@ libraries/rastejador = SubResource("AnimationLibrary_jm2xo")
 [node name="AudioStreamPlayer3D" type="AudioStreamPlayer3D" parent="." unique_id=958795538]
 stream = ExtResource("2_y4kpv")
 max_distance = 30.0
+
+[node name="DamageArea" type="Area3D" parent="." unique_id=1563665320]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="DamageArea" unique_id=1994024393]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6483154, -0.171929)
+shape = SubResource("CapsuleShape3D_sclqb")
+debug_color = Color(0.9461767, 0.090171285, 0.5371265, 0.41960785)
+
+[connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

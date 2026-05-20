@@ -19,7 +19,6 @@
 [ext_resource type="PackedScene" uid="uid://dsb0y5utu04h7" path="res://scenes/enemy_placeholder.tscn" id="16_qcfeg"]
 [ext_resource type="Resource" uid="uid://b1jdisiftqwdx" path="res://items/pills.tres" id="17_40kfu"]
 [ext_resource type="PackedScene" uid="uid://cinf620b434cs" path="res://gfx/models/Andarilho.glb" id="18_pduqs"]
-[ext_resource type="PackedScene" uid="uid://ctrbvitl0a7yl" path="res://tools/Rastejador.glb" id="19_rastejador"]
 [ext_resource type="PackedScene" uid="uid://cq4rc42nddwng" path="res://scenes/cabin.tscn" id="20_ckux7"]
 [ext_resource type="Resource" uid="uid://co15t3pkol5b4" path="res://items/crank.tres" id="22_jesp8"]
 [ext_resource type="PackedScene" uid="uid://nudw0pvlpvb1" path="res://scenes/key_pad.tscn" id="23_jesp8"]
@@ -64,7 +63,7 @@ _data = {
 &"rastejador": SubResource("Animation_40kfu")
 }
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_c1pcj"]
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_dl125"]
 points = PackedVector3Array(-16.925344, 236.19392, -112.76349, 0.42129898, 210.1855, -237.89429, 0.42129898, 231.96, -238.13866, -16.925344, 279.8825, -124.34941, -16.966763, 279.8825, -124.34941, -16.966763, 236.19392, -112.77786, -17.252924, 169.66078, -114.057205, -16.639183, 169.66078, -114.48845, 0.42129898, 170.26561, -237.44867, 0.42129898, 188.13185, -237.64992, -2.8996773, -177.38174, -248.04274, -12.647987, -167.28546, -259.6143, -17.034538, 228.98228, -256.955, -10.388819, 238.2411, -247.52525, -2.1277962, 239.35774, -234.54501, -3.6640282, 241.40492, -234.11377, -11.081631, 240.38133, -245.78593, -22.938496, 240.38133, -245.78593, -30.359863, 241.40492, -234.11377, -31.892332, 239.35774, -234.54501, -34.226807, 231.96, -238.13866, -37.736046, -70.04469, -231.58385, -34.260693, -82.606895, -217.10863, -34.569447, -189.80437, -233.42378, -20.479769, -195.4341, -227.0271, -16.925344, 134.67271, -125.02501, -6.3825607, -189.94395, -233.53879, -3.2837372, -25.006866, -229.15454, -28.292725, -167.23892, -259.5568, -23.635075, 238.2411, -247.52525, -38.0448, -177.24216, -247.899)
 
 [node name="PlayTest" type="Node3D" unique_id=1722158228]
@@ -301,9 +300,6 @@ light_energy = 5.283
 spot_range = 6.023
 spot_angle = 61.12
 
-[node name="Rastejador" parent="." unique_id=697832711 instance=ExtResource("19_rastejador")]
-transform = Transform3D(0.42001212, 0, -0.9499368, 0, 1.742756, 0, 1.0683402, 0, 0.3734625, 7.387292, 0.8139665, -3.5193741)
-
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1620218477]
 libraries/ = SubResource("AnimationLibrary_pduqs")
 
@@ -345,7 +341,7 @@ item_data = ExtResource("24_7b2mb")
 mesh = ExtResource("25_dl125")
 
 [node name="CollisionShape3D" parent="axe" index="1" unique_id=2111589417]
-shape = SubResource("ConvexPolygonShape3D_c1pcj")
+shape = SubResource("ConvexPolygonShape3D_dl125")
 
 [node name="badPill" parent="." unique_id=1696895454 instance=ExtResource("3_ht20j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -1)

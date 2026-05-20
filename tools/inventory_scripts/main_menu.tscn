@@ -17,6 +17,7 @@
 [ext_resource type="PackedScene" uid="uid://ccjxhfea42dh1" path="res://gfx/models/rock1.glb" id="13_w8die"]
 [ext_resource type="Texture2D" uid="uid://f80lddvhrtr6" path="res://gfx/Textures/logo.png" id="14_2e110"]
 [ext_resource type="Texture2D" uid="uid://blim0cu0ovgw5" path="res://gfx/UI/Sanity 1.png" id="15_p533c"]
+[ext_resource type="AudioStream" uid="uid://dmhjvt7vw52fw" path="res://gfx/audio/music/Darkest Night.mp3" id="18_h8j5v"]
 
 [sub_resource type="Environment" id="Environment_7yf0t"]
 background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
@@ -535,12 +536,12 @@ text = "Jogar"
 [node name="BtnOpcoes" type="Button" parent="CanvasLayer/UI/VBoxContainer" unique_id=376337634]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
-text = "Opcoes"
+text = "Opções"
 
 [node name="BtnSair" type="Button" parent="CanvasLayer/UI/VBoxContainer" unique_id=1171434576]
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
-text = "SAIR"
+text = "Sair"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI" unique_id=1122143462]
 visible = false
@@ -564,3 +565,7 @@ transform = Transform3D(1, 0, 0, 0, -0.7736965, 0.6335565, 0, -0.6335565, -0.773
 light_energy = 0.5
 light_angular_distance = 6.0
 shadow_enabled = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1105791564]
+stream = ExtResource("18_h8j5v")
+autoplay = true

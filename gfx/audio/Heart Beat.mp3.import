@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://bhy1qbadnjjtq"
+path="res://.godot/imported/Heart Beat.mp3-7247fe7fb27357c69582baa5117764bd.mp3str"
+
+[deps]
+
+source_file="res://gfx/audio/Heart Beat.mp3"
+dest_files=["res://.godot/imported/Heart Beat.mp3-7247fe7fb27357c69582baa5117764bd.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0.0
+bpm=0.0
+beat_count=0
+bar_beats=4

@@ -5,6 +5,7 @@
 [ext_resource type="PackedScene" uid="uid://dlysphdyf8tqb" path="res://scenes/interaction_controller.tscn" id="3_qhqgy"]
 [ext_resource type="Texture2D" uid="uid://2hub34ts8din" path="res://gfx/UI/hand_thin_open.svg" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://7eeoqfxm3v7r" path="res://gfx/UI/hand_thin_closed.svg" id="4_fjrip"]
+[ext_resource type="Texture2D" uid="uid://ce8nr4ym51s2" path="res://gfx/UI/Blood.png" id="5_60mlk"]
 [ext_resource type="ArrayMesh" uid="uid://p25mcgymubcb" path="res://gfx/models/bushes/source/Axe1.obj" id="5_f1ej7"]
 [ext_resource type="Script" uid="uid://djncuvtgibvsd" path="res://scripts/interactable_area_detector.gd" id="7_fjrip"]
 [ext_resource type="PackedScene" uid="uid://kbnh57s607ew" path="res://scenes/sanity_controller.tscn" id="7_ur7pv"]
@@ -15,6 +16,10 @@
 [ext_resource type="AudioStream" uid="uid://cpq4hcqyw7nl2" path="res://gfx/audio/HitSound.mp3" id="13_oprun"]
 [ext_resource type="AudioStream" uid="uid://8lcw5f456qrt" path="res://gfx/audio/EnemyHitSound.mp3" id="14_a8ls1"]
 [ext_resource type="AudioStream" uid="uid://bk53upw1tlygw" path="res://gfx/audio/player.mp3" id="15_oprun"]
+[ext_resource type="Script" uid="uid://ckb1xfr2rovyx" path="res://scenes/PlayerEffects.gd" id="16_a8ls1"]
+[ext_resource type="AudioStream" uid="uid://bhy1qbadnjjtq" path="res://gfx/audio/Heart Beat.mp3" id="17_4r5pv"]
+[ext_resource type="AudioStream" uid="uid://rut6lvedjfix" path="res://gfx/audio/hurt.mp3" id="18_60mlk"]
+[ext_resource type="AudioStream" uid="uid://cd8rds5v83a3e" path="res://gfx/audio/Whispers.mp3" id="20_60mlk"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -124,6 +129,16 @@ unique_name_in_owner = true
 layout_mode = 0
 offset_right = 40.0
 offset_bottom = 23.0
+
+[node name="TextureRect" type="TextureRect" parent="GUI" unique_id=236939260]
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+mouse_filter = 2
+texture = ExtResource("5_60mlk")
+expand_mode = 1
 
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=2078551516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
@@ -238,6 +253,33 @@ stream = ExtResource("15_oprun")
 volume_db = -9.477
 max_db = 1.038
 max_distance = 5.0
+
+[node name="PlayerEffects" type="Node" parent="." unique_id=1999313306 node_paths=PackedStringArray("health_component", "sanity_controller", "damage_overlay", "heartbeat_audio", "hit_audio", "whispers")]
+script = ExtResource("16_a8ls1")
+health_component = NodePath("../HealthComponent")
+sanity_controller = NodePath("../SanityController")
+damage_overlay = NodePath("../GUI/TextureRect")
+heartbeat_audio = NodePath("HeartbeatAudio")
+hit_audio = NodePath("HitAudio")
+whispers = [NodePath("Whisper"), NodePath("Whisper2"), NodePath("Whisper3")]
+
+[node name="HeartbeatAudio" type="AudioStreamPlayer" parent="PlayerEffects" unique_id=1021106511]
+stream = ExtResource("17_4r5pv")
+volume_db = 0.912
+
+[node name="HitAudio" type="AudioStreamPlayer" parent="PlayerEffects" unique_id=1790522820]
+stream = ExtResource("18_60mlk")
+
+[node name="Whisper" type="AudioStreamPlayer2D" parent="PlayerEffects" unique_id=705719620]
+stream = ExtResource("20_60mlk")
+
+[node name="Whisper2" type="AudioStreamPlayer2D" parent="PlayerEffects" unique_id=1208855325]
+stream = ExtResource("20_60mlk")
+panning_strength = 0.2
+
+[node name="Whisper3" type="AudioStreamPlayer2D" parent="PlayerEffects" unique_id=361281198]
+stream = ExtResource("20_60mlk")
+panning_strength = 1.8
 
 [connection signal="body_entered" from="InteractableAreaDetector" to="InteractableAreaDetector" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractableAreaDetector" to="InteractableAreaDetector" method="_on_body_exited"]

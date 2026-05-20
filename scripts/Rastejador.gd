@@ -139,3 +139,18 @@ func take_hit() -> void:
 	
 func is_player_in_safe_zone() -> bool:
 	return safe_zone.overlaps_body(player) if safe_zone else false
+	
+func _on_damage_area_body_entered(body: Node3D) -> void:
+	# Se o monstro já está atordoado, ele não consegue bater
+	if stun_timer > 0.0:
+		return
+		
+	# Checa se em quem ele bateu tem o componente de vida do seu amigo
+	var health_comp = body.get_node_or_null("HealthComponent")
+	
+	if health_comp:
+		# 1. Dá 1 de dano no jogador
+		health_comp.take_damage(1)
+		
+		# 2. O monstro fica atordoado por 1.5 segundos para o jogador poder fugir
+		stun_timer = 1.5
