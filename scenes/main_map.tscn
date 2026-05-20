@@ -21,7 +21,6 @@
 [ext_resource type="PackedScene" uid="uid://ccjxhfea42dh1" path="res://gfx/models/rock1.glb" id="18_ol44e"]
 [ext_resource type="PackedScene" uid="uid://bo7b2evf5so2c" path="res://gfx/models/rock2.glb" id="19_5ubli"]
 [ext_resource type="PackedScene" uid="uid://drbt7hn5bxid4" path="res://andarilho_placeholder.tscn" id="21_2wvi4"]
-[ext_resource type="PackedScene" uid="uid://btnqit5l6i0uf" path="res://Rastejador.tscn" id="22_8yhmk"]
 [ext_resource type="PackedScene" uid="uid://dqesbqnoq3bjx" path="res://gfx/models/ModelScenes/rock_1.tscn" id="22_cly8o"]
 [ext_resource type="PackedScene" uid="uid://bmlcsucujcsji" path="res://scenes/podium.tscn" id="23_7eykx"]
 [ext_resource type="PackedScene" uid="uid://c2tg8d8ihoer0" path="res://scenes/wheel.tscn" id="24_36g7h"]
@@ -32,6 +31,7 @@
 [ext_resource type="PackedScene" uid="uid://wgjymdinw7jw" path="res://tools/item_tools/small_item.tscn" id="27_jikhd"]
 [ext_resource type="Resource" uid="uid://co15t3pkol5b4" path="res://items/crank.tres" id="28_qvxoj"]
 [ext_resource type="Texture2D" uid="uid://bgxemk7mr5yvx" path="res://gfx/Textures/Stone_11-128x128.png" id="29_jikhd"]
+[ext_resource type="PackedScene" uid="uid://b6ge6ev4f72x7" path="res://scenes/rastejador.tscn" id="33_ld8ne"]
 [ext_resource type="PackedScene" uid="uid://c0vluf0rgxgo5" path="res://scenes/AxeItemWorld.tscn" id="33_xi2te"]
 
 [sub_resource type="Environment" id="Environment_4vfpq"]
@@ -141,12 +141,6 @@ transform = Transform3D(-0.81246024, 0, -0.5830166, 0, 1, 0, 0.5830166, 0, -0.81
 player = NodePath("../player")
 safe_zone = NodePath("../SafeZone")
 patrol_points = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("../Marker3D3"), NodePath("../Marker3D4"), NodePath("../Marker3D5"), NodePath("../Marker3D6"), NodePath("../Marker3D7"), NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D10"), NodePath("../Marker3D11"), NodePath("../Marker3D12"), NodePath("../Marker3D13"), NodePath("../Marker3D14")]
-
-[node name="Node3D" parent="." unique_id=1715384646 node_paths=PackedStringArray("player", "safe_zone", "teleport_points") groups=["enemy"] instance=ExtResource("22_8yhmk")]
-transform = Transform3D(1.5383686, 0, 0, 0, 1.5383686, 0, 0, 0, 1.5383686, -39.570553, 1.1509194, -9.52792)
-player = NodePath("../player")
-safe_zone = NodePath("../SafeZone")
-teleport_points = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("../Marker3D3"), NodePath("../Marker3D4"), NodePath("../Marker3D5"), NodePath("../Marker3D6"), NodePath("../Marker3D7"), NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D10"), NodePath("../Marker3D11"), NodePath("../Marker3D12"), NodePath("../Marker3D13"), NodePath("../Marker3D14")]
 
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=999960655]
 stream = ExtResource("8_8yhmk")
@@ -1475,6 +1469,12 @@ material = SubResource("StandardMaterial3D_sxppv")
 
 [node name="RigidBody3D" parent="." unique_id=699726080 instance=ExtResource("33_xi2te")]
 transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, -3.6625624, 1.5343759, 10.277524)
+
+[node name="CharacterBody3D2" parent="." unique_id=1792788294 node_paths=PackedStringArray("player", "safe_zone", "teleport_points") instance=ExtResource("33_ld8ne")]
+transform = Transform3D(1.8219622, 0, 0, 0, 1.8219622, 0, 0, 0, 1.8219622, -6.7554398, 1.9225025, 10.7684765)
+player = NodePath("../player")
+safe_zone = NodePath("../SafeZone")
+teleport_points = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("../Marker3D3"), NodePath("../Marker3D4"), NodePath("../Marker3D5"), NodePath("../Marker3D6"), NodePath("../Marker3D7"), NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D10"), NodePath("../Marker3D11"), NodePath("../Marker3D12"), NodePath("../Marker3D13"), NodePath("../Marker3D14")]
 
 [editable path="PuzzleDoor/KeyPad"]
 [editable path="PuzzleDoor/Door"]

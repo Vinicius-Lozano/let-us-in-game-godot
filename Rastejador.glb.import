@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://ctrbvitl0a7yl"
-path="res://.godot/imported/Rastejador.glb-76658127891dbbc537570695d41c73e2.scn"
+uid="uid://bah6efwj7byqv"
+path="res://.godot/imported/Rastejador.glb-4c3d046c3fa4e1cfc4724a39e9d94f3b.scn"
 
 [deps]
 
-source_file="res://tools/Rastejador.glb"
-dest_files=["res://.godot/imported/Rastejador.glb-76658127891dbbc537570695d41c73e2.scn"]
+source_file="res://Rastejador.glb"
+dest_files=["res://.godot/imported/Rastejador.glb-4c3d046c3fa4e1cfc4724a39e9d94f3b.scn"]
 
 [params]
 
