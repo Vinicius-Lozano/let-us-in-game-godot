@@ -35,9 +35,6 @@ func _ready() -> void:
 		push_error("[SANITY CONTROLLER] Falha Crítica: HealthComponent não foi referenciado!")
 		return 
 		
-	# --- CONEXÃO DOS SINAIS ---
-	# É AQUI que o "coração" fala com a "UI de sangue"
-	health_component.took_damage.connect(_on_took_damage)
 	# --------------------------
 	
 	light_detection_viewport.debug_draw = Viewport.DEBUG_DRAW_LIGHTING
@@ -231,13 +228,4 @@ func get_average_color(texture: ViewportTexture) -> Color:
 	image.resize(1, 1, Image.INTERPOLATE_BILINEAR)
 	return image.get_pixel(0,0)
 
-func _on_took_damage(_amount: int) -> void:
-	# Pisca o efeito de sangue (flash) ou aumenta a opacidade do overlay
-	if border_overlay:
-		border_overlay.modulate.a = 1.0
-		# Cria um tween para o sangue sumir suavemente
-		var tween = create_tween()
-		tween.tween_property(border_overlay, "modulate:a", 0.0, 1.0)
-	
-	# Aqui você pode tocar o som de batimento cardíaco ou aumentar a frequência
-	print("[UI] Efeito de dano visual ativado!")
+
