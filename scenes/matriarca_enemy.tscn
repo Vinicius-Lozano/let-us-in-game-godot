@@ -2,7 +2,6 @@
 
 [ext_resource type="PackedScene" uid="uid://dsb0y5utu04h7" path="res://scenes/enemy_framework.tscn" id="1_bb8ji"]
 [ext_resource type="Script" uid="uid://8uc761uni4yq" path="res://tools/inimigos/matriarca.gd" id="2_6tcki"]
-[ext_resource type="PackedScene" uid="uid://bxquduiujafo7" path="res://tools/inventory_scripts/main_menu.tscn" id="3_3ln2v"]
 [ext_resource type="PackedScene" uid="uid://c0ukwfjojfyva" path="res://gfx/models/matriarca.tscn" id="4_3dsf5"]
 [ext_resource type="Script" uid="uid://dh1w8xeof0mle" path="res://tools/frameworks/stationary_ai.gd" id="5_v6ffq"]
 
@@ -11,7 +10,6 @@ radius = 2.5
 
 [node name="Matriarca_enemy" unique_id=1160102853 instance=ExtResource("1_bb8ji")]
 script = ExtResource("2_6tcki")
-victory_scene = ExtResource("3_3ln2v")
 model_prefab = ExtResource("4_3dsf5")
 
 [node name="CollisionShape3D" parent="." index="1" unique_id=866816040]
