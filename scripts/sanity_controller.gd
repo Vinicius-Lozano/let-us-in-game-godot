@@ -4,6 +4,7 @@ extends Node
 @onready var light_detection: Node3D = %LightDetection
 @onready var debug: Label = %Debug
 @onready var player_camera: Camera3D = %Camera3D
+@export var health_component: HealthComponent
 
 @onready var border_overlay: TextureRect = $SanityUI/BorderOverlay
 @onready var flash_overlay: TextureRect = $SanityUI/FlashOverlay
@@ -64,18 +65,27 @@ func _process(delta: float) -> void:
 	
 	for enemy in get_tree().get_nodes_in_group("enemy"):
 		if is_enemy_on_screen(enemy):
-			# Aqui passamos o ângulo desejado (ex: 35 graus para cada lado)
 			if is_enemy_in_view(enemy, 35.0):
 				if has_line_of_sight(enemy): 
-					# Inimigo detectado com sucesso!
 					drain_sanity(delta * enemy_drain_rate)
 	
-	debug.text = str("FPS: %d \nLight Level: %.2f \nSanity: %.2f") %[
+	# --- NOVO: Lógica de leitura de vida e atualização unificada do Debug ---
+	var current_hp: int = 0
+	var max_hp: int = 0
+	
+	# Programação Defensiva: Só lê a vida se o componente foi plugado no Editor
+	if health_component != null:
+		current_hp = health_component.current_health
+		max_hp = health_component.max_health
+		
+	debug.text = str("FPS: %d \nLight Level: %.2f \nSanity: %.2f \nLife: %d / %d") %[
 		Engine.get_frames_per_second(),
 		light_level,
-		sanity
+		sanity,
+		current_hp,
+		max_hp
 	]
-
+	
 func has_line_of_sight(enemy: Node3D) -> bool:
 	var space_state = player_camera.get_world_3d().direct_space_state
 	var camera_pos = player_camera.global_transform.origin

@@ -6,6 +6,7 @@ extends Node
 
 @export var base_item_prefab: PackedScene
 @export var sanity_controller: Node
+@export var health_component: HealthComponent
 
 @onready var weapon_pivot: Node3D = $"../Head/Eyes/Camera3D/WeaponPivot" 
 @onready var physics_hand: Marker3D = %Hand 
@@ -111,14 +112,39 @@ func equip_item(new_item_data: ItemData) -> void:
 func use_held_item() -> void:
 	if held_item_data == null or held_item_data.action_data == null:
 		return
-		
+
 	var action = held_item_data.action_data
-	
+
 	match action.action_type:
 		ActionData.ActionType.CONSUMABLE:
 			var consumable = action as ConsumableAction
-			if consumable.modifier_name == 'sanity' and sanity_controller != null:
-				sanity_controller.add_sanity(consumable.modifier_value)
+				
+			# Avaliamos qual é a string que você digitou no Inspector
+			match consumable.modifier_name:
+				"sanity":
+					if sanity_controller != null:
+						sanity_controller.add_sanity(consumable.modifier_value)
+					else:
+						print("[ERRO] SanityController não configurado!")
+					
+				"heal":
+					if health_component != null:
+						health_component.heal(consumable.modifier_value)
+						print("[DEBUG] Vida restaurada em: ", consumable.modifier_value)
+					else:
+						print("[ERRO] HealthComponent não configurado no InteractionController!")
+						
+				"damage":
+					if health_component != null:
+						health_component.take_damage(consumable.modifier_value)
+						print("[DEBUG] Sofreu dano de: ", consumable.modifier_value)
+					else:
+						print("[ERRO] HealthComponent não configurado no InteractionController!")
+					
+				_:
+					# Programação Defensiva: Avisa se você digitar o nome errado no Inspector
+					print("[AVISO] Modificador desconhecido: ", consumable.modifier_name)
+			
 			clear_held_item()
 			
 		ActionData.ActionType.INSPECTABLE:
@@ -129,8 +155,6 @@ func use_held_item() -> void:
 			print(equippable.success_text)
 			
 		ActionData.ActionType.WEAPON:
-			# O ataque é controlado pela action "atacar" no próprio script da arma.
-			# Aqui podemos colocar algo extra se o jogador apertar "E" segurando a arma (ex: inspecionar).
 			pass
 
 func drop_item() -> void:

@@ -25,6 +25,8 @@
 [ext_resource type="PackedScene" uid="uid://nudw0pvlpvb1" path="res://scenes/key_pad.tscn" id="23_jesp8"]
 [ext_resource type="Resource" uid="uid://cdxe8rjban038" path="res://gfx/AxeItemData.tres" id="24_7b2mb"]
 [ext_resource type="ArrayMesh" uid="uid://p25mcgymubcb" path="res://gfx/models/bushes/source/Axe1.obj" id="25_dl125"]
+[ext_resource type="Resource" uid="uid://deudxnbe04e0b" path="res://items/bad_pill.tres" id="26_c1pcj"]
+[ext_resource type="Resource" uid="uid://dwcngiuske26c" path="res://items/good_pill.tres" id="27_4mr3b"]
 
 [sub_resource type="Environment" id="Environment_yqjtg"]
 background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
@@ -335,15 +337,39 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 0, 2)
 [node name="InteractionComponent" parent="Door/PivotPoint/Door" parent_id_path=PackedInt32Array(1558950870, 599799928) index="2" unique_id=1549124343]
 is_locked = true
 
-[node name="small_item2" parent="." unique_id=278082207 instance=ExtResource("3_ht20j")]
+[node name="axe" parent="." unique_id=278082207 instance=ExtResource("3_ht20j")]
 transform = Transform3D(0.002, 0, 0, 0, 0.002, 0, 0, 0, 0.002, 2, 6, 2)
 item_data = ExtResource("24_7b2mb")
 
-[node name="MeshInstance3D" parent="small_item2" index="0" unique_id=382088013]
+[node name="MeshInstance3D" parent="axe" index="0" unique_id=382088013]
 mesh = ExtResource("25_dl125")
 
-[node name="CollisionShape3D" parent="small_item2" index="1" unique_id=2111589417]
+[node name="CollisionShape3D" parent="axe" index="1" unique_id=2111589417]
 shape = SubResource("ConvexPolygonShape3D_c1pcj")
+
+[node name="badPill" parent="." unique_id=1696895454 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -1)
+item_data = ExtResource("26_c1pcj")
+
+[node name="badPill2" parent="." unique_id=1873672696 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -1)
+item_data = ExtResource("26_c1pcj")
+
+[node name="badPill3" parent="." unique_id=1634491865 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -1)
+item_data = ExtResource("26_c1pcj")
+
+[node name="GoodPill" parent="." unique_id=960534742 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -3)
+item_data = ExtResource("27_4mr3b")
+
+[node name="GoodPill2" parent="." unique_id=1270652269 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -3)
+item_data = ExtResource("27_4mr3b")
+
+[node name="GoodPill3" parent="." unique_id=474585955 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -3)
+item_data = ExtResource("27_4mr3b")
 
 [editable path="Map/Cabin/CSGBox3D2/GarageDoor"]
 [editable path="Map/Cabin/CSGBox3D/CSGBox3D/Wheel"]
@@ -354,4 +380,4 @@ shape = SubResource("ConvexPolygonShape3D_c1pcj")
 [editable path="Map/PivptBridge"]
 [editable path="KeyPad"]
 [editable path="Door"]
-[editable path="small_item2"]
+[editable path="axe"]
