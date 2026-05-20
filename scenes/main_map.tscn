@@ -34,7 +34,6 @@
 [ext_resource type="Texture2D" uid="uid://bgxemk7mr5yvx" path="res://gfx/Textures/Stone_11-128x128.png" id="29_jikhd"]
 [ext_resource type="PackedScene" uid="uid://b6ge6ev4f72x7" path="res://scenes/rastejador.tscn" id="33_ld8ne"]
 [ext_resource type="PackedScene" uid="uid://c0vluf0rgxgo5" path="res://scenes/AxeItemWorld.tscn" id="33_xi2te"]
-[ext_resource type="PackedScene" uid="uid://dji52aovqrar6" path="res://scenes/matriarca_enemy.tscn" id="34_ld8ne"]
 
 [sub_resource type="Environment" id="Environment_4vfpq"]
 background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
@@ -137,16 +136,9 @@ light_energy = 3.5
 shadow_enabled = true
 spot_range = 8.0
 
-[node name="player" parent="." unique_id=2123675130 node_paths=PackedStringArray("health_component") instance=ExtResource("5_2xk3c")]
+[node name="player" parent="." unique_id=2123675130 instance=ExtResource("5_2xk3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0482903, 1.4156563, 8.744361)
-health_component = NodePath("HealthComponent")
 game_over_scene = ExtResource("6_0n326")
-
-[node name="InteractionController" parent="player" index="7" unique_id=2044404468 node_paths=PackedStringArray("health_component")]
-health_component = NodePath("../HealthComponent")
-
-[node name="SanityController" parent="player" index="9" unique_id=1713050903 node_paths=PackedStringArray("health_component")]
-health_component = NodePath("../HealthComponent")
 
 [node name="CharacterBody3D" parent="." unique_id=2143127629 node_paths=PackedStringArray("player", "safe_zone", "patrol_points") instance=ExtResource("21_2wvi4")]
 transform = Transform3D(-0.81246024, 0, -0.5830166, 0, 1, 0, 0.5830166, 0, -0.81246024, -6.0821095, 1.8266945, 40.2834)
@@ -1593,11 +1585,14 @@ player = NodePath("../player")
 safe_zone = NodePath("../SafeZone")
 teleport_points = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("../Marker3D3"), NodePath("../Marker3D4"), NodePath("../Marker3D5"), NodePath("../Marker3D6"), NodePath("../Marker3D7"), NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D10"), NodePath("../Marker3D11"), NodePath("../Marker3D12"), NodePath("../Marker3D13"), NodePath("../Marker3D14")]
 
-[node name="Matriarca_enemy" parent="." unique_id=1160102853 instance=ExtResource("34_ld8ne")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -92, 1.7, -50)
-
 [node name="SpotLight3D2" type="SpotLight3D" parent="." unique_id=473732756]
 transform = Transform3D(1, 0, 0, 0, -4.371139e-08, 1, 0, -1, -4.371139e-08, -91, 10.7, -50)
+spot_range = 49.706
+spot_attenuation = -0.04
+spot_angle = 61.12
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="." unique_id=1166509950]
+transform = Transform3D(0.8626549, -2.210891e-08, 0.5057929, -0.5057929, -3.7707846e-08, 0.8626549, 0, -1, -4.371139e-08, -65.00788, 5.3116713, -50)
 spot_range = 49.706
 spot_attenuation = -0.04
 spot_angle = 61.12
@@ -1609,4 +1604,3 @@ spot_angle = 61.12
 [editable path="PuzzleBridge/Podium/DropZone"]
 [editable path="PuzzleDoor/KeyPad"]
 [editable path="PuzzleDoor/Door"]
-[editable path="Matriarca_enemy"]
