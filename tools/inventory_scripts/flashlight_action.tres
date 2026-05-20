@@ -1,0 +1,7 @@
+[gd_resource type="Resource" script_class="FlashlightAction" load_steps=2 format=3 uid="uid://cxfalshaction123"]
+
+[ext_resource type="Script" path="res://tools/inventory_scripts/flashlight_action.gd" id="1_act"]
+
+[resource]
+script = ExtResource("1_act")
+time_to_respawn = 6.0

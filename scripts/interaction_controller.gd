@@ -116,11 +116,16 @@ func equip_item(new_item_data: ItemData) -> void:
 			print("[SISTEMA DE ITENS] Arma equipada com Dano: ", damage_to_pass)
 			
 	else:
-		var visual_mesh = MeshInstance3D.new()
-		visual_mesh.mesh = held_item_data.mesh
-		held_item_marker.add_child(visual_mesh)
-		visual_mesh.position = Vector3.ZERO
-		held_item_instance = visual_mesh
+		if held_item_data.item_model_prefab != null:
+			held_item_instance = held_item_data.item_model_prefab.instantiate() as Node3D
+			held_item_marker.add_child(held_item_instance)
+			held_item_instance.position = Vector3.ZERO
+		else:
+			var visual_mesh = MeshInstance3D.new()
+			visual_mesh.mesh = held_item_data.mesh
+			held_item_marker.add_child(visual_mesh)
+			visual_mesh.position = Vector3.ZERO
+			held_item_instance = visual_mesh
 func use_held_item() -> void:
 	if held_item_data == null or held_item_data.action_data == null:
 		return
@@ -168,7 +173,10 @@ func use_held_item() -> void:
 			
 		ActionData.ActionType.WEAPON:
 			pass
-
+			
+		ActionData.ActionType.FLASHLIGHT:
+			if held_item_instance != null and held_item_instance.has_method("toggle"):
+				held_item_instance.toggle()
 func drop_item() -> void:
 	# 1. Checagens básicas de dados
 	if held_item_data == null or base_item_prefab == null:

@@ -14,6 +14,7 @@ class_name EnemyBase
 
 @export_category("Mecânicas")
 @export var respawn_delay: float = 3.0
+@export var safe_respawn_markers: Array[Node3D]
 
 @export_category("Dependências Internas")
 @export var health_component: HealthComponent
@@ -106,3 +107,19 @@ func execute_respawn_sequence() -> void:
 		ai_component.on_respawn()
 		
 	print("[ENEMY FRAMEWORK] Inimigo Respawnou na origem!")
+
+func force_respawn_away() -> void:
+	if safe_respawn_markers.size() > 0:
+		var safe_marker = safe_respawn_markers.pick_random()
+		if safe_marker:
+			global_position = safe_marker.global_position
+			print("[ENEMY FRAMEWORK] Inimigo forçado a respawnar em um ponto seguro!")
+			if ai_component:
+				ai_component.on_respawn()
+			return
+			
+	# Fallback caso não existam markers configurados
+	global_position = initial_position
+	print("[ENEMY FRAMEWORK] Inimigo forçado a respawnar na origem (nenhum marker configurado)!")
+	if ai_component:
+		ai_component.on_respawn()
