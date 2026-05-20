@@ -118,5 +118,5 @@ func _on_died() -> void:
 	# Para todos os sussurros na morte
 	for w in whispers:
 		w.stop()
-	if heartbeat_audio: heartbeat_audio.stop()
-	get_tree().call_deferred("reload_current_scene")
+	if heartbeat_audio: 
+		heartbeat_audio.stop()

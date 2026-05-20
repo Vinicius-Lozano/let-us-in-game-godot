@@ -1,7 +1,7 @@
 [gd_scene format=3 uid="uid://c0vluf0rgxgo5"]
 
 [ext_resource type="Script" uid="uid://bhychgjkb7buv" path="res://tools/item_tools/small_item.gd" id="1_y88xv"]
-[ext_resource type="Resource" uid="uid://cdxe8rjban038" path="res://gfx/AxeItemData.tres" id="2_u5r7g"]
+[ext_resource type="Resource" uid="uid://cdxe8rjban038" path="res://items/AxeItemData.tres" id="2_u5r7g"]
 [ext_resource type="ArrayMesh" uid="uid://p25mcgymubcb" path="res://gfx/models/bushes/source/Axe1.obj" id="3_u5r7g"]
 
 [sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_u5r7g"]

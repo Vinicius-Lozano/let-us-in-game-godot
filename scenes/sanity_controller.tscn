@@ -4,7 +4,7 @@
 [ext_resource type="Shader" uid="uid://y15d4kvxcgdd" path="res://scenes/distortion.gdshader" id="2_g7rwn"]
 [ext_resource type="Texture2D" uid="uid://blim0cu0ovgw5" path="res://gfx/UI/Sanity 1.png" id="2_krcbg"]
 [ext_resource type="Texture2D" uid="uid://dob6e6wfl4m4r" path="res://gfx/UI/Sanity 2.png" id="3_0krof"]
-[ext_resource type="Texture2D" uid="uid://b3jux7yrfc4ar" path="res://gfx/checkboard.png" id="3_aaf21"]
+[ext_resource type="Texture2D" uid="uid://b3jux7yrfc4ar" path="res://gfx/Textures/checkboard.png" id="3_aaf21"]
 [ext_resource type="Texture2D" uid="uid://djflahn6lto1o" path="res://gfx/UI/Sanity 3.png" id="4_mmgb7"]
 [ext_resource type="Texture2D" uid="uid://dudfikvpwfbfs" path="res://gfx/UI/Sanity 4.png" id="5_0krof"]
 

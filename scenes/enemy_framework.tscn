@@ -1,0 +1,23 @@
+[gd_scene format=3 uid="uid://dsb0y5utu04h7"]
+
+[ext_resource type="Script" uid="uid://qcfbas6r0y2g" path="res://scenes/enemy_base.gd" id="1_gpm5a"]
+[ext_resource type="PackedScene" uid="uid://0vrjmymcbbs2" path="res://scenes/ai_component.tscn" id="2_vxwxm"]
+[ext_resource type="PackedScene" uid="uid://c64cg6w2er1c7" path="res://scenes/health_component.tscn" id="3_ajrom"]
+
+[sub_resource type="CapsuleShape3D" id="CapsuleShape3D_hsqvu"]
+
+[node name="EnemyPlaceholder" type="CharacterBody3D" unique_id=1160102853 node_paths=PackedStringArray("health_component", "ai_component", "visuals_container") groups=["enemy"]]
+script = ExtResource("1_gpm5a")
+health_component = NodePath("HealthComponent")
+ai_component = NodePath("AIComponent")
+visuals_container = NodePath("Visuals")
+
+[node name="Visuals" type="Node3D" parent="." unique_id=117440800]
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=866816040]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 1, 0)
+shape = SubResource("CapsuleShape3D_hsqvu")
+
+[node name="AIComponent" parent="." unique_id=2107457304 instance=ExtResource("2_vxwxm")]
+
+[node name="HealthComponent" parent="." unique_id=1564426417 instance=ExtResource("3_ajrom")]
