@@ -1,12 +1,10 @@
-[gd_resource type="Resource" script_class="ItemData" load_steps=4 format=3 uid="uid://cxflashitem456"]
+[gd_resource type="Resource" script_class="ItemData" load_steps=3 format=3 uid="uid://cxflashitem456"]
 
 [ext_resource type="Script" path="res://tools/inventory_scripts/item_data.gd" id="1_item"]
 [ext_resource type="Resource" uid="uid://cxfalshaction123" path="res://tools/inventory_scripts/flashlight_action.tres" id="2_act"]
-[ext_resource type="PackedScene" uid="uid://cxflashlightscene" path="res://tools/inventory_scripts/flashlight.tscn" id="3_scene"]
 
 [resource]
 script = ExtResource("1_item")
 name = "Lanterna"
 action_data = ExtResource("2_act")
-item_model_prefab = ExtResource("3_scene")
 world_scale = Vector3(1, 1, 1)
