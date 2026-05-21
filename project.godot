@@ -17,6 +17,7 @@ config/features=PackedStringArray("4.6", "Forward Plus")
 [autoload]
 
 Inventory="*uid://s8f65lly4j7l"
+Global="*uid://cv16pod60ac5c"
 
 [debug_draw_3d]
 

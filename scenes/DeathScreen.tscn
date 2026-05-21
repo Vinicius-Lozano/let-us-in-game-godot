@@ -1,0 +1,56 @@
+[gd_scene format=3 uid="uid://c3ahis7rpy0fx"]
+
+[ext_resource type="Script" uid="uid://x6p6dn3q4uj6" path="res://DeathScreen.gd" id="1_biyii"]
+[ext_resource type="FontFile" uid="uid://bvwgf1a2rduwy" path="res://gfx/font/HelpMe.ttf" id="2_5034k"]
+[ext_resource type="Texture2D" uid="uid://bmtt2fwhqumpf" path="res://gfx/UI/Tryagain.png" id="3_0r1s6"]
+[ext_resource type="AudioStream" uid="uid://bw8c4gua0lxt6" path="res://gfx/audio/music/Strange Vision - Myuu.mp3" id="4_rg777"]
+
+[sub_resource type="LabelSettings" id="LabelSettings_0r1s6"]
+font = ExtResource("2_5034k")
+font_size = 100
+
+[node name="Control" type="Control" unique_id=1002144216]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 1934.0
+offset_bottom = 1101.0
+script = ExtResource("1_biyii")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=2022289007]
+layout_mode = 0
+offset_right = 1932.0
+offset_bottom = 1098.0
+color = Color(0, 0, 0, 1)
+
+[node name="Art" type="TextureRect" parent="." unique_id=1945708585]
+layout_mode = 0
+offset_right = 1932.0
+offset_bottom = 1100.0
+expand_mode = 1
+
+[node name="Text" type="Label" parent="." unique_id=420975599]
+layout_mode = 0
+offset_left = 48.0
+offset_top = 37.0
+offset_right = 1955.0
+offset_bottom = 658.0
+label_settings = SubResource("LabelSettings_0r1s6")
+
+[node name="RetryButton" type="Button" parent="." unique_id=49576145]
+layout_mode = 0
+offset_left = -1.0
+offset_top = 826.0
+offset_right = 1007.0
+offset_bottom = 1034.0
+pivot_offset = Vector2(504, 104)
+icon = ExtResource("3_0r1s6")
+flat = true
+
+[node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=151311067]
+stream = ExtResource("4_rg777")
+volume_db = -10.306
+autoplay = true
+
+[connection signal="mouse_entered" from="RetryButton" to="." method="_on_retry_button_mouse_entered"]
+[connection signal="mouse_exited" from="RetryButton" to="." method="_on_retry_button_mouse_exited"]
+[connection signal="pressed" from="RetryButton" to="." method="_on_retry_button_pressed"]

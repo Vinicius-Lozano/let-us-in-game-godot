@@ -119,4 +119,4 @@ func _on_died() -> void:
 	for w in whispers:
 		w.stop()
 	if heartbeat_audio: heartbeat_audio.stop()
-	get_tree().call_deferred("reload_current_scene")
+	get_tree().call_deferred("change_scene_to_file", "res://scenes/DeathScreen.tscn")

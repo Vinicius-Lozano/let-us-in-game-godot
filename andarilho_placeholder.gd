@@ -140,6 +140,7 @@ func _on_damage_area_body_entered(body: Node3D) -> void:
 	
 	if health_comp:
 		# 1. Dá 1 de dano no jogador
+		Global.killer_name = "Andarilho"
 		health_comp.take_damage(1)
 		
 		# 2. O monstro fica atordoado por 1.5 segundos para o jogador poder fugir
