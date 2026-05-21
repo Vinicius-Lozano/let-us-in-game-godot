@@ -11,12 +11,12 @@
 [ext_resource type="PackedScene" uid="uid://kbnh57s607ew" path="res://scenes/sanity_controller.tscn" id="7_ur7pv"]
 [ext_resource type="Shader" uid="uid://cp1bbm8ih3g67" path="res://gfx/outline.gdshader" id="8_smehm"]
 [ext_resource type="Script" uid="uid://cxbhc0v5qbvle" path="res://scripts/Axe.gd" id="11_d2wvv"]
-[ext_resource type="Script" uid="uid://rd5i80skt5uf" path="res://scripts/health_component.gd" id="11_oprun"]
+[ext_resource type="PackedScene" uid="uid://c64cg6w2er1c7" path="res://scenes/health_component.tscn" id="12_60mlk"]
 [ext_resource type="AudioStream" uid="uid://c6x6j15j58hf3" path="res://gfx/audio/SwingSound.mp3" id="12_f1ej7"]
 [ext_resource type="AudioStream" uid="uid://cpq4hcqyw7nl2" path="res://gfx/audio/HitSound.mp3" id="13_oprun"]
 [ext_resource type="AudioStream" uid="uid://8lcw5f456qrt" path="res://gfx/audio/EnemyHitSound.mp3" id="14_a8ls1"]
 [ext_resource type="AudioStream" uid="uid://bk53upw1tlygw" path="res://gfx/audio/player.mp3" id="15_oprun"]
-[ext_resource type="Script" uid="uid://ckb1xfr2rovyx" path="res://scenes/PlayerEffects.gd" id="16_a8ls1"]
+[ext_resource type="Script" uid="uid://ckb1xfr2rovyx" path="res://scripts/PlayerEffects.gd" id="16_a8ls1"]
 [ext_resource type="AudioStream" uid="uid://bhy1qbadnjjtq" path="res://gfx/audio/Heart Beat.mp3" id="17_4r5pv"]
 [ext_resource type="AudioStream" uid="uid://rut6lvedjfix" path="res://gfx/audio/hurt.mp3" id="18_60mlk"]
 [ext_resource type="AudioStream" uid="uid://cd8rds5v83a3e" path="res://gfx/audio/Whispers.mp3" id="20_60mlk"]
@@ -233,8 +233,7 @@ unique_name_in_owner = true
 sanity_controller = NodePath("../SanityController")
 health_component = NodePath("../HealthComponent")
 
-[node name="HealthComponent" type="Node" parent="." unique_id=1825578865]
-script = ExtResource("11_oprun")
+[node name="HealthComponent" parent="." unique_id=1564426417 instance=ExtResource("12_60mlk")]
 
 [node name="SanityController" parent="." unique_id=1713050903 node_paths=PackedStringArray("health_component") instance=ExtResource("7_ur7pv")]
 unique_name_in_owner = true
@@ -254,7 +253,7 @@ volume_db = -9.477
 max_db = 1.038
 max_distance = 5.0
 
-[node name="PlayerEffects" type="Node" parent="." unique_id=1999313306 node_paths=PackedStringArray("health_component", "sanity_controller", "damage_overlay", "heartbeat_audio", "hit_audio", "whispers")]
+[node name="PlayerEffects" type="Node" parent="." unique_id=1999313306 node_paths=PackedStringArray("sanity_controller", "damage_overlay", "heartbeat_audio", "hit_audio", "whispers", "health_component")]
 script = ExtResource("16_a8ls1")
 health_component = NodePath("../HealthComponent")
 sanity_controller = NodePath("../SanityController")

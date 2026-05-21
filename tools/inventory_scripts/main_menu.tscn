@@ -3,7 +3,6 @@
 [ext_resource type="Texture2D" uid="uid://p2t7jcg3xx27" path="res://gfx/Textures/Dirt_15-128x128.png" id="1_4bikw"]
 [ext_resource type="Script" uid="uid://fc63rvgxnogx" path="res://tools/inventory_scripts/main_menu.gd" id="1_qnbf5"]
 [ext_resource type="Script" uid="uid://ckbc04tuscpte" path="res://addons/csg_terrain/csg_terrain.gd" id="2_qnbf5"]
-[ext_resource type="PackedScene" uid="uid://bbf7cpxoqqvup" path="res://scenes/main_map.tscn" id="2_tvm07"]
 [ext_resource type="Script" uid="uid://dev0ac66uwhja" path="res://addons/csg_terrain/csg_terrain_path.gd" id="3_tvm07"]
 [ext_resource type="PackedScene" uid="uid://cq4rc42nddwng" path="res://scenes/cabin.tscn" id="4_h8j5v"]
 [ext_resource type="PackedScene" uid="uid://g38p47mnv3lt" path="res://gfx/models/ModelScenes/bush.tscn" id="5_i1fi2"]
@@ -67,7 +66,6 @@ point_count = 9
 
 [node name="MainMenu" type="Node3D" unique_id=1586356088]
 script = ExtResource("1_qnbf5")
-gameplay_scene = ExtResource("2_tvm07")
 
 [node name="Node" type="Node" parent="." unique_id=2006035557]
 
@@ -534,6 +532,7 @@ theme_override_font_sizes/font_size = 36
 text = "Jogar"
 
 [node name="BtnOpcoes" type="Button" parent="CanvasLayer/UI/VBoxContainer" unique_id=376337634]
+visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Opções"
@@ -544,7 +543,7 @@ theme_override_font_sizes/font_size = 36
 text = "Sair"
 
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI" unique_id=1122143462]
-visible = false
+modulate = Color(1, 1, 1, 0.3137255)
 layout_mode = 1
 anchors_preset = 8
 anchor_left = 0.5

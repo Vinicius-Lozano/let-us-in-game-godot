@@ -6,6 +6,10 @@ extends CharacterBody3D
 @export var safe_zone: Area3D
 @export var teleport_points: Array[Node3D]
 
+# --- NOVO: Variável de tempo exposta para o Editor ---
+@export var respawn_delay: float = 3.0 # Segundos que ele fica parado após bater
+# ----------------------------------------------------
+
 # Nós Internos
 @onready var anim_player: AnimationPlayer = %AnimationPlayer
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
@@ -14,12 +18,19 @@ var player_camera: Camera3D
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
 var stun_timer: float = 0.0
 var is_hidden_waiting: bool = false 
-
-# NOVA VARIÁVEL PARA A ESTÁTUA
 var pose_timer: float = 0.0
+
+# --- NOVO: Variáveis de Memória e Estado ---
+var initial_position: Vector3
+var is_respawning: bool = false
+# -------------------------------------------
 
 func _ready():
 	player_camera = get_viewport().get_camera_3d()
+	
+	# --- NOVO: Grava a posição exata de onde ele começou na fase ---
+	initial_position = global_position
+	
 	call_deferred("teleport_to_random_point")
 
 func _physics_process(delta: float) -> void:
@@ -109,22 +120,14 @@ func handle_animation(delta: float):
 	if anim_player == null: return
 
 	if velocity.length() > 0.2:
-		# Ele está se movendo (você não está olhando pra ele). 
-		# Troca de pose a cada poucos milissegundos para parecer "stop-motion".
 		pose_timer -= delta
 		if pose_timer <= 0.0:
-			pose_timer = randf_range(0.1, 0.3) # Muda a pose super rápido
-			
+			pose_timer = randf_range(0.1, 0.3) 
 			anim_player.play("rastejador/Rastejas")
-			# Sorteia um frame aleatório dentro da animação de andar
 			var length = anim_player.current_animation_length
 			anim_player.seek(randf_range(0.0, length), true)
-			
-			# CONGELA A ANIMAÇÃO!
 			anim_player.pause() 
 	else:
-		# Se ele parar (porque você olhou), ele congela NA HORA, 
-		# travando exatamente na pose torta que ele estava!
 		anim_player.pause()
 
 func handle_audio():
@@ -135,17 +138,15 @@ func handle_audio():
 
 func take_hit() -> void:
 	stun_timer = 4.0
-	# Remove o anim_player.play("hit") daqui, pois o handle_animation agora cuida disso
 	
 func is_player_in_safe_zone() -> bool:
 	return safe_zone.overlaps_body(player) if safe_zone else false
 	
 func _on_damage_area_body_entered(body: Node3D) -> void:
-	# Se o monstro já está atordoado, ele não consegue bater
-	if stun_timer > 0.0:
+	# --- NOVO: Impede danos duplos se já estiver atordoado ou respawnando ---
+	if stun_timer > 0.0 or is_respawning:
 		return
 		
-	# Checa se em quem ele bateu tem o componente de vida do seu amigo
 	var health_comp = body.get_node_or_null("HealthComponent")
 	
 	if health_comp:
@@ -153,5 +154,32 @@ func _on_damage_area_body_entered(body: Node3D) -> void:
 		Global.killer_name = "Rastejador"
 		health_comp.take_damage(1)
 		
-		# 2. O monstro fica atordoado por 1.5 segundos para o jogador poder fugir
-		stun_timer = 1.5
+		# 2. Inicia a sequência assíncrona de respawn
+		execute_respawn_sequence()
+
+# --- NOVO: Lógica Assíncrona de Respawn ---
+# --- NOVO: Lógica Assíncrona de Respawn com Logs e Reset Físico ---
+func execute_respawn_sequence() -> void:
+	# 1. LOG DE ENTRADA: Avisa que a sequência começou
+	print("[RASTEJADOR] Acertei o player! Pausando IA por ", respawn_delay, " segundos.")
+	
+	# Trava o estado para ele não tentar andar ou dar mais dano
+	is_respawning = true
+	stun_timer = respawn_delay 
+	
+	# Pausa a execução DESTA FUNÇÃO (mas não do jogo) pelo tempo estipulado
+	await get_tree().create_timer(respawn_delay).timeout
+	
+	# 2. LOG DE SAÍDA: Avisa para onde ele está indo
+	print("[RASTEJADOR] Tempo esgotado! Teleportando de volta para XYZ: ", initial_position)
+	
+	# O tempo acabou! Teleporta de volta para a origem.
+	global_position = initial_position
+	velocity = Vector3.ZERO # Zera a física (inércia) para evitar que ele deslize após teleportar
+	
+	# Libera os estados para ele voltar a caçar normalmente
+	is_respawning = false
+	stun_timer = 0.0
+	
+	# Resetando a flag do esconderijo para a inteligência artificial reiniciar limpa
+	is_hidden_waiting = false

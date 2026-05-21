@@ -30,6 +30,13 @@ const SANITY_REGEN_TARGET: float = 100.0
 const SANITY_REGEN_RATE: float = 1.0 / SANITY_DRAIN_INTERVAL
 
 func _ready() -> void:
+	# --- NOVO: Fail-Fast (Programação Defensiva) ---
+	if health_component == null:
+		push_error("[SANITY CONTROLLER] Falha Crítica: HealthComponent não foi referenciado!")
+		return 
+		
+	# --------------------------
+	
 	light_detection_viewport.debug_draw = Viewport.DEBUG_DRAW_LIGHTING
 	border_overlay.modulate.a = 0.0
 	flash_overlay.visible = false
@@ -220,3 +227,5 @@ func get_average_color(texture: ViewportTexture) -> Color:
 	var image = texture.get_image()
 	image.resize(1, 1, Image.INTERPOLATE_BILINEAR)
 	return image.get_pixel(0,0)
+
+

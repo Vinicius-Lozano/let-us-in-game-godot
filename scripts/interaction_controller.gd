@@ -24,12 +24,17 @@ var interaction_component: Node
 var held_item_data: ItemData = null
 var held_item_instance: MeshInstance3D = null
 
-func _process(_delta: float) -> void:
+func _process(delta: float) -> void:
 	if current_object:
 		handle_active_interaction()
 	else:
 		handle_raycast_detection()
 		handle_item_drop()
+		
+	# Processamento da lanterna (Raycast e Respawn)
+	if held_item_data and held_item_data.action_data and held_item_data.action_data.action_type == ActionData.ActionType.FLASHLIGHT:
+		var flashlight = held_item_data.action_data as FlashlightAction
+		flashlight.process_flashlight(delta)
 
 func handle_active_interaction() -> void:
 	if not interaction_component:
@@ -101,14 +106,31 @@ func equip_item(new_item_data: ItemData) -> void:
 	# Validação Orientada a Dados: É uma arma?
 	if is_weapon(held_item_data):
 		if weapon_pivot and weapon_pivot.has_method("equip"):
-			weapon_pivot.equip()
+			
+			# --- NOVO: INJEÇÃO DE DEPENDÊNCIA ---
+			# 1. Avisamos ao compilador que o action_data é um WeaponAction (Casting)
+			var weapon_action = held_item_data.action_data as WeaponAction
+			
+			# 2. Lemos o dano do arquivo .tres em tempo O(1)
+			var damage_to_pass: int = 1 # Fallback de segurança
+			if weapon_action != null:
+				damage_to_pass = weapon_action.damage
+				
+			# 3. Injetamos o número diretamente no machado!
+			weapon_pivot.equip(damage_to_pass)
+			print("[SISTEMA DE ITENS] Arma equipada com Dano: ", damage_to_pass)
+			
 	else:
 		var visual_mesh = MeshInstance3D.new()
 		visual_mesh.mesh = held_item_data.mesh
 		held_item_marker.add_child(visual_mesh)
 		visual_mesh.position = Vector3.ZERO
 		held_item_instance = visual_mesh
-
+		
+		# Novo: Delega a lógica da lanterna para o ActionData
+		if held_item_data.action_data and held_item_data.action_data.action_type == ActionData.ActionType.FLASHLIGHT:
+			var flashlight = held_item_data.action_data as FlashlightAction
+			flashlight.equip_flashlight(held_item_marker)
 func use_held_item() -> void:
 	if held_item_data == null or held_item_data.action_data == null:
 		return
@@ -156,7 +178,10 @@ func use_held_item() -> void:
 			
 		ActionData.ActionType.WEAPON:
 			pass
-
+			
+		ActionData.ActionType.FLASHLIGHT:
+			var flashlight = action as FlashlightAction
+			flashlight.toggle()
 func drop_item() -> void:
 	# 1. Checagens básicas de dados
 	if held_item_data == null or base_item_prefab == null:
@@ -194,6 +219,10 @@ func clear_held_item() -> void:
 	if weapon_pivot and weapon_pivot.has_method("unequip"):
 		weapon_pivot.unequip()
 	
+	if held_item_data and held_item_data.action_data and held_item_data.action_data.action_type == ActionData.ActionType.FLASHLIGHT:
+		var flashlight = held_item_data.action_data as FlashlightAction
+		flashlight.unequip_flashlight()
+		
 	if held_item_instance:
 		held_item_instance.queue_free()
 	
