@@ -1597,6 +1597,12 @@ spot_range = 49.706
 spot_attenuation = -0.04
 spot_angle = 61.12
 
+[node name="CharacterBody3D3" parent="." unique_id=707297544 node_paths=PackedStringArray("player", "safe_zone", "teleport_points") instance=ExtResource("33_ld8ne")]
+transform = Transform3D(1.8219622, 0, 0, 0, 1.8219622, 0, 0, 0, 1.8219622, 4.2029176, 2.814711, 10.7684765)
+player = NodePath("../player")
+safe_zone = NodePath("../SafeZone")
+teleport_points = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("../Marker3D3"), NodePath("../Marker3D4"), NodePath("../Marker3D5"), NodePath("../Marker3D6"), NodePath("../Marker3D7"), NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D10"), NodePath("../Marker3D11"), NodePath("../Marker3D12"), NodePath("../Marker3D13"), NodePath("../Marker3D14")]
+
 [editable path="player"]
 [editable path="PuzzleBridge/PivptBridge"]
 [editable path="PuzzleBridge/Podium"]

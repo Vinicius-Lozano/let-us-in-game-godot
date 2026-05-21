@@ -628,13 +628,13 @@ height = 1.2526855
 script = ExtResource("2_sclqb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2146566774]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6925876, 0.1534791)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6925876, -0.1490615)
 shape = SubResource("CapsuleShape3D_o1pjr")
 
 [node name="Rastejador" type="Node3D" parent="." unique_id=1637957570 groups=["enemy"]]
 
 [node name="rig" type="Node3D" parent="Rastejador" unique_id=631558344]
-transform = Transform3D(98.22936, 15.789288, -2.9365814, -0.46638668, 20.996552, 97.292564, 16.05328, -96.004, 20.795404, 0.019551821, -0.066150814, -0.15082233)
+transform = Transform3D(98.22937, 15.789294, -2.9365819, -0.46638745, 20.996552, 97.29256, 16.05329, -96.004, 20.795403, 0.019551821, -0.066150814, -0.15082233)
 
 [node name="Skeleton3D" type="Skeleton3D" parent="Rastejador/rig" unique_id=1691981392]
 bones/0/name = "spine"

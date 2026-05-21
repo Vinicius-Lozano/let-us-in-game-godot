@@ -253,7 +253,7 @@ volume_db = -9.477
 max_db = 1.038
 max_distance = 5.0
 
-[node name="PlayerEffects" type="Node" parent="." unique_id=1999313306 node_paths=PackedStringArray("sanity_controller", "damage_overlay", "heartbeat_audio", "hit_audio", "whispers", "health_component")]
+[node name="PlayerEffects" type="Node" parent="." unique_id=1999313306 node_paths=PackedStringArray("health_component", "sanity_controller", "damage_overlay", "heartbeat_audio", "hit_audio", "whispers")]
 script = ExtResource("16_a8ls1")
 health_component = NodePath("../HealthComponent")
 sanity_controller = NodePath("../SanityController")

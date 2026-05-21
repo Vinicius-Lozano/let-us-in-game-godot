@@ -227,5 +227,3 @@ func get_average_color(texture: ViewportTexture) -> Color:
 	var image = texture.get_image()
 	image.resize(1, 1, Image.INTERPOLATE_BILINEAR)
 	return image.get_pixel(0,0)
-
-

@@ -16,6 +16,8 @@
 [ext_resource type="PackedScene" uid="uid://ccjxhfea42dh1" path="res://gfx/models/rock1.glb" id="13_w8die"]
 [ext_resource type="Texture2D" uid="uid://f80lddvhrtr6" path="res://gfx/Textures/logo.png" id="14_2e110"]
 [ext_resource type="Texture2D" uid="uid://blim0cu0ovgw5" path="res://gfx/UI/Sanity 1.png" id="15_p533c"]
+[ext_resource type="FontFile" uid="uid://bvwgf1a2rduwy" path="res://gfx/font/HelpMe.ttf" id="16_i1fi2"]
+[ext_resource type="Texture2D" uid="uid://dxodxljh8y6ur" path="res://gfx/UI/Button.png" id="17_e3fxe"]
 [ext_resource type="AudioStream" uid="uid://dmhjvt7vw52fw" path="res://gfx/audio/music/Darkest Night.mp3" id="18_h8j5v"]
 
 [sub_resource type="Environment" id="Environment_7yf0t"]
@@ -63,6 +65,32 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 9
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_1pl51"]
+texture = ExtResource("17_e3fxe")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_e3fxe"]
+texture = ExtResource("17_e3fxe")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_i1fi2"]
+texture = ExtResource("17_e3fxe")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_1pl51"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_w43a4"]
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_w43a4"]
+texture = ExtResource("17_e3fxe")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_dgnq7"]
+texture = ExtResource("17_e3fxe")
+
+[sub_resource type="StyleBoxTexture" id="StyleBoxTexture_xv6fi"]
+texture = ExtResource("17_e3fxe")
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_dgnq7"]
+
+[sub_resource type="StyleBoxEmpty" id="StyleBoxEmpty_srtdg"]
 
 [node name="MainMenu" type="Node3D" unique_id=1586356088]
 script = ExtResource("1_qnbf5")
@@ -510,7 +538,41 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
+[node name="BtnJogar" type="Button" parent="CanvasLayer/UI" unique_id=1941436162]
+layout_mode = 0
+offset_left = 999.0
+offset_top = 482.0
+offset_right = 1463.0
+offset_bottom = 593.0
+pivot_offset = Vector2(232, 55.5)
+theme_override_fonts/font = ExtResource("16_i1fi2")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_1pl51")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_e3fxe")
+theme_override_styles/hover = SubResource("StyleBoxTexture_i1fi2")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_1pl51")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_w43a4")
+text = "Jogar"
+clip_text = true
+
+[node name="BtnSair" type="Button" parent="CanvasLayer/UI" unique_id=1171434576]
+layout_mode = 0
+offset_left = 1002.0
+offset_top = 571.0
+offset_right = 1459.0
+offset_bottom = 684.0
+pivot_offset = Vector2(228.5, 56.5)
+theme_override_fonts/font = ExtResource("16_i1fi2")
+theme_override_font_sizes/font_size = 36
+theme_override_styles/normal = SubResource("StyleBoxTexture_w43a4")
+theme_override_styles/pressed = SubResource("StyleBoxTexture_dgnq7")
+theme_override_styles/hover = SubResource("StyleBoxTexture_xv6fi")
+theme_override_styles/disabled = SubResource("StyleBoxEmpty_dgnq7")
+theme_override_styles/focus = SubResource("StyleBoxEmpty_srtdg")
+text = "Sair"
+
 [node name="VBoxContainer" type="VBoxContainer" parent="CanvasLayer/UI" unique_id=557936469]
+visible = false
 layout_mode = 1
 anchors_preset = -1
 anchor_left = 0.52900004
@@ -525,24 +587,14 @@ grow_horizontal = 2
 grow_vertical = 2
 mouse_filter = 2
 
-[node name="BtnJogar" type="Button" parent="CanvasLayer/UI/VBoxContainer" unique_id=1941436162]
-custom_minimum_size = Vector2(400, 0)
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Jogar"
-
 [node name="BtnOpcoes" type="Button" parent="CanvasLayer/UI/VBoxContainer" unique_id=376337634]
 visible = false
 layout_mode = 2
 theme_override_font_sizes/font_size = 36
 text = "Opções"
 
-[node name="BtnSair" type="Button" parent="CanvasLayer/UI/VBoxContainer" unique_id=1171434576]
-layout_mode = 2
-theme_override_font_sizes/font_size = 36
-text = "Sair"
-
 [node name="TextureRect" type="TextureRect" parent="CanvasLayer/UI" unique_id=1122143462]
+visible = false
 modulate = Color(1, 1, 1, 0.3137255)
 layout_mode = 1
 anchors_preset = 8
@@ -556,6 +608,7 @@ offset_right = 960.0
 offset_bottom = 540.0
 grow_horizontal = 2
 grow_vertical = 2
+scale = Vector2(1, 0.99765515)
 mouse_filter = 2
 texture = ExtResource("15_p533c")
 
@@ -568,3 +621,8 @@ shadow_enabled = true
 [node name="AudioStreamPlayer" type="AudioStreamPlayer" parent="." unique_id=1105791564]
 stream = ExtResource("18_h8j5v")
 autoplay = true
+
+[connection signal="mouse_entered" from="CanvasLayer/UI/BtnJogar" to="." method="_on_btn_jogar_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/BtnJogar" to="." method="_on_btn_jogar_mouse_exited"]
+[connection signal="mouse_entered" from="CanvasLayer/UI/BtnSair" to="." method="_on_btn_sair_mouse_entered"]
+[connection signal="mouse_exited" from="CanvasLayer/UI/BtnSair" to="." method="_on_btn_sair_mouse_exited"]

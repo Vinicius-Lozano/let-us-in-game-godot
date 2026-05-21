@@ -10,9 +10,9 @@ class_name MainMenu
 @export var gameplay_scene_path: String = "res://scenes/main_map.tscn"
 
 # Referências diretas aos botões
-@onready var btn_jogar: Button = $CanvasLayer/UI/VBoxContainer/BtnJogar
+@onready var btn_jogar: Button = $CanvasLayer/UI/BtnJogar
 @onready var btn_opcoes: Button = $CanvasLayer/UI/VBoxContainer/BtnOpcoes
-@onready var btn_sair: Button = $CanvasLayer/UI/VBoxContainer/BtnSair
+@onready var btn_sair: Button = $CanvasLayer/UI/BtnSair
 
 # ==========================================
 # INICIALIZAÇÃO
@@ -45,3 +45,23 @@ func _on_btn_opcoes_pressed() -> void:
 func _on_btn_sair_pressed() -> void:
 	print("[MENU] Encerrando o jogo...")
 	get_tree().quit()
+
+func _on_btn_jogar_mouse_entered() -> void:
+	var tween = create_tween()
+	tween.tween_property(btn_jogar, "scale", Vector2(1.1, 1.1), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+	
+
+
+func _on_btn_jogar_mouse_exited() -> void:
+	var tween = create_tween()
+	tween.tween_property(btn_jogar, "scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
+
+
+func _on_btn_sair_mouse_entered() -> void:
+	var tween = create_tween()
+	# Volta para o tamanho normal (100%)
+	tween.tween_property(btn_sair, "scale", Vector2(1.1, 1.1), 0.2).set_trans(Tween.TRANS_BACK).set_ease(Tween.EASE_OUT)
+
+func _on_btn_sair_mouse_exited() -> void:
+	var tween = create_tween()
+	tween.tween_property(btn_sair, "scale", Vector2(1.0, 1.0), 0.2).set_trans(Tween.TRANS_SINE)
