@@ -6,7 +6,7 @@
 [ext_resource type="Texture2D" uid="uid://2hub34ts8din" path="res://gfx/UI/hand_thin_open.svg" id="3_tuyoq"]
 [ext_resource type="Texture2D" uid="uid://7eeoqfxm3v7r" path="res://gfx/UI/hand_thin_closed.svg" id="4_fjrip"]
 [ext_resource type="Texture2D" uid="uid://ce8nr4ym51s2" path="res://gfx/UI/Blood.png" id="5_60mlk"]
-[ext_resource type="ArrayMesh" uid="uid://p25mcgymubcb" path="res://gfx/models/bushes/source/Axe1.obj" id="5_f1ej7"]
+[ext_resource type="ArrayMesh" uid="uid://p25mcgymubcb" path="res://gfx/models/source/Axe1.obj" id="5_f1ej7"]
 [ext_resource type="Script" uid="uid://djncuvtgibvsd" path="res://scripts/interactable_area_detector.gd" id="7_fjrip"]
 [ext_resource type="PackedScene" uid="uid://kbnh57s607ew" path="res://scenes/sanity_controller.tscn" id="7_ur7pv"]
 [ext_resource type="Shader" uid="uid://cp1bbm8ih3g67" path="res://gfx/outline.gdshader" id="8_smehm"]
@@ -176,6 +176,12 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -2)
 [node name="HeldItem" type="Marker3D" parent="Head/Eyes/Camera3D" unique_id=1054361777]
 unique_name_in_owner = true
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.4807002, -0.20762682, -0.5581073)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="Head/Eyes/Camera3D/HeldItem" unique_id=2078759232]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.12206137, 0.18324804, 0)
+light_energy = 5.0
+spot_range = 10.0
+spot_angle = 28.0
 
 [node name="RayCast3D" type="RayCast3D" parent="Head/Eyes/Camera3D" unique_id=756943984]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, -0.2322967, -0.25078237)

@@ -2,17 +2,20 @@
 
 importer="texture"
 type="CompressedTexture2D"
-uid="uid://bj4ht5t2jvr7l"
-path.s3tc="res://.godot/imported/pills.png-f825f12280c84be08cd8856a07211d58.s3tc.ctex"
+uid="uid://kct7huawdjxu"
+path.s3tc="res://.godot/imported/Pill bottle_DefaultMaterial_Base_Color.png-26e6458e53b30779766169634519552f.s3tc.ctex"
 metadata={
 "imported_formats": ["s3tc_bptc"],
 "vram_texture": true
 }
+generator_parameters={
+"md5": "ae5f4b0fefc15fc4a5d5218a65c91f54"
+}
 
 [deps]
 
-source_file="res://gfx/pills.png"
-dest_files=["res://.godot/imported/pills.png-f825f12280c84be08cd8856a07211d58.s3tc.ctex"]
+source_file="res://gfx/models/Pill bottle_DefaultMaterial_Base_Color.png"
+dest_files=["res://.godot/imported/Pill bottle_DefaultMaterial_Base_Color.png-26e6458e53b30779766169634519552f.s3tc.ctex"]
 
 [params]
 

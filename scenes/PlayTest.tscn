@@ -17,17 +17,20 @@
 [ext_resource type="PackedScene" uid="uid://cwu0n6hahihli" path="res://scenes/drop_zone.tscn" id="15_0kaw2"]
 [ext_resource type="PackedScene" uid="uid://doxb0mf7n670d" path="res://scenes/garage_door.tscn" id="15_8px8v"]
 [ext_resource type="PackedScene" uid="uid://dsb0y5utu04h7" path="res://scenes/enemy_framework.tscn" id="16_qcfeg"]
-[ext_resource type="Resource" uid="uid://b1jdisiftqwdx" path="res://items/pills.tres" id="17_40kfu"]
+[ext_resource type="Script" uid="uid://c2t1fewacrhqy" path="res://tools/inventory_scripts/consumable_action.gd" id="18_n7r7n"]
 [ext_resource type="PackedScene" uid="uid://cinf620b434cs" path="res://gfx/models/Andarilho.glb" id="18_pduqs"]
+[ext_resource type="Script" uid="uid://ku7j1ug8sub8" path="res://tools/inventory_scripts/item_data.gd" id="19_g12t5"]
 [ext_resource type="PackedScene" uid="uid://cq4rc42nddwng" path="res://scenes/cabin.tscn" id="20_ckux7"]
 [ext_resource type="Resource" uid="uid://co15t3pkol5b4" path="res://items/crank.tres" id="22_jesp8"]
 [ext_resource type="PackedScene" uid="uid://nudw0pvlpvb1" path="res://scenes/key_pad.tscn" id="23_jesp8"]
 [ext_resource type="Resource" uid="uid://cdxe8rjban038" path="res://items/AxeItemData.tres" id="24_7b2mb"]
-[ext_resource type="ArrayMesh" uid="uid://p25mcgymubcb" path="res://gfx/models/bushes/source/Axe1.obj" id="25_dl125"]
+[ext_resource type="ArrayMesh" uid="uid://p25mcgymubcb" path="res://gfx/models/source/Axe1.obj" id="25_dl125"]
 [ext_resource type="Resource" uid="uid://deudxnbe04e0b" path="res://items/bad_pill.tres" id="26_c1pcj"]
 [ext_resource type="Resource" uid="uid://dwcngiuske26c" path="res://items/good_pill.tres" id="27_4mr3b"]
 [ext_resource type="PackedScene" uid="uid://dwvlir3to3hkk" path="res://gfx/models/enemyTest.tscn" id="27_c1pcj"]
 [ext_resource type="PackedScene" uid="uid://dji52aovqrar6" path="res://scenes/matriarca_enemy.tscn" id="28_4mr3b"]
+[ext_resource type="Resource" uid="uid://bnp2f2hb1ajn8" path="res://items/flashlight_res.tres" id="29_cyv5g"]
+[ext_resource type="Script" uid="uid://dh1w8xeof0mle" path="res://tools/frameworks/stationary_ai.gd" id="29_g12t5"]
 
 [sub_resource type="Environment" id="Environment_yqjtg"]
 background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
@@ -65,7 +68,28 @@ _data = {
 &"rastejador": SubResource("Animation_40kfu")
 }
 
-[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_4mr3b"]
+[sub_resource type="Resource" id="Resource_2lgfa"]
+script = ExtResource("18_n7r7n")
+modifier_name = "sanity"
+modifier_value = 20
+metadata/_custom_type_script = "uid://c2t1fewacrhqy"
+
+[sub_resource type="CapsuleMesh" id="CapsuleMesh_cde1l"]
+radius = 0.05
+height = 0.2
+
+[sub_resource type="CompressedTexture2D" id="CompressedTexture2D_rn5ce"]
+load_path = "res://.godot/imported/pills.png-f825f12280c84be08cd8856a07211d58.s3tc.ctex"
+
+[sub_resource type="Resource" id="Resource_bk87o"]
+script = ExtResource("19_g12t5")
+name = "Pills"
+sprite = SubResource("CompressedTexture2D_rn5ce")
+mesh = SubResource("CapsuleMesh_cde1l")
+action_data = SubResource("Resource_2lgfa")
+metadata/_custom_type_script = "uid://ku7j1ug8sub8"
+
+[sub_resource type="ConvexPolygonShape3D" id="ConvexPolygonShape3D_cyv5g"]
 points = PackedVector3Array(-16.925344, 236.19392, -112.76349, 0.42129898, 210.1855, -237.89429, 0.42129898, 231.96, -238.13866, -16.925344, 279.8825, -124.34941, -16.966763, 279.8825, -124.34941, -16.966763, 236.19392, -112.77786, -17.252924, 169.66078, -114.057205, -16.639183, 169.66078, -114.48845, 0.42129898, 170.26561, -237.44867, 0.42129898, 188.13185, -237.64992, -2.8996773, -177.38174, -248.04274, -12.647987, -167.28546, -259.6143, -17.034538, 228.98228, -256.955, -10.388819, 238.2411, -247.52525, -2.1277962, 239.35774, -234.54501, -3.6640282, 241.40492, -234.11377, -11.081631, 240.38133, -245.78593, -22.938496, 240.38133, -245.78593, -30.359863, 241.40492, -234.11377, -31.892332, 239.35774, -234.54501, -34.226807, 231.96, -238.13866, -37.736046, -70.04469, -231.58385, -34.260693, -82.606895, -217.10863, -34.569447, -189.80437, -233.42378, -20.479769, -195.4341, -227.0271, -16.925344, 134.67271, -125.02501, -6.3825607, -189.94395, -233.53879, -3.2837372, -25.006866, -229.15454, -28.292725, -167.23892, -259.5568, -23.635075, 238.2411, -247.52525, -38.0448, -177.24216, -247.899)
 
 [node name="PlayTest" type="Node3D" unique_id=1722158228]
@@ -307,7 +331,7 @@ transform = Transform3D(-0.99957883, 0, -0.029020676, 0, 1, 0, 0.029020676, 0, -
 
 [node name="small_item" parent="." unique_id=81345687 instance=ExtResource("3_ht20j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, 6)
-item_data = ExtResource("17_40kfu")
+item_data = SubResource("Resource_bk87o")
 
 [node name="Cabin" parent="." unique_id=1088986452 instance=ExtResource("20_ckux7")]
 transform = Transform3D(-1, 0, -8.742278e-08, 0, 1, 0, 8.742278e-08, 0, -1, 4.2109203, 0.17549944, 11.665817)
@@ -340,11 +364,7 @@ item_data = ExtResource("24_7b2mb")
 mesh = ExtResource("25_dl125")
 
 [node name="CollisionShape3D" parent="axe" index="1" unique_id=2111589417]
-shape = SubResource("ConvexPolygonShape3D_4mr3b")
-
-[node name="badPill" parent="." unique_id=1696895454 instance=ExtResource("3_ht20j")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -1)
-item_data = ExtResource("26_c1pcj")
+shape = SubResource("ConvexPolygonShape3D_cyv5g")
 
 [node name="badPill2" parent="." unique_id=1873672696 instance=ExtResource("3_ht20j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 1, -1)
@@ -370,9 +390,16 @@ item_data = ExtResource("27_4mr3b")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 9)
 model_prefab = ExtResource("27_c1pcj")
 
+[node name="AIComponent" parent="EnemyPlaceholder" index="2" unique_id=2107457304]
+script = ExtResource("29_g12t5")
+
 [node name="Matriarca_enemy" parent="." unique_id=690727804 instance=ExtResource("28_4mr3b")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, -8)
 victory_scene_path = "res://tools/inventory_scripts/main_menu.tscn"
+
+[node name="small_item2" parent="." unique_id=1511941048 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8615816, 1.0428746, -3.5407028)
+item_data = ExtResource("29_cyv5g")
 
 [editable path="Map/Cabin/CSGBox3D2/GarageDoor"]
 [editable path="Map/Cabin/CSGBox3D/CSGBox3D/Wheel"]

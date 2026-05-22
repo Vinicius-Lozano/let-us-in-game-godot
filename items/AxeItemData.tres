@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://cdxe8rjban038"]
 
 [ext_resource type="Script" uid="uid://tlvx364nw64x" path="res://tools/inventory_scripts/weapon_action.gd" id="1_oxmy7"]
-[ext_resource type="ArrayMesh" uid="uid://p25mcgymubcb" path="res://gfx/models/bushes/source/Axe1.obj" id="2_irlkr"]
+[ext_resource type="ArrayMesh" uid="uid://p25mcgymubcb" path="res://gfx/models/source/Axe1.obj" id="2_irlkr"]
 [ext_resource type="Script" uid="uid://ku7j1ug8sub8" path="res://tools/inventory_scripts/item_data.gd" id="3_2xnlr"]
 
 [sub_resource type="Resource" id="Resource_413lb"]

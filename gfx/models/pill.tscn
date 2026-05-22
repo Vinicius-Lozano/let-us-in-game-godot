@@ -1,0 +1,8 @@
+[gd_scene format=3 uid="uid://c14pm3p7jcj7t"]
+
+[ext_resource type="PackedScene" uid="uid://d1dbnudw3aaar" path="res://gfx/models/Pill bottle.glb" id="1_jdwf7"]
+
+[node name="Pill" type="Node3D" unique_id=344998615]
+
+[node name="Pill bottle" parent="." unique_id=1218348424 instance=ExtResource("1_jdwf7")]
+transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.116118684, 0)
