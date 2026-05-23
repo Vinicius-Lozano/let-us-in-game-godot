@@ -12,7 +12,7 @@ extends Node
 @onready var held_item_marker: Marker3D = %HeldItem
 
 # --- NOVO: Referência para a luz da lanterna na cena ---
-@onready var flashlight_light: SpotLight3D = $"../Head/Eyes/Camera3D/HeldItem/SpotLight3D"
+@onready var flashlight_light: SpotLight3D = $"../Head/Eyes/Camera3D/HeldItem/Flashlight"
 
 @onready var reticle_nodes: Array = [%DefaultReticle, %HandOpen, %HandClosed]
 

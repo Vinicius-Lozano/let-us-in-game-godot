@@ -1,0 +1,18 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://d0prry1uv7tvy"]
+
+[ext_resource type="Script" uid="uid://c2t1fewacrhqy" path="res://tools/inventory_scripts/consumable_action.gd" id="1_1w1eb"]
+[ext_resource type="Script" uid="uid://ku7j1ug8sub8" path="res://tools/inventory_scripts/item_data.gd" id="1_6jfci"]
+[ext_resource type="PackedScene" uid="uid://c14pm3p7jcj7t" path="res://gfx/models/pill.tscn" id="2_fet0k"]
+
+[sub_resource type="Resource" id="Resource_hos11"]
+script = ExtResource("1_1w1eb")
+modifier_name = "sanity"
+modifier_value = 50
+metadata/_custom_type_script = "uid://c2t1fewacrhqy"
+
+[resource]
+script = ExtResource("1_6jfci")
+name = "sanity pills"
+action_data = SubResource("Resource_hos11")
+item_model_prefab = ExtResource("2_fet0k")
+metadata/_custom_type_script = "uid://ku7j1ug8sub8"

@@ -3,9 +3,11 @@
 [ext_resource type="Texture2D" uid="uid://p2t7jcg3xx27" path="res://gfx/Textures/Dirt_15-128x128.png" id="1_kdyc3"]
 [ext_resource type="Script" uid="uid://ckbc04tuscpte" path="res://addons/csg_terrain/csg_terrain.gd" id="2_4synu"]
 [ext_resource type="Script" uid="uid://dev0ac66uwhja" path="res://addons/csg_terrain/csg_terrain_path.gd" id="3_cyf2o"]
+[ext_resource type="PackedScene" uid="uid://dwa4ua85qg5fl" path="res://scenes/switch.tscn" id="4_0n326"]
 [ext_resource type="PackedScene" uid="uid://cq4rc42nddwng" path="res://scenes/cabin.tscn" id="4_64gt2"]
 [ext_resource type="PackedScene" uid="uid://vwqs1dteoobi" path="res://scenes/player.tscn" id="5_2xk3c"]
 [ext_resource type="PackedScene" uid="uid://bxquduiujafo7" path="res://tools/inventory_scripts/main_menu.tscn" id="6_0n326"]
+[ext_resource type="Script" uid="uid://rvxaxfytgjgj" path="res://scripts/spot_light_3d.gd" id="6_psaan"]
 [ext_resource type="PackedScene" uid="uid://bvnr7cuucami7" path="res://gfx/models/ModelScenes/tree_dead_pine.tscn" id="6_ulx81"]
 [ext_resource type="PackedScene" uid="uid://bpujhfqv3t6mi" path="res://gfx/models/ModelScenes/treepine.tscn" id="7_6adrn"]
 [ext_resource type="AudioStream" uid="uid://b02qyy140qmkl" path="res://gfx/audio/forest.mp3" id="8_8yhmk"]
@@ -13,6 +15,8 @@
 [ext_resource type="PackedScene" uid="uid://baf04mw6k4h2l" path="res://gfx/models/ModelScenes/tree_oak.tscn" id="9_ubaj7"]
 [ext_resource type="PackedScene" uid="uid://cg275pq3j2xcg" path="res://gfx/models/ModelScenes/tree_dead_maple.tscn" id="10_sa572"]
 [ext_resource type="PackedScene" uid="uid://g38p47mnv3lt" path="res://gfx/models/ModelScenes/bush.tscn" id="11_4vfpq"]
+[ext_resource type="Texture2D" uid="uid://hfx85r1dt105" path="res://gfx/Textures/Wood_12-128x128.png" id="11_ajnxc"]
+[ext_resource type="Texture2D" uid="uid://dp707iyu6n0fx" path="res://gfx/Textures/Wood_19-128x128.png" id="12_3xitk"]
 [ext_resource type="PackedScene" uid="uid://dn8uvqro3fhiw" path="res://gfx/models/ModelScenes/bush_2.tscn" id="12_mh8vw"]
 [ext_resource type="PackedScene" uid="uid://sivwkuvahkv7" path="res://gfx/models/ModelScenes/dead_bush.tscn" id="13_ol44e"]
 [ext_resource type="PackedScene" uid="uid://b48p21roc5osm" path="res://gfx/models/ModelScenes/dead_bush_2.tscn" id="14_5ubli"]
@@ -34,6 +38,8 @@
 [ext_resource type="Texture2D" uid="uid://bgxemk7mr5yvx" path="res://gfx/Textures/Stone_11-128x128.png" id="29_jikhd"]
 [ext_resource type="PackedScene" uid="uid://b6ge6ev4f72x7" path="res://scenes/rastejador.tscn" id="33_ld8ne"]
 [ext_resource type="PackedScene" uid="uid://c0vluf0rgxgo5" path="res://scenes/AxeItemWorld.tscn" id="33_xi2te"]
+[ext_resource type="Resource" uid="uid://bnp2f2hb1ajn8" path="res://items/flashlight_res.tres" id="37_alxc0"]
+[ext_resource type="Resource" uid="uid://d0prry1uv7tvy" path="res://items/sanity_pills_res.tres" id="38_k8pig"]
 
 [sub_resource type="Environment" id="Environment_4vfpq"]
 background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
@@ -75,6 +81,21 @@ _data = {
 "tilts": PackedFloat32Array(0, 0, 0, 0, 0, 0, 0, 0, 0)
 }
 point_count = 9
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_6c0ht"]
+albedo_texture = ExtResource("11_ajnxc")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_uvcog"]
+albedo_texture = ExtResource("12_3xitk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_4kkmd"]
+albedo_texture = ExtResource("12_3xitk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_m75v2"]
+albedo_texture = ExtResource("12_3xitk")
+
+[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_xnq8m"]
+albedo_texture = ExtResource("12_3xitk")
 
 [sub_resource type="WorldBoundaryShape3D" id="WorldBoundaryShape3D_4vfpq"]
 
@@ -121,17 +142,102 @@ light_energy = 0.5
 light_angular_distance = 6.0
 shadow_enabled = true
 
-[node name="Cabin" parent="." unique_id=1088986452 instance=ExtResource("4_64gt2")]
+[node name="Node" type="Node" parent="." unique_id=1768012713]
+
+[node name="Cabin" parent="Node" unique_id=1088986452 instance=ExtResource("4_64gt2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.63645935, 0.6726675, -0.67223066)
 
-[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1946442866]
-transform = Transform3D(1, 0, 0, 0, -0.19770862, 0.9802608, 0, -0.9802608, -0.19770862, -1.1811817, 5.3794284, -0.41370463)
+[node name="small_item2" parent="Node" unique_id=736681838 instance=ExtResource("27_jikhd")]
+transform = Transform3D(0.56089914, 0.82788414, 0, -0.82788414, 0.56089914, 0, 0, 0, 1, 4.866753, 2.4518063, -8.592411)
+item_data = ExtResource("38_k8pig")
+
+[node name="small_item3" parent="Node" unique_id=778622329 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.17192912, 0.9851093, 0, -0.9851093, 0.17192912, 4.866753, 2.446679, -8.273721)
+item_data = ExtResource("38_k8pig")
+
+[node name="small_item4" parent="Node" unique_id=1596194384 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.6749079, 0.7379019, 0, -0.7379019, 0.6749079, 5.5043597, 2.3525987, -8.273721)
+item_data = ExtResource("38_k8pig")
+
+[node name="small_item5" parent="Node" unique_id=860123591 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.4964741, -0.8680515, 0, 0.8680515, 0.4964741, 6.3501434, 2.7441328, -5.0775914)
+item_data = ExtResource("38_k8pig")
+
+[node name="Flashlight" parent="Node" unique_id=1690027733 instance=ExtResource("27_jikhd")]
+transform = Transform3D(0.17595088, 0, -0.98439896, 0, 1, 0, 0.98439896, 0, 0.17595088, 5.2834525, 2.3717816, -4.962173)
+item_data = ExtResource("37_alxc0")
+
+[node name="Switch" parent="Node" unique_id=1655505520 instance=ExtResource("4_0n326")]
+transform = Transform3D(0.052335974, 0.76499456, 0.6419067, 0, 0.64278764, -0.76604444, -0.9986295, 0.040091682, 0.033640917, 1.3435657, 2.9664257, -3.4994516)
+
+[node name="InteractionComponent" parent="Node/Switch/Switch" parent_id_path=PackedInt32Array(1655505520, 334070891) index="2" unique_id=1549124343 node_paths=PackedStringArray("nodes_to_effect")]
+nodes_to_effect = [NodePath("../../../CabinLight1"), NodePath("../../../CabinLight2")]
+
+[node name="axe" parent="Node" unique_id=699726080 instance=ExtResource("33_xi2te")]
+transform = Transform3D(0.0019318517, -0.0005176381, 0, 0.0005176381, 0.0019318517, 0, 0, 0, 0.002, -3.4959354, 1.8319426, -7.6238575)
+
+[node name="SpotLight3D4" type="SpotLight3D" parent="Node" unique_id=1896382950]
+transform = Transform3D(0.99672407, -0.01599016, 0.07928094, -0.08087739, -0.19706096, 0.9770496, 0, -0.98026085, -0.19770864, -1.1811817, 4.4751916, -3.5959797)
 light_energy = 3.5
 shadow_enabled = true
 spot_range = 8.0
+spot_angle = 71.67
 
-[node name="SpotLight3D3" type="SpotLight3D" parent="." unique_id=869469988]
-transform = Transform3D(1, 0, 0, 0, -0.19770864, 0.98026085, 0, -0.98026085, -0.19770864, -1.1811817, 4.3794284, -5.6137047)
+[node name="CabinLight1" type="SpotLight3D" parent="Node" unique_id=1120163473]
+transform = Transform3D(1, 0, 0, 0, 0.05421825, 0.99852914, 0, -0.99852914, 0.05421825, 0.37121737, 4.4751916, -6.7255964)
+visible = false
+light_energy = 5.0
+shadow_enabled = true
+spot_range = 8.0
+spot_angle = 80.0
+script = ExtResource("6_psaan")
+
+[node name="CabinLight2" type="SpotLight3D" parent="Node" unique_id=349390300]
+transform = Transform3D(1, 0, 0, 0, 0.05421825, 0.99852914, 0, -0.99852914, 0.05421825, 3.929093, 4.4751916, -6.7255964)
+visible = false
+light_energy = 5.0
+shadow_enabled = true
+spot_range = 8.0
+spot_angle = 80.0
+script = ExtResource("6_psaan")
+
+[node name="Table" type="CSGBox3D" parent="Node" unique_id=1322022510]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.766088, 2.15116, -8.511597)
+use_collision = true
+size = Vector3(2.2012634, 0.072753906, 1)
+material = SubResource("StandardMaterial3D_6c0ht")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node/Table" unique_id=245859704]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949317, -0.4699304, 0.4189129)
+size = Vector3(0.1, 0.9, 0.1)
+material = SubResource("StandardMaterial3D_uvcog")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Node/Table" unique_id=393113041]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949317, -0.4699304, -0.4088478)
+size = Vector3(0.1, 0.9, 0.1)
+material = SubResource("StandardMaterial3D_4kkmd")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Node/Table" unique_id=1445941693]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0136218, -0.4699304, -0.4088478)
+size = Vector3(0.1, 0.9, 0.1)
+material = SubResource("StandardMaterial3D_m75v2")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Node/Table" unique_id=1264963526]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0136218, -0.4699304, 0.37496185)
+size = Vector3(0.1, 0.9, 0.1)
+material = SubResource("StandardMaterial3D_xnq8m")
+
+[node name="CSGBox3D" type="CSGBox3D" parent="Node" unique_id=849907879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.938784, 1.6176503, -4.8134665)
+use_collision = true
+size = Vector3(2.0966797, 0.79248047, 0.6166992)
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Node/CSGBox3D" unique_id=933913659]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4490385, -0.068237305)
+size = Vector3(2.0966797, 0.11987305, 0.7531738)
+
+[node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1946442866]
+transform = Transform3D(1, 0, 0, 0, -0.19770862, 0.9802608, 0, -0.9802608, -0.19770862, -1.1811817, 5.3794284, -0.41370463)
 light_energy = 3.5
 shadow_enabled = true
 spot_range = 8.0
@@ -1478,7 +1584,7 @@ transform = Transform3D(-0.10253217, 0, 0.9947297, 0, 1, 0, -0.9947297, 0, -0.10
 item_data = ExtResource("28_qvxoj")
 
 [node name="Crank" parent="." unique_id=1855826087 instance=ExtResource("27_jikhd")]
-transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, -6, 3, 7)
+transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, -25.067383, 3, 17.286118)
 item_data = ExtResource("28_qvxoj")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=566364217]
@@ -1576,9 +1682,6 @@ use_collision = true
 size = Vector3(1, 4, 4)
 material = SubResource("StandardMaterial3D_qvxoj")
 
-[node name="RigidBody3D" parent="." unique_id=699726080 instance=ExtResource("33_xi2te")]
-transform = Transform3D(0.0019318517, -0.0005176381, 0, 0.0005176381, 0.0019318517, 0, 0, 0, 0.002, -3.0625625, 2.1343758, -2.722476)
-
 [node name="CharacterBody3D2" parent="." unique_id=1792788294 node_paths=PackedStringArray("player", "safe_zone", "teleport_points") instance=ExtResource("33_ld8ne")]
 transform = Transform3D(1.8219622, 0, 0, 0, 1.8219622, 0, 0, 0, 1.8219622, -6.7554398, 1.9225025, 10.7684765)
 player = NodePath("../player")
@@ -1603,6 +1706,7 @@ player = NodePath("../player")
 safe_zone = NodePath("../SafeZone")
 teleport_points = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("../Marker3D3"), NodePath("../Marker3D4"), NodePath("../Marker3D5"), NodePath("../Marker3D6"), NodePath("../Marker3D7"), NodePath("../Marker3D8"), NodePath("../Marker3D9"), NodePath("../Marker3D10"), NodePath("../Marker3D11"), NodePath("../Marker3D12"), NodePath("../Marker3D13"), NodePath("../Marker3D14")]
 
+[editable path="Node/Switch"]
 [editable path="player"]
 [editable path="PuzzleBridge/PivptBridge"]
 [editable path="PuzzleBridge/Podium"]
