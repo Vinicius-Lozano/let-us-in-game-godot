@@ -1,0 +1,36 @@
+[remap]
+
+importer="font_data_dynamic"
+type="FontFile"
+uid="uid://b26vkgcxqixx0"
+path="res://.godot/imported/who asks satan.ttf-75d208e12c07034eb196d560a4b3c7ed.fontdata"
+
+[deps]
+
+source_file="res://gfx/font/who asks satan.ttf"
+dest_files=["res://.godot/imported/who asks satan.ttf-75d208e12c07034eb196d560a4b3c7ed.fontdata"]
+
+[params]
+
+Rendering=null
+antialiasing=1
+generate_mipmaps=false
+disable_embedded_bitmaps=true
+multichannel_signed_distance_field=false
+msdf_pixel_range=8
+msdf_size=48
+allow_system_fallback=true
+force_autohinter=false
+modulate_color_glyphs=false
+hinting=1
+subpixel_positioning=4
+keep_rounding_remainders=true
+oversampling=0.0
+Fallbacks=null
+fallbacks=[]
+Compress=null
+compress=true
+preload=[]
+language_support={}
+script_support={}
+opentype_features={}

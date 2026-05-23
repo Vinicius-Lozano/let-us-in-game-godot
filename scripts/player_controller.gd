@@ -13,9 +13,13 @@ extends CharacterBody3D
 # --- NOVO: Cena de transição pós-morte (Padrão Fallback) ---
 @export var game_over_scene: PackedScene 
 
+var is_cutscene: bool = false
+var roar_shake_timer: float = 0.0
+var roar_shake_intensity: float = 0.0
+var knockback_momentum: Vector3 = Vector3.ZERO
 var can_play_step: bool = true
-const WALKING_SPEED: float = 3.0
-const SPRINTING_SPEED: float = 5.0
+var WALKING_SPEED: float = 3.0
+var SPRINTING_SPEED: float = 5.0
 const CROUCHING_SPEED: float = 1.0
 const CROUCHING_DEPTH: float = -0.9
 const JUMP_VELOCITY: float = 4.0
@@ -61,7 +65,7 @@ func _input(event: InputEvent) -> void:
 		get_tree().quit()
 	
 	if event is InputEventMouseMotion:
-		if not interaction_controller.isCameraLocked():
+		if not interaction_controller.isCameraLocked() and not is_cutscene:
 			rotate_y(deg_to_rad(-event.relative.x) * mouse_sensitivty)
 			head.rotate_x(deg_to_rad(-event.relative.y) * mouse_sensitivty)
 			head.rotation.x = clamp(head.rotation.x, deg_to_rad(-85), deg_to_rad(85))
@@ -80,6 +84,11 @@ func _physics_process(delta: float) -> void:
 			velocity.y = JUMP_VELOCITY
 	
 	input_dir = Input.get_vector('move_left', 'move_right', 'move_forward', 'move_backward')
+	if is_cutscene:
+		input_dir = Vector2.ZERO 
+	else:
+		input_dir = Input.get_vector('move_left', 'move_right', 'move_forward', 'move_backward')
+	
 	direction = lerp(direction, (transform.basis * Vector3(input_dir.x, 0, input_dir.y)).normalized(), delta * 10.0)
 	
 	if direction:
@@ -89,6 +98,10 @@ func _physics_process(delta: float) -> void:
 		velocity.x = move_toward(velocity.x, 0, current_speed)
 		velocity.z = move_toward(velocity.z, 0, current_speed)
 		
+	if knockback_momentum.length() > 0.1:
+		velocity += knockback_momentum
+		# Faz o empurrão ir freando aos poucos (deslizando no chão)
+		knockback_momentum = knockback_momentum.lerp(Vector3.ZERO, delta * 3.0) 
 	move_and_slide()
 
 func updatePlayerState() -> void:
@@ -170,7 +183,20 @@ func updateCamera(delta: float) -> void:
 	else:
 		eyes.position.y = lerp(eyes.position.y, 0.0, delta * lerp_speed)
 		eyes.position.x = lerp(eyes.position.x, 0.0, delta * lerp_speed)
-		can_play_step = true 
+		can_play_step = true
+	
+	if roar_shake_timer > 0.0:
+		roar_shake_timer -= delta
+		# Inclina a câmera aleatoriamente nos eixos Z e X
+		camera_3d.rotation_degrees.z = randf_range(-roar_shake_intensity, roar_shake_intensity)
+		camera_3d.rotation_degrees.x = randf_range(-roar_shake_intensity, roar_shake_intensity)
+		
+		# O tremor vai enfraquecendo aos poucos
+		roar_shake_intensity = lerp(roar_shake_intensity, 0.0, delta * 3.0)
+	else:
+		# Volta a câmera para o eixo reto (0,0) suavemente quando o rugido acaba
+		camera_3d.rotation_degrees.z = lerp(camera_3d.rotation_degrees.z, 0.0, delta * 10.0)
+		camera_3d.rotation_degrees.x = lerp(camera_3d.rotation_degrees.x, 0.0, delta * 10.0)
 
 func _on_took_damage(_amount: int) -> void:
 	var tween = create_tween()
@@ -215,3 +241,35 @@ func _on_player_died() -> void:
 	else:
 		# Se o campo está vazio, apenas reseta a fase atual
 		get_tree().reload_current_scene()
+
+func apply_knockback(origin_pos: Vector3, force: float):
+	var push_dir = (global_position - origin_pos).normalized()
+	
+	# Diminuímos drasticamente o empurrão para cima
+	push_dir.y = 0.0 
+	push_dir = push_dir.normalized() # Recalcula para garantir que a força vá toda para trás
+	
+	# Salva a porrada na nova variável em vez de jogar na 'velocity'
+	knockback_momentum = push_dir * force
+	
+func apply_roar_shake(intensity: float, time: float):
+	roar_shake_intensity = intensity
+	roar_shake_timer = time
+
+func set_slow_debuff():
+	# Reduz as velocidades pela metade (use os nomes das suas variáveis reais aqui)
+	current_speed = current_speed * 0.5
+	WALKING_SPEED = WALKING_SPEED * 0.5
+	SPRINTING_SPEED = SPRINTING_SPEED * 0.5
+
+func disable_for_cutscene():
+	is_cutscene = true
+	
+	if interaction_controller:
+		# 1. Faz o jogador dropar o machado fisicamente no chão
+		interaction_controller.drop_item()
+		
+		# 2. Desliga o interaction_controller inteiro!
+		# Isso impede que o jogador clique para pegar o machado de novo,
+		# impede de interagir com qualquer coisa e corta qualquer ataque.
+		interaction_controller.set_process(false)

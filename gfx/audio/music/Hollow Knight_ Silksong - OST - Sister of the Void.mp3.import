@@ -1,0 +1,19 @@
+[remap]
+
+importer="mp3"
+type="AudioStreamMP3"
+uid="uid://c2t812aus7phe"
+path="res://.godot/imported/Hollow Knight_ Silksong - OST - Sister of the Void.mp3-d5999431cc7701f801a09725002d05a9.mp3str"
+
+[deps]
+
+source_file="res://gfx/audio/music/Hollow Knight_ Silksong - OST - Sister of the Void.mp3"
+dest_files=["res://.godot/imported/Hollow Knight_ Silksong - OST - Sister of the Void.mp3-d5999431cc7701f801a09725002d05a9.mp3str"]
+
+[params]
+
+loop=false
+loop_offset=0
+bpm=0
+beat_count=0
+bar_beats=4

@@ -1,8 +1,8 @@
 [gd_scene format=3 uid="uid://dji52aovqrar6"]
 
 [ext_resource type="PackedScene" uid="uid://dsb0y5utu04h7" path="res://scenes/enemy_framework.tscn" id="1_bb8ji"]
-[ext_resource type="Script" uid="uid://8uc761uni4yq" path="res://tools/inimigos/matriarca.gd" id="2_6tcki"]
-[ext_resource type="PackedScene" uid="uid://c0ukwfjojfyva" path="res://gfx/models/matriarca.tscn" id="4_3dsf5"]
+[ext_resource type="Script" uid="uid://8uc761uni4yq" path="res://tools/inimigos/MatriarchHeart.gd" id="2_6tcki"]
+[ext_resource type="PackedScene" uid="uid://c0ukwfjojfyva" path="res://gfx/models/MatriarchHeart.tscn" id="4_3dsf5"]
 [ext_resource type="Script" uid="uid://dh1w8xeof0mle" path="res://tools/frameworks/stationary_ai.gd" id="5_v6ffq"]
 
 [sub_resource type="SphereShape3D" id="SphereShape3D_bb8ji"]

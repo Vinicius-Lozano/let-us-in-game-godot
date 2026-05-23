@@ -1,0 +1,48 @@
+[gd_scene format=3 uid="uid://bu67xmpjh18dw"]
+
+[ext_resource type="Script" uid="uid://b5ldaq1briwri" path="res://scenes/credits.gd" id="1_0ctdu"]
+[ext_resource type="Texture2D" uid="uid://f80lddvhrtr6" path="res://gfx/Textures/logo.png" id="2_2fbfq"]
+[ext_resource type="FontFile" uid="uid://b26vkgcxqixx0" path="res://gfx/font/who asks satan.ttf" id="3_2fbfq"]
+[ext_resource type="AudioStream" uid="uid://c2t812aus7phe" path="res://gfx/audio/music/Hollow Knight_ Silksong - OST - Sister of the Void.mp3" id="4_2fbfq"]
+
+[node name="Control" type="Control" unique_id=1402485347]
+layout_mode = 3
+anchors_preset = 0
+offset_right = 40.0
+offset_bottom = 40.0
+script = ExtResource("1_0ctdu")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=666841009]
+layout_mode = 0
+offset_right = 1943.0
+offset_bottom = 1110.0
+color = Color(0, 0, 0, 1)
+
+[node name="Logo" type="TextureRect" parent="." unique_id=724977232]
+layout_mode = 0
+offset_left = 601.0
+offset_top = -14.0
+offset_right = 1402.6666
+offset_bottom = 467.0
+texture = ExtResource("2_2fbfq")
+expand_mode = 1
+
+[node name="Text" type="Label" parent="." unique_id=559071504]
+layout_mode = 0
+offset_left = 687.0
+offset_top = 415.0
+offset_right = 1308.0
+offset_bottom = 985.0
+theme_override_fonts/font = ExtResource("3_2fbfq")
+theme_override_font_sizes/font_size = 80
+text = "Desenvolvido por:
+Agatha Silva
+Vinicius Lozano
+Alberto Monteiro 
+Yasmim Moraes
+Lucas Moises
+Igor Samuel"
+horizontal_alignment = 1
+
+[node name="Music" type="AudioStreamPlayer" parent="." unique_id=1567659239]
+stream = ExtResource("4_2fbfq")

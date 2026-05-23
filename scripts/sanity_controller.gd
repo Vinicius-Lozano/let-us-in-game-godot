@@ -85,13 +85,13 @@ func _process(delta: float) -> void:
 		current_hp = health_component.current_health
 		max_hp = health_component.max_health
 		
-	debug.text = str("FPS: %d \nLight Level: %.2f \nSanity: %.2f \nLife: %d / %d") %[
-		Engine.get_frames_per_second(),
-		light_level,
-		sanity,
-		current_hp,
-		max_hp
-	]
+	#debug.text = str("FPS: %d \nLight Level: %.2f \nSanity: %.2f \nLife: %d / %d") %[
+		#Engine.get_frames_per_second(),
+		#light_level,
+		#sanity,
+		#current_hp,
+		#max_hp
+	#]
 	
 func has_line_of_sight(enemy: Node3D) -> bool:
 	var space_state = player_camera.get_world_3d().direct_space_state
