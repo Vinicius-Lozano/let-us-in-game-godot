@@ -42,10 +42,10 @@
 [ext_resource type="PackedScene" uid="uid://b07ayl05ysrgl" path="res://scenes/rock.tscn" id="35_0n326"]
 [ext_resource type="Material" uid="uid://dys7dep763416" path="res://gfx/rock.tres" id="36_k8pig"]
 [ext_resource type="PackedScene" uid="uid://c0ukwfjojfyva" path="res://gfx/models/MatriarchHeart.tscn" id="36_psaan"]
-[ext_resource type="Script" uid="uid://8uc761uni4yq" path="res://tools/inimigos/MatriarchHeart.gd" id="37_alxc0"]
-[ext_resource type="Script" uid="uid://2simm5k87yux" path="res://scenes/CaveTrigger.gd" id="39_k43kg"]
 [ext_resource type="Resource" uid="uid://bnp2f2hb1ajn8" path="res://items/flashlight_res.tres" id="37_alxc0"]
 [ext_resource type="Resource" uid="uid://d0prry1uv7tvy" path="res://items/sanity_pills_res.tres" id="38_k8pig"]
+[ext_resource type="Script" uid="uid://2simm5k87yux" path="res://scenes/CaveTrigger.gd" id="39_k43kg"]
+[ext_resource type="Script" uid="uid://8uc761uni4yq" path="res://tools/inimigos/MatriarchHeart.gd" id="45_xnq8m"]
 
 [sub_resource type="Environment" id="Environment_4vfpq"]
 background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
@@ -176,7 +176,7 @@ size = Vector3(1.2651978, 22.923645, 1.5668945)
 environment = SubResource("Environment_4vfpq")
 
 [node name="CSGTerrain" type="CSGMesh3D" parent="." unique_id=2050458860]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1.1084756, -2.4567451, 1.1002762, -2.6617622)
+transform = Transform3D(1.1327804, 0, 0, 0, 1, 0, 0, 0, 1.1084756, 4.0960693, 1.1002762, -2.6617622)
 use_collision = true
 mesh = SubResource("ArrayMesh_6adrn")
 material = SubResource("StandardMaterial3D_kdyc3")
@@ -218,7 +218,7 @@ transform = Transform3D(1, 0, 0, 0, 0.4964741, -0.8680515, 0, 0.8680515, 0.49647
 item_data = ExtResource("38_k8pig")
 
 [node name="Flashlight" parent="Node" unique_id=1690027733 instance=ExtResource("27_jikhd")]
-transform = Transform3D(0.17595088, 0, -0.98439896, 0, 1, 0, 0.98439896, 0, 0.17595088, 5.2834525, 2.3717816, -4.962173)
+transform = Transform3D(0.17595086, 0, -0.98439896, 0, 1, 0, 0.98439896, 0, 0.17595086, 5.2834525, 2.3717816, -4.962173)
 item_data = ExtResource("37_alxc0")
 
 [node name="Switch" parent="Node" unique_id=1655505520 instance=ExtResource("4_0n326")]
@@ -1749,7 +1749,7 @@ use_collision = true
 size = Vector3(1, 4, 4)
 material = SubResource("StandardMaterial3D_qvxoj")
 
-[node name="RigidBody3D" parent="." unique_id=699726080 instance=ExtResource("33_xi2te")]
+[node name="RigidBody3D" parent="." unique_id=987489329 instance=ExtResource("33_xi2te")]
 transform = Transform3D(0.0019318517, -0.0005176381, 0, 0.0005176381, 0.0019318517, 0, 0, 0, 0.002, -2.7771251, 2.604407, -4.469677)
 
 [node name="CharacterBody3D2" parent="." unique_id=1792788294 node_paths=PackedStringArray("player", "safe_zone", "teleport_points") instance=ExtResource("33_ld8ne")]
@@ -1854,7 +1854,7 @@ draw_pass_1 = SubResource("BoxMesh_ajnxc")
 
 [node name="MatriarcaHeart" parent="." unique_id=281020908 node_paths=PackedStringArray("player", "cave_entrance_marker", "pulse_light", "heart_mesh", "heart_anim", "falling_rocks", "blood_phase1", "blood_phase2", "heartbeat_audio", "roar_audio", "boss_music") instance=ExtResource("36_psaan")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -89.43695, 1.2832494, -49.510944)
-script = ExtResource("37_alxc0")
+script = ExtResource("45_xnq8m")
 player = NodePath("../player")
 cave_entrance_marker = NodePath("../Cave_Entrance")
 pulse_light = NodePath("OmniLight3D2")
