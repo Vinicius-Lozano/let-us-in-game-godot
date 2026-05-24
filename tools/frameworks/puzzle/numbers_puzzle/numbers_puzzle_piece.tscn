@@ -1,0 +1,24 @@
+[gd_scene format=3 uid="uid://813f7v3s753g"]
+
+[ext_resource type="Script" uid="uid://d26tdnpat1b3q" path="res://tools/frameworks/puzzle/numbers_puzzle/numbers_puzzle_piece.gd" id="1_3lm42"]
+[ext_resource type="FontFile" uid="uid://bvwgf1a2rduwy" path="res://gfx/font/HelpMe.ttf" id="2_scsc1"]
+[ext_resource type="PackedScene" uid="uid://b7fw3rbiqe0y3" path="res://scenes/interaction_component.tscn" id="3_scsc1"]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_ljp6h"]
+size = Vector3(1, 1, 0.053710938)
+
+[node name="NumbersPuzzlePiece" type="StaticBody3D" unique_id=1936648493]
+script = ExtResource("1_3lm42")
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=841482904]
+shape = SubResource("BoxShape3D_ljp6h")
+
+[node name="DynamicText" type="Label3D" parent="." unique_id=1358405411]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.0677423)
+modulate = Color(0.5259756, 0.0038157818, 9.62615e-08, 1)
+text = "4"
+font = ExtResource("2_scsc1")
+font_size = 120
+
+[node name="InteractionComponent" parent="." unique_id=1549124343 instance=ExtResource("3_scsc1")]
+interaction_type = 5

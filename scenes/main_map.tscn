@@ -50,6 +50,8 @@
 [ext_resource type="Script" uid="uid://culjffqhlxqa5" path="res://tools/frameworks/puzzle/puzzle_bomb/bomb_puzzle.gd" id="48_pi7hh"]
 [ext_resource type="Resource" uid="uid://bk5b6f01neoch" path="res://items/bomb.tres" id="49_c5b55"]
 [ext_resource type="PackedScene" uid="uid://goh3vkv8vodf" path="res://gfx/explosion/BigExplosionScene.tscn" id="50_x6ept"]
+[ext_resource type="FontFile" uid="uid://bvwgf1a2rduwy" path="res://gfx/font/HelpMe.ttf" id="51_pi7hh"]
+[ext_resource type="PackedScene" uid="uid://813f7v3s753g" path="res://tools/frameworks/puzzle/numbers_puzzle/numbers_puzzle_piece.tscn" id="52_c5b55"]
 
 [sub_resource type="Environment" id="Environment_4vfpq"]
 background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
@@ -127,7 +129,7 @@ shadow_mesh = SubResource("ArrayMesh_yaswi")
 size = Vector3(0.421875, 3.275879, 2.751648)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_cly8o"]
-size = Vector3(14.405518, 10.480957, 22.552765)
+size = Vector3(8.064323, 10.480957, 17.617203)
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_qvxoj"]
 albedo_texture = ExtResource("29_jikhd")
@@ -273,7 +275,7 @@ shadow_enabled = true
 spot_range = 8.0
 
 [node name="player" parent="." unique_id=2123675130 instance=ExtResource("5_2xk3c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -41.541203, 2.281813, -38.8168)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0453627, 2.281813, 4.5609865)
 game_over_scene = ExtResource("6_0n326")
 
 [node name="CharacterBody3D" parent="." unique_id=2143127629 node_paths=PackedStringArray("player", "safe_zone", "patrol_points") instance=ExtResource("21_2wvi4")]
@@ -1336,6 +1338,15 @@ transform = Transform3D(0.07803556, 0.19464967, 3.3310478, 0.027383106, 3.331808
 [node name="rock23" parent="rocks" unique_id=2065750292 instance=ExtResource("18_ol44e")]
 transform = Transform3D(0.60065967, 0, 3.83398, 0, 3.8807468, 0, -3.83398, 0, 0.60065967, -41.162342, 2.372236, 52.375484)
 
+[node name="rock47" parent="rocks" unique_id=1401504822 instance=ExtResource("18_ol44e")]
+transform = Transform3D(0.60065967, 0, 3.83398, 0, 3.8807468, 0, -3.83398, 0, 0.60065967, -41.162342, -1.4158056, 9.957771)
+
+[node name="CSGBox3D" type="CSGBox3D" parent="rocks/rock47" unique_id=1799663272]
+transform = Transform3D(0.9969256, -0.075866446, -0.019629076, 0.07586649, 0.87163335, 0.48425204, -0.019629106, -0.48425168, 0.87470937, -0.025182247, 0.50454634, -0.16073704)
+use_collision = true
+size = Vector3(1, 0.84191895, 1)
+material = ExtResource("36_k8pig")
+
 [node name="rock24" parent="rocks" unique_id=866663157 instance=ExtResource("19_5ubli")]
 transform = Transform3D(0.07803556, 0.19464967, 3.3310478, 0.027383106, 3.3318086, -0.19533561, -3.336618, 0.031896036, 0.07630214, -47.128735, 2.65205, 52.25049)
 
@@ -1414,7 +1425,7 @@ transform = Transform3D(3.8515642, 3.8511796e-08, -0.47502834, -0.4588422, 1.004
 [node name="rock78" parent="rocks" unique_id=503037466 instance=ExtResource("18_ol44e")]
 transform = Transform3D(3.851564, 2.3103238e-08, -0.4750283, 0.41138667, 1.9403737, 3.3355532, 0.23751415, -3.360826, 1.925782, -65.05617, -0.9155407, -54.00753)
 
-[node name="rock80" parent="rocks" unique_id=1401504822 instance=ExtResource("18_ol44e")]
+[node name="rock80" parent="rocks" unique_id=49726442 instance=ExtResource("18_ol44e")]
 transform = Transform3D(3.8515637, 1.0583184e-08, -0.47502828, 0.23645076, 3.3658268, 1.9171603, 0.41199875, -1.9316863, 3.340516, -61.792583, 4.956711, -45.580692)
 
 [node name="rock79" parent="rocks" unique_id=481186532 instance=ExtResource("18_ol44e")]
@@ -1540,7 +1551,7 @@ transform = Transform3D(0.6152488, -8.286108e-09, 0.788333, 0.1529189, 0.9810059
 transform = Transform3D(1.7718022, 0, 0, 0, 1, 0, 0, 0, 1, 0, 10.2968025, -7.053558)
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="SafeZone" unique_id=730968053]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.7782543, -4.7404785, 1.5588446)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0.66110116, -4.7404785, 4.0266256)
 shape = SubResource("BoxShape3D_cly8o")
 
 [node name="Marker3D" type="Marker3D" parent="." unique_id=1581570171]
@@ -1702,6 +1713,7 @@ transform = Transform3D(-1.7484556e-08, 0, -0.4, 0, 0.4, 0, 0.4, 0, -1.7484556e-
 [node name="InteractionComponent" parent="PuzzleDoor/KeyPad" index="14" unique_id=1549124343 node_paths=PackedStringArray("object_ref", "nodes_to_effect")]
 object_ref = NodePath("../BASE")
 nodes_to_effect = [NodePath("../../Door/PivotPoint/Door/InteractionComponent")]
+correct_code = Array[int]([4, 9, 1, 7, 3])
 
 [node name="Door" parent="PuzzleDoor" unique_id=1558950870 instance=ExtResource("25_xi2te")]
 transform = Transform3D(-4.3711385e-08, 0, 0.99999994, 0, 1, 0, -0.99999994, 0, -4.3711385e-08, -74, 1.5, -48.699997)
@@ -1931,6 +1943,69 @@ transform = Transform3D(1.000001, 0, 3.7252903e-08, 0, 1.000001, 0, -3.7252903e-
 [node name="CollisionShape3D" type="CollisionShape3D" parent="bombPuzzle/rubbleWall/wall" unique_id=903147602]
 transform = Transform3D(0.9999998, 0, -7.450581e-09, 0, 0.9999998, 0, 7.450581e-09, 0, 0.9999998, 9.536743e-07, 0, 0)
 shape = SubResource("SphereShape3D_0em68")
+
+[node name="NumbrsPuzzle" type="Node" parent="." unique_id=1439690266]
+
+[node name="Code1" type="Label3D" parent="NumbrsPuzzle" unique_id=1224811986]
+transform = Transform3D(0.95384806, -0.30028963, 0, 0.30028963, 0.95384806, 0, 0, 0, 1, -2.9537578, 3.5459607, -9.365453)
+modulate = Color(0.5254902, 0.003921569, 0, 1)
+text = "4"
+font = ExtResource("51_pi7hh")
+font_size = 120
+
+[node name="Code2" type="Label3D" parent="NumbrsPuzzle" unique_id=218424334]
+transform = Transform3D(0.992916, 0.11881997, 0, -0.11881997, 0.992916, 0, 0, 0, 1, -2.057325, 3.3605545, -9.365453)
+modulate = Color(0.5254902, 0.003921569, 0, 1)
+text = "9"
+font = ExtResource("51_pi7hh")
+font_size = 120
+
+[node name="Code3" type="Label3D" parent="NumbrsPuzzle" unique_id=1053156442]
+transform = Transform3D(0.9566157, -0.2913534, 0, 0.2913534, 0.9566157, 0, 0, 0, 1, -1.2663423, 3.7055812, -9.365453)
+modulate = Color(0.5254902, 0.003921569, 0, 1)
+text = "1"
+font = ExtResource("51_pi7hh")
+font_size = 120
+
+[node name="Code4" type="Label3D" parent="NumbrsPuzzle" unique_id=1007055260]
+transform = Transform3D(0.9991585, 0.041021228, 0, -0.041021228, 0.9991585, 0, 0, 0, 1, -0.5097234, 3.6065364, -9.365453)
+modulate = Color(0.5254902, 0.003921569, 0, 1)
+text = "7"
+font = ExtResource("51_pi7hh")
+font_size = 120
+
+[node name="Code5" type="Label3D" parent="NumbrsPuzzle" unique_id=15506726]
+transform = Transform3D(0.9991585, 0.041021228, 0, -0.041021228, 0.9991585, 0, 0, 0, 1, 0.19332439, 3.4474902, -9.365453)
+modulate = Color(0.5254902, 0.003921569, 0, 1)
+text = "3
+"
+font = ExtResource("51_pi7hh")
+font_size = 120
+
+[node name="NumbersPuzzlePiece" parent="NumbrsPuzzle" unique_id=1936648493 node_paths=PackedStringArray("wall_visual_node") instance=ExtResource("52_c5b55")]
+transform = Transform3D(0.95148706, -0.30768877, 0, 0.30768877, 0.95148706, 0, 0, 0, 1, 0.6938777, 3.076334, -0.9061144)
+digit = 4
+wall_visual_node = NodePath("../Code1")
+
+[node name="NumbersPuzzlePiece2" parent="NumbrsPuzzle" unique_id=1771949263 node_paths=PackedStringArray("wall_visual_node") instance=ExtResource("52_c5b55")]
+transform = Transform3D(0.7728225, -0.24991278, -0.58334273, 0.3076887, 0.9514868, 1.6911801e-09, 0.5550431, -0.17948797, 0.81222594, 37.638493, 3.076334, -2.521628)
+digit = 9
+wall_visual_node = NodePath("../Code2")
+
+[node name="NumbersPuzzlePiece3" parent="NumbrsPuzzle" unique_id=263268471 node_paths=PackedStringArray("wall_visual_node") instance=ExtResource("52_c5b55")]
+transform = Transform3D(-0.95348656, 0.12717128, 0.27329555, 0.2126774, 0.9263221, 0.3109582, -0.21361494, 0.35461822, -0.91028214, 34.268345, 3.076334, 49.31813)
+digit = 1
+wall_visual_node = NodePath("../Code3")
+
+[node name="NumbersPuzzlePiece4" parent="NumbrsPuzzle" unique_id=396111285 node_paths=PackedStringArray("wall_visual_node") instance=ExtResource("52_c5b55")]
+transform = Transform3D(0.04769438, -0.50229746, 0.86337805, 0.23979028, 0.8448434, 0.47826788, -0.9696528, 0.18421918, 0.16074046, -40.775677, 2.509509, 11.176419)
+digit = 7
+wall_visual_node = NodePath("../Code4")
+
+[node name="NumbersPuzzlePiece5" parent="NumbrsPuzzle" unique_id=1218872113 node_paths=PackedStringArray("wall_visual_node") instance=ExtResource("52_c5b55")]
+transform = Transform3D(0.072040856, -0.023940496, 0.9971141, 0.18687217, 0.98233235, 0.010084516, -0.9797393, 0.18560651, 0.07524197, -37.631195, 3.710144, -38.4759)
+digit = 3
+wall_visual_node = NodePath("../Code5")
 
 [connection signal="body_entered" from="rocks/rock75/damage area" to="rocks/rock75" method="_on_damage_area_body_entered"]
 

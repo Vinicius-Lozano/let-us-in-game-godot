@@ -5,7 +5,8 @@ enum InteractionType {
 	DOOR,
 	SWITCH,
 	WHEEL,
-	KEYPAD
+	KEYPAD,
+	COLLECT
 }
 
 @export var object_ref: Node3D
@@ -73,6 +74,10 @@ func interact() -> void:
 	match interaction_type:
 		InteractionType.DEFAULT:
 			_default_interact()
+		InteractionType.COLLECT: 
+			# Se o objeto "pai" (a cena do puzzle) tiver a função collect_piece, ele aciona!
+			if get_parent().has_method("collect_piece"):
+				get_parent().collect_piece()
 
 func auxInteract() -> void:
 	if not can_interact:
@@ -129,6 +134,8 @@ func _input(event: InputEvent) -> void:
 					notify_nodes(percentage)
 
 func _default_interact() -> void:
+	if object_ref == null or player_hand == null:
+		return
 	var object_current_position: Vector3 = object_ref.global_transform.origin
 	var player_hand_position: Vector3 = player_hand.global_transform.origin
 	var object_distance: Vector3 = player_hand_position - object_current_position
@@ -138,6 +145,8 @@ func _default_interact() -> void:
 		rigid_body_3d.set_linear_velocity((object_distance) * (5/rigid_body_3d.mass))
 
 func _default_throw() -> void:
+	if object_ref == null or player_hand == null:
+		return
 	var object_current_position: Vector3 = object_ref.global_transform.origin
 	var player_hand_position: Vector3 = player_hand.global_transform.origin
 	var object_distance: Vector3 = player_hand_position - object_current_position
