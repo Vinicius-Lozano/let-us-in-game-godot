@@ -1,14 +1,9 @@
 [gd_scene format=3 uid="uid://bmlcsucujcsji"]
 
-[ext_resource type="Texture2D" uid="uid://b3jux7yrfc4ar" path="res://gfx/Textures/checkboard.png" id="1_v46le"]
-
-[sub_resource type="StandardMaterial3D" id="StandardMaterial3D_t1sg8"]
-albedo_color = Color(0.1426642, 0.13577479, 0.24480268, 1)
-albedo_texture = ExtResource("1_v46le")
-uv1_triplanar = true
+[ext_resource type="Material" uid="uid://dys7dep763416" path="res://gfx/rock.tres" id="1_v46le"]
 
 [sub_resource type="BoxMesh" id="BoxMesh_2mcsk"]
-material = SubResource("StandardMaterial3D_t1sg8")
+material = ExtResource("1_v46le")
 size = Vector3(0.6, 1.8, 0.69)
 
 [sub_resource type="BoxShape3D" id="BoxShape3D_iytmk"]

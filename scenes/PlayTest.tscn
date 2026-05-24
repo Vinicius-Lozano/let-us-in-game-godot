@@ -16,9 +16,7 @@
 [ext_resource type="PackedScene" uid="uid://brtrt0x1v2wto" path="res://scenes/pivot_bridge.tscn" id="14_8px8v"]
 [ext_resource type="PackedScene" uid="uid://cwu0n6hahihli" path="res://scenes/drop_zone.tscn" id="15_0kaw2"]
 [ext_resource type="PackedScene" uid="uid://doxb0mf7n670d" path="res://scenes/garage_door.tscn" id="15_8px8v"]
-[ext_resource type="PackedScene" uid="uid://dsb0y5utu04h7" path="res://scenes/enemy_framework.tscn" id="16_qcfeg"]
 [ext_resource type="Script" uid="uid://c2t1fewacrhqy" path="res://tools/inventory_scripts/consumable_action.gd" id="18_n7r7n"]
-[ext_resource type="PackedScene" uid="uid://cinf620b434cs" path="res://gfx/models/Andarilho.glb" id="18_pduqs"]
 [ext_resource type="Script" uid="uid://ku7j1ug8sub8" path="res://tools/inventory_scripts/item_data.gd" id="19_g12t5"]
 [ext_resource type="PackedScene" uid="uid://cq4rc42nddwng" path="res://scenes/cabin.tscn" id="20_ckux7"]
 [ext_resource type="Resource" uid="uid://co15t3pkol5b4" path="res://items/crank.tres" id="22_jesp8"]
@@ -27,10 +25,12 @@
 [ext_resource type="ArrayMesh" uid="uid://p25mcgymubcb" path="res://gfx/models/source/Axe1.obj" id="25_dl125"]
 [ext_resource type="Resource" uid="uid://deudxnbe04e0b" path="res://items/bad_pill.tres" id="26_c1pcj"]
 [ext_resource type="Resource" uid="uid://dwcngiuske26c" path="res://items/good_pill.tres" id="27_4mr3b"]
-[ext_resource type="PackedScene" uid="uid://dwvlir3to3hkk" path="res://gfx/models/enemyTest.tscn" id="27_c1pcj"]
-[ext_resource type="PackedScene" uid="uid://dji52aovqrar6" path="res://scenes/matriarca_enemy.tscn" id="28_4mr3b"]
+[ext_resource type="ArrayMesh" uid="uid://bb4ebqwln0hj7" path="res://gfx/models/bomb/bomb.obj" id="27_c1pcj"]
+[ext_resource type="AudioStream" uid="uid://b6fftu516rgo0" path="res://gfx/audio/fronbondi_skegs-sfx-clock-ticking-with-linear-speed-ramp-sound-effect-449169.mp3" id="27_g12t5"]
+[ext_resource type="Resource" uid="uid://bk5b6f01neoch" path="res://items/bomb.tres" id="28_4mr3b"]
+[ext_resource type="AudioStream" uid="uid://dubd48hpadc4t" path="res://gfx/audio/dragon-studio-loud-explosion-425457.mp3" id="28_bk87o"]
 [ext_resource type="Resource" uid="uid://bnp2f2hb1ajn8" path="res://items/flashlight_res.tres" id="29_cyv5g"]
-[ext_resource type="Script" uid="uid://dh1w8xeof0mle" path="res://tools/frameworks/stationary_ai.gd" id="29_g12t5"]
+[ext_resource type="Script" uid="uid://culjffqhlxqa5" path="res://tools/frameworks/puzzle/puzzle_bomb/bomb_puzzle.gd" id="29_n7r7n"]
 
 [sub_resource type="Environment" id="Environment_yqjtg"]
 background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
@@ -325,9 +325,6 @@ spot_angle = 61.12
 [node name="AnimationPlayer" type="AnimationPlayer" parent="." unique_id=1620218477]
 libraries/ = SubResource("AnimationLibrary_pduqs")
 
-[node name="Andarilho" parent="." unique_id=118520991 instance=ExtResource("18_pduqs")]
-transform = Transform3D(-0.99957883, 0, -0.029020676, 0, 1, 0, 0.029020676, 0, -0.99957883, 5.0381284, 2.4519615, -6.339271)
-
 [node name="small_item" parent="." unique_id=81345687 instance=ExtResource("3_ht20j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -3, 2, 6)
 item_data = SubResource("Resource_bk87o")
@@ -374,6 +371,10 @@ item_data = ExtResource("26_c1pcj")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -1)
 item_data = ExtResource("26_c1pcj")
 
+[node name="badPill4" parent="." unique_id=526977138 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.7327433, 1, -1)
+item_data = ExtResource("26_c1pcj")
+
 [node name="GoodPill" parent="." unique_id=960534742 instance=ExtResource("3_ht20j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2, 1, -3)
 item_data = ExtResource("27_4mr3b")
@@ -386,20 +387,47 @@ item_data = ExtResource("27_4mr3b")
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -4, 1, -3)
 item_data = ExtResource("27_4mr3b")
 
-[node name="EnemyPlaceholder" parent="." unique_id=1160102853 instance=ExtResource("16_qcfeg")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 33, 0, 9)
-model_prefab = ExtResource("27_c1pcj")
-
-[node name="AIComponent" parent="EnemyPlaceholder" index="2" unique_id=2107457304]
-script = ExtResource("29_g12t5")
-
-[node name="Matriarca_enemy" parent="." unique_id=690727804 instance=ExtResource("28_4mr3b")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -7, 1, -8)
-victory_scene_path = "res://tools/inventory_scripts/main_menu.tscn"
-
 [node name="small_item2" parent="." unique_id=1511941048 instance=ExtResource("3_ht20j")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 2.8615816, 1.0428746, -3.5407028)
 item_data = ExtResource("29_cyv5g")
+
+[node name="DropZone_bomb" parent="." unique_id=1641433975 node_paths=PackedStringArray("scenario_object") instance=ExtResource("15_0kaw2")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -8.086683, 0.31322232, -3.6175683)
+scenario_object = NodePath("../Bomb")
+expected_item_name = "bomb"
+
+[node name="CollisionShape3D" parent="DropZone_bomb" index="0" unique_id=1896517618]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.020599365, 0, 0)
+
+[node name="FuseAudio" type="AudioStreamPlayer3D" parent="DropZone_bomb" unique_id=885802782]
+stream = ExtResource("27_g12t5")
+
+[node name="ExplosionAudio" type="AudioStreamPlayer3D" parent="DropZone_bomb" unique_id=1255022656]
+stream = ExtResource("28_bk87o")
+
+[node name="Bomb" type="MeshInstance3D" parent="." unique_id=154368712]
+transform = Transform3D(-0.0055501615, 0, 0.9999846, 0, 1, 0, -0.9999846, 0, -0.0055501615, -8.065922, 0.1014819, -3.6763527)
+visible = false
+mesh = ExtResource("27_c1pcj")
+
+[node name="bomb" parent="." unique_id=371473368 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -5.196664, 1.0551121, -3.8374689)
+item_data = ExtResource("28_4mr3b")
+
+[node name="rubble" type="CSGBox3D" parent="." unique_id=944696532]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -10.109181, 0.89630723, -4.0170755)
+use_collision = true
+
+[node name="bombpuzzle" type="Node" parent="rubble" unique_id=186884493 node_paths=PackedStringArray("drop_zone", "obstacles_to_destroy", "fuse_audio", "explosion_audio")]
+script = ExtResource("29_n7r7n")
+drop_zone = NodePath("../../DropZone_bomb")
+obstacles_to_destroy = [NodePath("..")]
+fuse_audio = NodePath("../../DropZone_bomb/FuseAudio")
+explosion_audio = NodePath("../../DropZone_bomb/ExplosionAudio")
+
+[node name="small_item3" parent="." unique_id=178211649 instance=ExtResource("3_ht20j")]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.9003155, 0.4429345, -1.6512685)
+item_data = ExtResource("26_c1pcj")
 
 [editable path="Map/Cabin/CSGBox3D2/GarageDoor"]
 [editable path="Map/Cabin/CSGBox3D/CSGBox3D/Wheel"]
@@ -411,4 +439,4 @@ item_data = ExtResource("29_cyv5g")
 [editable path="KeyPad"]
 [editable path="Door"]
 [editable path="axe"]
-[editable path="EnemyPlaceholder"]
+[editable path="DropZone_bomb"]

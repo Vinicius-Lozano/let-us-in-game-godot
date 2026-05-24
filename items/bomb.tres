@@ -1,0 +1,16 @@
+[gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://bk5b6f01neoch"]
+
+[ext_resource type="Script" uid="uid://bx6c7uvjjtsvs" path="res://tools/inventory_scripts/puzzle_action.gd" id="1_ko2cj"]
+[ext_resource type="Script" uid="uid://ku7j1ug8sub8" path="res://tools/inventory_scripts/item_data.gd" id="1_tur60"]
+[ext_resource type="ArrayMesh" uid="uid://bb4ebqwln0hj7" path="res://gfx/models/bomb/bomb.obj" id="2_r4rmj"]
+
+[sub_resource type="Resource" id="Resource_fvece"]
+script = ExtResource("1_ko2cj")
+metadata/_custom_type_script = "uid://bx6c7uvjjtsvs"
+
+[resource]
+script = ExtResource("1_tur60")
+name = "bomb"
+mesh = ExtResource("2_r4rmj")
+action_data = SubResource("Resource_fvece")
+metadata/_custom_type_script = "uid://ku7j1ug8sub8"

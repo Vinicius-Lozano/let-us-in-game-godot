@@ -2,7 +2,7 @@
 
 [ext_resource type="Script" uid="uid://ku7j1ug8sub8" path="res://tools/inventory_scripts/item_data.gd" id="1_boyes"]
 [ext_resource type="Script" uid="uid://dnojtopvnn15b" path="res://tools/inventory_scripts/flashlight_action.gd" id="1_mamf8"]
-[ext_resource type="PackedScene" uid="uid://bonwr8hs771ly" path="res://gfx/models/flashlight.tscn" id="2_ru316"]
+[ext_resource type="PackedScene" uid="uid://c7nicflmvsevt" path="res://gfx/models/Flashlight.glb" id="2_ru316"]
 
 [sub_resource type="Resource" id="Resource_ru316"]
 script = ExtResource("1_mamf8")

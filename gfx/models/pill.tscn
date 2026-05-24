@@ -6,3 +6,5 @@
 
 [node name="Pill bottle" parent="." unique_id=1218348424 instance=ExtResource("1_jdwf7")]
 transform = Transform3D(2, 0, 0, 0, 2, 0, 0, 0, 2, 0, 0.116118684, 0)
+
+[editable path="Pill bottle"]
