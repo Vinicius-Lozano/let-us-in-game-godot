@@ -4,7 +4,6 @@ extends RigidBody3D
 @export var item_data: ItemData:
 	set(value):
 		item_data = value
-		# A MÁGICA: Só roda a atualização se o nó e seus filhos já existirem
 		if is_node_ready():
 			update_item()
 
@@ -38,6 +37,10 @@ func update_item() -> void:
 		add_child(new_model)
 		active_visual_node = new_model
 		
+		# --- CORRIGIDO: Repassa o Shader de OVERLAY (Brilho) para todos os pedaços do GLB ---
+		if base_mesh_instance and base_mesh_instance.material_overlay != null:
+			_apply_material_to_hierarchy(new_model, base_mesh_instance.material_overlay)
+		
 	# CENÁRIO B: O item usa um Mesh simples nativo
 	elif item_data.mesh != null:
 		if base_mesh_instance:
@@ -49,55 +52,62 @@ func update_item() -> void:
 		if base_mesh_instance:
 			base_mesh_instance.mesh = null
 			
-	# ==========================================
-	# NOVO: Geração Automática de Física (AABB)
-	# ==========================================
+	# Geração Automática de Física (AABB)
 	if base_collision and active_visual_node:
 		_generate_primitive_collision(active_visual_node, base_collision)
 
 # ==========================================
-# FUNÇÕES AUXILIARES DE FÍSICA
+# FUNÇÕES AUXILIARES DE SHADER E FÍSICA
 # ==========================================
 
+# Algoritmo Recursivo que acha todas as malhas do GLB e aplica o seu Shader
+func _apply_material_to_hierarchy(node: Node, mat: Material) -> void:
+	if node is MeshInstance3D:
+		node.material_overlay = mat # CORRIGIDO: Agora aplica como Overlay (por cima)
+	for child in node.get_children():
+		_apply_material_to_hierarchy(child, mat)
+
 func _generate_primitive_collision(visual_node: Node3D, col_node: CollisionShape3D) -> void:
-	# 1. Mede o tamanho real do modelo 3D (Mesh ou Prefab)
 	var bounds: AABB = _calculate_bounds(visual_node)
 	
-	# 2. Cria uma primitiva leve (O(1) para física)
 	var box_shape = BoxShape3D.new()
-	
-	# 3. Ajusta o tamanho da caixa para as medidas exatas do objeto
-	# Multiplicamos por 1.05 (margem de 5%) para evitar que o modelo atravesse o chão
 	box_shape.size = bounds.size * 1.05 
 	
 	col_node.shape = box_shape
-	
-	# 4. Ajusta o "Pivô" da colisão para ficar no meio geométrico do objeto
 	col_node.position = bounds.position + (bounds.size / 2.0)
 
-# Algoritmo Recursivo para encontrar o tamanho de qualquer objeto (até se tiver várias partes)
-func _calculate_bounds(node: Node3D) -> AABB:
+# Algoritmo Matemático Preciso (Leva em conta Escala e Rotação dentro do GLB)
+func _calculate_bounds(root_node: Node3D) -> AABB:
 	var aabb = AABB()
 	var has_bounds = false
+	var meshes: Array[VisualInstance3D] = []
 	
-	# Se for uma malha renderizável, pegamos a "caixa" dela
-	if node is VisualInstance3D:
-		aabb = node.get_aabb()
-		has_bounds = true
+	# Puxa todos os nós visuais de dentro da hierarquia
+	_find_visual_instances(root_node, meshes)
+	
+	for vi in meshes:
+		# Pega a transformação exata da malha em relação à raiz do prefab
+		var rel_transform = root_node.global_transform.affine_inverse() * vi.global_transform
+		var local_aabb = vi.get_aabb()
 		
-	# Checamos os filhos (caso seja um Prefab GLB composto de várias partes)
-	for child in node.get_children():
-		if child is Node3D:
-			var child_aabb = _calculate_bounds(child)
+		# A mágica do Godot 4: Multiplicar Transform3D por AABB ajusta a escala e rotação!
+		var transformed_aabb = rel_transform * local_aabb
+		
+		if not has_bounds:
+			aabb = transformed_aabb
+			has_bounds = true
+		else:
+			aabb = aabb.merge(transformed_aabb)
 			
-			# Translada a caixa do filho para o mundo do pai
-			var transformed_aabb = AABB(child.position + child_aabb.position, child_aabb.size)
-			
-			if not has_bounds:
-				aabb = transformed_aabb
-				has_bounds = true
-			else:
-				# Funde as caixas para criar uma caixa maior que englobe tudo
-				aabb = aabb.merge(transformed_aabb)
-				
+	# Prevenção contra GLBs vazios ou corrompidos
+	if not has_bounds:
+		return AABB(Vector3(-0.1, -0.1, -0.1), Vector3(0.2, 0.2, 0.2))
+		
 	return aabb
+
+# Caçador de malhas
+func _find_visual_instances(current_node: Node, result: Array[VisualInstance3D]) -> void:
+	if current_node is VisualInstance3D:
+		result.append(current_node)
+	for child in current_node.get_children():
+		_find_visual_instances(child, result)

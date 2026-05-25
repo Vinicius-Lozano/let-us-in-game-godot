@@ -1,7 +1,7 @@
 [gd_resource type="Resource" script_class="ItemData" format=3 uid="uid://dwcngiuske26c"]
 
 [ext_resource type="Script" uid="uid://c2t1fewacrhqy" path="res://tools/inventory_scripts/consumable_action.gd" id="1_2nmlt"]
-[ext_resource type="PackedScene" uid="uid://c14pm3p7jcj7t" path="res://gfx/models/pill.tscn" id="2_0wpx3"]
+[ext_resource type="PackedScene" uid="uid://dsj4lx7jwfks1" path="res://gfx/models/ItemsModels/HealthPack/Health.glb" id="2_0wpx3"]
 [ext_resource type="Script" uid="uid://ku7j1ug8sub8" path="res://tools/inventory_scripts/item_data.gd" id="2_lkgcg"]
 
 [sub_resource type="Resource" id="Resource_er15d"]

@@ -3,13 +3,13 @@
 importer="scene"
 importer_version=1
 type="PackedScene"
-uid="uid://c7nicflmvsevt"
-path="res://.godot/imported/Flashlight.glb-6a97ed5ac4e5d00267e296dc35c7714f.scn"
+uid="uid://dsj4lx7jwfks1"
+path="res://.godot/imported/Health.glb-28e02236e8108200a14d99b6355e0191.scn"
 
 [deps]
 
-source_file="res://gfx/models/Flashlight.glb"
-dest_files=["res://.godot/imported/Flashlight.glb-6a97ed5ac4e5d00267e296dc35c7714f.scn"]
+source_file="res://gfx/models/ItemsModels/HealthPack/Health.glb"
+dest_files=["res://.godot/imported/Health.glb-28e02236e8108200a14d99b6355e0191.scn"]
 
 [params]
 

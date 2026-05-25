@@ -2,8 +2,17 @@
 
 [ext_resource type="Script" uid="uid://bhychgjkb7buv" path="res://tools/item_tools/small_item.gd" id="1_taefm"]
 [ext_resource type="PackedScene" uid="uid://b7fw3rbiqe0y3" path="res://scenes/interaction_component.tscn" id="2_1qevs"]
+[ext_resource type="Shader" uid="uid://b2lucp2bidhhe" path="res://tools/item_tools/Highlight.gdshader" id="2_o6vd2"]
 
 [sub_resource type="PhysicsMaterial" id="PhysicsMaterial_bx2qi"]
+
+[sub_resource type="ShaderMaterial" id="ShaderMaterial_rfhcb"]
+render_priority = 0
+shader = ExtResource("2_o6vd2")
+shader_parameter/shine_color = Color(1, 1, 1, 1)
+shader_parameter/cycle_interval = 1.0
+shader_parameter/shine_speed = 3.0
+shader_parameter/shine_width = 3.0
 
 [node name="small_item" type="RigidBody3D" unique_id=617685090]
 physics_material_override = SubResource("PhysicsMaterial_bx2qi")
@@ -12,6 +21,7 @@ max_contacts_reported = 1
 script = ExtResource("1_taefm")
 
 [node name="MeshInstance3D" type="MeshInstance3D" parent="." unique_id=382088013]
+material_overlay = SubResource("ShaderMaterial_rfhcb")
 
 [node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=2111589417]
 

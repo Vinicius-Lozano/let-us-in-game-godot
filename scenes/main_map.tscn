@@ -4,6 +4,7 @@
 [ext_resource type="PackedScene" uid="uid://dwa4ua85qg5fl" path="res://scenes/switch.tscn" id="4_0n326"]
 [ext_resource type="PackedScene" uid="uid://cq4rc42nddwng" path="res://scenes/cabin.tscn" id="4_64gt2"]
 [ext_resource type="PackedScene" uid="uid://vwqs1dteoobi" path="res://scenes/player.tscn" id="5_2xk3c"]
+[ext_resource type="Resource" uid="uid://dwcngiuske26c" path="res://items/good_pill.tres" id="5_c5b55"]
 [ext_resource type="PackedScene" uid="uid://bxquduiujafo7" path="res://tools/inventory_scripts/main_menu.tscn" id="6_0n326"]
 [ext_resource type="Script" uid="uid://rvxaxfytgjgj" path="res://scripts/spot_light_3d.gd" id="6_psaan"]
 [ext_resource type="PackedScene" uid="uid://bvnr7cuucami7" path="res://gfx/models/ModelScenes/tree_dead_pine.tscn" id="6_ulx81"]
@@ -43,7 +44,7 @@
 [ext_resource type="Resource" uid="uid://bnp2f2hb1ajn8" path="res://items/flashlight_res.tres" id="37_alxc0"]
 [ext_resource type="Resource" uid="uid://d0prry1uv7tvy" path="res://items/sanity_pills_res.tres" id="38_k8pig"]
 [ext_resource type="Script" uid="uid://2simm5k87yux" path="res://scenes/CaveTrigger.gd" id="39_k43kg"]
-[ext_resource type="ArrayMesh" uid="uid://bb4ebqwln0hj7" path="res://gfx/models/bomb/bomb.obj" id="45_1u5kr"]
+[ext_resource type="ArrayMesh" uid="uid://bb4ebqwln0hj7" path="res://gfx/models/ItemsModels/bomb/bomb.obj" id="45_1u5kr"]
 [ext_resource type="Script" uid="uid://8uc761uni4yq" path="res://tools/inimigos/MatriarchHeart.gd" id="45_xnq8m"]
 [ext_resource type="AudioStream" uid="uid://b6fftu516rgo0" path="res://gfx/audio/fronbondi_skegs-sfx-clock-ticking-with-linear-speed-ramp-sound-effect-449169.mp3" id="46_x6ept"]
 [ext_resource type="AudioStream" uid="uid://dubd48hpadc4t" path="res://gfx/audio/dragon-studio-loud-explosion-425457.mp3" id="47_lin8e"]
@@ -176,20 +177,88 @@ shadow_enabled = true
 [node name="Cabin" parent="Node" unique_id=1088986452 instance=ExtResource("4_64gt2")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.63645935, 0.6726675, -0.67223066)
 
-[node name="small_item2" parent="Node" unique_id=736681838 instance=ExtResource("27_jikhd")]
+[node name="SanityPills3" parent="Node" unique_id=736681838 instance=ExtResource("27_jikhd")]
 transform = Transform3D(0.56089914, 0.82788414, 0, -0.82788414, 0.56089914, 0, 0, 0, 1, 4.866753, 2.4518063, -8.592411)
 item_data = ExtResource("38_k8pig")
 
-[node name="small_item3" parent="Node" unique_id=778622329 instance=ExtResource("27_jikhd")]
+[node name="SanityPills2" parent="Node" unique_id=778622329 instance=ExtResource("27_jikhd")]
 transform = Transform3D(1, 0, 0, 0, 0.17192912, 0.9851093, 0, -0.9851093, 0.17192912, 4.866753, 2.446679, -8.273721)
 item_data = ExtResource("38_k8pig")
 
-[node name="small_item4" parent="Node" unique_id=1596194384 instance=ExtResource("27_jikhd")]
+[node name="SanityPills" parent="Node" unique_id=1596194384 instance=ExtResource("27_jikhd")]
 transform = Transform3D(1, 0, 0, 0, 0.6749079, 0.7379019, 0, -0.7379019, 0.6749079, 5.5043597, 2.3525987, -8.273721)
 item_data = ExtResource("38_k8pig")
 
-[node name="small_item5" parent="Node" unique_id=860123591 instance=ExtResource("27_jikhd")]
+[node name="HealthPack9" parent="Node" unique_id=617685090 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.6749079, 0.7379019, 0, -0.7379019, 0.6749079, 6.3106775, 2.3525987, -8.273721)
+item_data = ExtResource("5_c5b55")
+
+[node name="HealthPack8" parent="Node" unique_id=1831299763 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.6749079, 0.7379019, 0, -0.7379019, 0.6749079, 5.9294252, 1.3946915, -8.273721)
+item_data = ExtResource("5_c5b55")
+
+[node name="HealthPack7" parent="Node" unique_id=1436138794 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.6749079, 0.7379019, 0, -0.7379019, 0.6749079, 1.369628, 1.3946915, -8.273721)
+item_data = ExtResource("5_c5b55")
+
+[node name="HealthPack6" parent="Node" unique_id=1544083159 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.6749079, 0.7379019, 0, -0.7379019, 0.6749079, 28.992908, 1.3946915, -8.273721)
+item_data = ExtResource("5_c5b55")
+
+[node name="HealthPack5" parent="Node" unique_id=1210920927 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.6749079, 0.7379019, 0, -0.7379019, 0.6749079, 28.992908, 1.3946915, -26.27372)
+item_data = ExtResource("5_c5b55")
+
+[node name="HealthPack4" parent="Node" unique_id=1144262247 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.6749079, 0.7379019, 0, -0.7379019, 0.6749079, 7.069024, 1.3946915, -26.27372)
+item_data = ExtResource("5_c5b55")
+
+[node name="HealthPack3" parent="Node" unique_id=669012503 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.6749079, 0.7379019, 0, -0.7379019, 0.6749079, -25.445885, 1.3946915, -23.558453)
+item_data = ExtResource("5_c5b55")
+
+[node name="HealthPack2" parent="Node" unique_id=350415300 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.6749079, 0.7379019, 0, -0.7379019, 0.6749079, -25.445885, 1.3946915, 19.070873)
+item_data = ExtResource("5_c5b55")
+
+[node name="HealthPack" parent="Node" unique_id=1680732126 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.6749079, 0.7379019, 0, -0.7379019, 0.6749079, -1.6824951, 1.3946915, 36.809937)
+item_data = ExtResource("5_c5b55")
+
+[node name="SanityPills4" parent="Node" unique_id=860123591 instance=ExtResource("27_jikhd")]
 transform = Transform3D(1, 0, 0, 0, 0.4964741, -0.8680515, 0, 0.8680515, 0.4964741, 6.3501434, 2.7441328, -5.0775914)
+item_data = ExtResource("38_k8pig")
+
+[node name="SanityPills5" parent="Node" unique_id=1258062082 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.4964741, -0.8680515, 0, 0.8680515, 0.4964741, 44.977814, 2.7441328, -3.3573017)
+item_data = ExtResource("38_k8pig")
+
+[node name="SanityPills6" parent="Node" unique_id=904224565 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.4964741, -0.8680515, 0, 0.8680515, 0.4964741, 30.977814, 2.7441328, 46.118034)
+item_data = ExtResource("38_k8pig")
+
+[node name="SanityPills7" parent="Node" unique_id=385267228 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.4964741, -0.8680515, 0, 0.8680515, 0.4964741, -25.187973, 2.7441328, 46.118034)
+item_data = ExtResource("38_k8pig")
+
+[node name="SanityPills8" parent="Node" unique_id=1175629229 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.4964741, -0.8680515, 0, 0.8680515, 0.4964741, -25.187973, 2.7441328, 30.138561)
+item_data = ExtResource("38_k8pig")
+
+[node name="SanityPills9" parent="Node" unique_id=1361696336 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.4964741, -0.8680515, 0, 0.8680515, 0.4964741, -25.187973, 2.7441328, -13.212193)
+item_data = ExtResource("38_k8pig")
+
+[node name="SanityPills10" parent="Node" unique_id=1538758680 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.4964741, -0.8680515, 0, 0.8680515, 0.4964741, -25.187973, 2.7441328, -28.891289)
+item_data = ExtResource("38_k8pig")
+
+[node name="SanityPills11" parent="Node" unique_id=328327029 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.4964741, -0.8680515, 0, 0.8680515, 0.4964741, -9.381514, 2.7441328, -28.891289)
+item_data = ExtResource("38_k8pig")
+
+[node name="SanityPills12" parent="Node" unique_id=1125018354 instance=ExtResource("27_jikhd")]
+transform = Transform3D(1, 0, 0, 0, 0.4964741, -0.8680515, 0, 0.8680515, 0.4964741, 8.917816, 2.7441328, -31.647871)
 item_data = ExtResource("38_k8pig")
 
 [node name="Flashlight" parent="Node" unique_id=1690027733 instance=ExtResource("27_jikhd")]
@@ -1638,7 +1707,7 @@ expected_item_name = "Crank"
 [node name="CollisionShape3D" parent="PuzzleBridge/Podium/DropZone" index="0" unique_id=1896517618]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -1.1444092e-05, 2.257769, -0.49999237)
 
-[node name="small_item" parent="PuzzleBridge/Podium" unique_id=617685090 instance=ExtResource("27_jikhd")]
+[node name="small_item" parent="PuzzleBridge/Podium" unique_id=1265371513 instance=ExtResource("27_jikhd")]
 transform = Transform3D(-0.08512193, 0.057158586, 0.9947297, 0.55746984, 0.8301972, 8.048097e-09, -0.8258218, 0.5545318, -0.10253217, 2.7550201, 2.3445423, -32.827614)
 item_data = ExtResource("28_qvxoj")
 
