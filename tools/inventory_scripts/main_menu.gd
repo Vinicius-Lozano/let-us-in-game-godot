@@ -13,12 +13,15 @@ class_name MainMenu
 @onready var btn_jogar: Button = $CanvasLayer/UI/BtnJogar
 @onready var btn_opcoes: Button = $CanvasLayer/UI/VBoxContainer/BtnOpcoes
 @onready var btn_sair: Button = $CanvasLayer/UI/BtnSair
-
+@onready var fade_rect: ColorRect = $CanvasLayer/UI/ColorRect
 # ==========================================
 # INICIALIZAÇÃO
 # ==========================================
 func _ready() -> void:
 	Input.mouse_mode = Input.MOUSE_MODE_VISIBLE
+	fade_rect.modulate.a = 1.0
+	var tween = create_tween()
+	tween.tween_property(fade_rect, "modulate:a", 0.0, 2.0)
 	btn_jogar.pressed.connect(_on_btn_jogar_pressed)
 	btn_opcoes.pressed.connect(_on_btn_opcoes_pressed)
 	btn_sair.pressed.connect(_on_btn_sair_pressed)

@@ -612,6 +612,13 @@ scale = Vector2(1, 0.99765515)
 mouse_filter = 2
 texture = ExtResource("15_p533c")
 
+[node name="ColorRect" type="ColorRect" parent="CanvasLayer/UI" unique_id=1607086555]
+layout_mode = 0
+offset_right = 1919.0
+offset_bottom = 1077.0
+mouse_filter = 2
+color = Color(0, 0, 0, 1)
+
 [node name="DirectionalLight3D" type="DirectionalLight3D" parent="." unique_id=1002171432]
 transform = Transform3D(1, 0, 0, 0, -0.7736965, 0.6335565, 0, -0.6335565, -0.7736965, 0, 514.0572, -36.481964)
 light_energy = 0.5

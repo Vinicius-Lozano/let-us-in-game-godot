@@ -11,7 +11,7 @@ config_version=5
 [application]
 
 config/name="let_us_in"
-run/main_scene="uid://bxquduiujafo7"
+run/main_scene="uid://bf3074xkwxip"
 config/features=PackedStringArray("4.6", "Forward Plus")
 
 [autoload]
