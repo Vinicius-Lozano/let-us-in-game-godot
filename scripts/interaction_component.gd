@@ -75,9 +75,12 @@ func interact() -> void:
 		InteractionType.DEFAULT:
 			_default_interact()
 		InteractionType.COLLECT: 
-			# Se o objeto "pai" (a cena do puzzle) tiver a função collect_piece, ele aciona!
+			# Tenta rodar a função do Puzzle de Números
 			if get_parent().has_method("collect_piece"):
 				get_parent().collect_piece()
+			# Tenta rodar a função das Notas de Lore que criamos!
+			elif get_parent().has_method("read_note"):
+				get_parent().read_note()
 
 func auxInteract() -> void:
 	if not can_interact:

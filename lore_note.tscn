@@ -1,0 +1,38 @@
+[gd_scene format=4 uid="uid://4yhiok1l7yuv"]
+
+[ext_resource type="Script" uid="uid://dhmya6qqddcox" path="res://lore_note.gd" id="1_1eu0k"]
+[ext_resource type="Script" uid="uid://blwaaplvhn3c8" path="res://scripts/interaction_component.gd" id="2_nv6cg"]
+
+[sub_resource type="ArrayMesh" id="ArrayMesh_1eu0k"]
+_surfaces = [{
+"aabb": AABB(-0.16394043, -0.20788574, -0.0005, 0.32788086, 0.41577148, 0.001),
+"attribute_data": PackedByteArray("AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/AACAPwAAgD8AAIA/AAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAAACAPwAAgD8AAIA/"),
+"format": 34359738391,
+"primitive": 3,
+"uv_scale": Vector4(0, 0, 0, 0),
+"vertex_count": 36,
+"vertex_data": PackedByteArray("AOAnvgDgVL5vEgM6AOAnvgDgVL5vEgO6AOAnvgDgVD5vEgO6AOAnPgDgVL5vEgO6AOAnvgDgVL5vEgO6AOAnvgDgVL5vEgM6AOAnvgDgVD5vEgO6AOAnvgDgVL5vEgO6AOAnPgDgVL5vEgO6AOAnvgDgVD5vEgO6AOAnvgDgVD5vEgM6AOAnvgDgVL5vEgM6AOAnvgDgVL5vEgM6AOAnvgDgVD5vEgM6AOAnPgDgVD5vEgM6AOAnPgDgVD5vEgM6AOAnvgDgVD5vEgM6AOAnvgDgVD5vEgO6AOAnvgDgVL5vEgM6AOAnPgDgVL5vEgM6AOAnPgDgVL5vEgO6AOAnPgDgVD5vEgM6AOAnPgDgVL5vEgM6AOAnvgDgVL5vEgM6AOAnPgDgVL5vEgO6AOAnPgDgVL5vEgM6AOAnPgDgVD5vEgM6AOAnPgDgVL5vEgO6AOAnPgDgVD5vEgO6AOAnvgDgVD5vEgO6AOAnvgDgVD5vEgO6AOAnPgDgVD5vEgO6AOAnPgDgVD5vEgM6AOAnPgDgVD5vEgM6AOAnPgDgVD5vEgO6AOAnPgDgVL5vEgO6AAD/f/9//n8AAP9//3/+fwAA/3//f/5//38AAP//AAD/fwAA//8AAP9/AAD//wAA/////wAA/z//////AAD/P/////8AAP8/AAD/f/9//n8AAP9//3/+fwAA/3//f/5//3//fwAA/z//f/9/AAD/P/9//38AAP8//3//////AAD/f/////8AAP9//////wAA/38AAP//AAD/fwAA//8AAP9/AAD//wAA/3//fwAA/z//f/9/AAD/P/9//38AAP8/////f/9//n////9//3/+f////3//f/5//////wAA/z//////AAD/P/////8AAP8//3//////AAD/f/////8AAP9//////wAA////f/9//n////9//3/+f////3//f/5/")
+}]
+
+[sub_resource type="BoxShape3D" id="BoxShape3D_1eu0k"]
+size = Vector3(0.3935547, 0.4243164, 0.13330078)
+
+[node name="Note" type="StaticBody3D" unique_id=1493553949]
+script = ExtResource("1_1eu0k")
+
+[node name="CSGBakedMeshInstance3D" type="MeshInstance3D" parent="." unique_id=199737199]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.0293715, -0.07779503, -0.4995)
+mesh = SubResource("ArrayMesh_1eu0k")
+
+[node name="OmniLight3D" type="OmniLight3D" parent="." unique_id=886840665]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0, -0.43521723)
+omni_range = 0.364
+omni_attenuation = 0.415
+
+[node name="CollisionShape3D" type="CollisionShape3D" parent="." unique_id=462616942]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.04736328, -0.060791016, -0.4333496)
+shape = SubResource("BoxShape3D_1eu0k")
+
+[node name="InteractionComponent" type="Node" parent="." unique_id=189593205]
+script = ExtResource("2_nv6cg")
+interaction_type = 5

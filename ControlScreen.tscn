@@ -1,0 +1,120 @@
+[gd_scene format=3 uid="uid://obhi82and4vh"]
+
+[ext_resource type="Texture2D" uid="uid://bepuu4i051g0j" path="res://gfx/UI/controls.png" id="1_cnqmo"]
+[ext_resource type="Script" uid="uid://dxxo1bn4cp2cc" path="res://control_screen.gd" id="1_utm8f"]
+[ext_resource type="FontFile" uid="uid://b26vkgcxqixx0" path="res://gfx/font/who asks satan.ttf" id="2_utm8f"]
+[ext_resource type="FontFile" uid="uid://ciolbrfxqqqth" path="res://gfx/font/Simbiot.ttf" id="3_1h5ei"]
+
+[node name="Control" type="Control" unique_id=1647118046]
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_utm8f")
+
+[node name="ColorRect" type="ColorRect" parent="." unique_id=566540261]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+color = Color(0, 0, 0, 1)
+
+[node name="TextureRect" type="TextureRect" parent="." unique_id=847459347]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+texture = ExtResource("1_cnqmo")
+expand_mode = 1
+
+[node name="Label" type="Label" parent="." unique_id=1306117171]
+layout_mode = 0
+offset_left = 230.0
+offset_top = 28.0
+offset_right = 689.0
+offset_bottom = 180.0
+theme_override_fonts/font = ExtResource("2_utm8f")
+theme_override_font_sizes/font_size = 120
+text = "Movimento"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label3" type="Label" parent="." unique_id=386146818]
+layout_mode = 0
+offset_left = 967.0
+offset_top = 42.0
+offset_right = 1426.0
+offset_bottom = 265.0
+theme_override_fonts/font = ExtResource("2_utm8f")
+theme_override_font_sizes/font_size = 120
+text = "Pegar e 
+Usar item"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label4" type="Label" parent="." unique_id=798689169]
+layout_mode = 0
+offset_left = 1414.0
+offset_top = 48.0
+offset_right = 1873.0
+offset_bottom = 271.0
+theme_override_fonts/font = ExtResource("2_utm8f")
+theme_override_font_sizes/font_size = 120
+text = "Soltar 
+Item"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label5" type="Label" parent="." unique_id=1419534946]
+layout_mode = 0
+offset_left = 35.0
+offset_top = 453.0
+offset_right = 494.0
+offset_bottom = 676.0
+theme_override_fonts/font = ExtResource("2_utm8f")
+theme_override_font_sizes/font_size = 120
+text = "agachar"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label6" type="Label" parent="." unique_id=1322308333]
+layout_mode = 0
+offset_left = 442.0
+offset_top = 449.0
+offset_right = 901.0
+offset_bottom = 672.0
+theme_override_fonts/font = ExtResource("2_utm8f")
+theme_override_font_sizes/font_size = 120
+text = "correr"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label7" type="Label" parent="." unique_id=1880817588]
+layout_mode = 0
+offset_left = 900.0
+offset_top = 379.0
+offset_right = 1589.0
+offset_bottom = 602.0
+theme_override_fonts/font = ExtResource("2_utm8f")
+theme_override_font_sizes/font_size = 120
+text = "Atacar e Interagir"
+horizontal_alignment = 1
+vertical_alignment = 1
+
+[node name="Label2" type="Label" parent="." unique_id=1045308613]
+layout_mode = 0
+offset_left = 1204.0
+offset_top = 961.0
+offset_right = 1898.0
+offset_bottom = 1029.0
+theme_override_fonts/font = ExtResource("3_1h5ei")
+theme_override_font_sizes/font_size = 30
+text = "Pressione qualquer  tecla para começar..."
+horizontal_alignment = 1
+vertical_alignment = 2

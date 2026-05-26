@@ -55,6 +55,7 @@
 [ext_resource type="PackedScene" uid="uid://goh3vkv8vodf" path="res://gfx/explosion/BigExplosionScene.tscn" id="50_x6ept"]
 [ext_resource type="FontFile" uid="uid://bvwgf1a2rduwy" path="res://gfx/font/HelpMe.ttf" id="51_pi7hh"]
 [ext_resource type="PackedScene" uid="uid://813f7v3s753g" path="res://tools/frameworks/puzzle/numbers_puzzle/numbers_puzzle_piece.tscn" id="52_c5b55"]
+[ext_resource type="PackedScene" uid="uid://4yhiok1l7yuv" path="res://lore_note.tscn" id="56_58e0p"]
 
 [sub_resource type="Environment" id="Environment_4vfpq"]
 background_color = Color(4.3317675e-07, 0.23796886, 0.32136157, 1)
@@ -274,7 +275,7 @@ transform = Transform3D(0.052335974, 0.76499456, 0.6419067, 0, 0.64278764, -0.76
 nodes_to_effect = [NodePath("../../../CabinLight1"), NodePath("../../../CabinLight2")]
 
 [node name="axe" parent="Node" unique_id=699726080 instance=ExtResource("33_xi2te")]
-transform = Transform3D(0.0019318517, -0.0005176381, 0, 0.0005176381, 0.0019318517, 0, 0, 0, 0.002, -3.4959354, 1.8319426, -7.6238575)
+transform = Transform3D(0.0019318517, -0.0005176381, 0, 0.0005176381, 0.0019318517, 0, 0, 0, 0.002, -3.4959354, 1.8319426, -2.8939002)
 
 [node name="axeBackup" parent="Node" unique_id=635632806 instance=ExtResource("33_xi2te")]
 transform = Transform3D(0.0019318517, -0.0005176381, 0, 0.0005176381, 0.0019318517, 0, 0, 0, 0.002, -95.63201, 1.8319426, -54.274715)
@@ -330,14 +331,31 @@ transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0136218, -0.4699304, 0.3749
 size = Vector3(0.1, 0.9, 0.1)
 material = SubResource("StandardMaterial3D_xnq8m")
 
-[node name="CSGBox3D" type="CSGBox3D" parent="Node" unique_id=849907879]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.938784, 1.6176503, -4.8134665)
+[node name="Table2" type="CSGBox3D" parent="Node" unique_id=743304591]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 5.766088, 2.15116, -5.0796065)
 use_collision = true
-size = Vector3(2.0966797, 0.79248047, 0.6166992)
+size = Vector3(2.2012634, 0.072753906, 1)
+material = SubResource("StandardMaterial3D_6c0ht")
 
-[node name="CSGBox3D2" type="CSGBox3D" parent="Node/CSGBox3D" unique_id=933913659]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.4490385, -0.068237305)
-size = Vector3(2.0966797, 0.11987305, 0.7531738)
+[node name="CSGBox3D" type="CSGBox3D" parent="Node/Table2" unique_id=670483546]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949317, -0.4699304, 0.4189129)
+size = Vector3(0.1, 0.9, 0.1)
+material = SubResource("StandardMaterial3D_uvcog")
+
+[node name="CSGBox3D2" type="CSGBox3D" parent="Node/Table2" unique_id=217433873]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -0.949317, -0.4699304, -0.4088478)
+size = Vector3(0.1, 0.9, 0.1)
+material = SubResource("StandardMaterial3D_4kkmd")
+
+[node name="CSGBox3D3" type="CSGBox3D" parent="Node/Table2" unique_id=2055887879]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0136218, -0.4699304, -0.4088478)
+size = Vector3(0.1, 0.9, 0.1)
+material = SubResource("StandardMaterial3D_m75v2")
+
+[node name="CSGBox3D4" type="CSGBox3D" parent="Node/Table2" unique_id=870474912]
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 1.0136218, -0.4699304, 0.37496185)
+size = Vector3(0.1, 0.9, 0.1)
+material = SubResource("StandardMaterial3D_xnq8m")
 
 [node name="SpotLight3D" type="SpotLight3D" parent="." unique_id=1946442866]
 transform = Transform3D(1, 0, 0, 0, -0.19770862, 0.9802608, 0, -0.9802608, -0.19770862, -1.1811817, 5.3794284, -0.41370463)
@@ -346,7 +364,7 @@ shadow_enabled = true
 spot_range = 8.0
 
 [node name="player" parent="." unique_id=2123675130 instance=ExtResource("5_2xk3c")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0453627, 2.281813, 4.5609865)
+transform = Transform3D(-0.03123626, 0, 0.999512, 0, 1, 0, -0.999512, 0, -0.03123626, -1.1381989, 1.7218513, -3.7374876)
 
 [node name="CharacterBody3D" parent="." unique_id=2143127629 node_paths=PackedStringArray("player", "safe_zone", "patrol_points") instance=ExtResource("21_2wvi4")]
 transform = Transform3D(-0.81246024, 0, -0.5830166, 0, 1, 0, 0.5830166, 0, -0.81246024, -6.0821095, 1.8266945, 40.2834)
@@ -360,7 +378,7 @@ volume_db = 1.0
 autoplay = true
 
 [node name="RandomAmbientSounds" type="AudioStreamPlayer" parent="." unique_id=578585838]
-volume_db = 1.0
+volume_db = -21.807
 autoplay = true
 script = ExtResource("15_c5b55")
 sounds = Array[AudioStream]([ExtResource("16_0em68"), ExtResource("17_32gdk")])
@@ -2056,7 +2074,7 @@ font = ExtResource("51_pi7hh")
 font_size = 120
 
 [node name="NumbersPuzzlePiece" parent="NumbrsPuzzle" unique_id=1936648493 node_paths=PackedStringArray("wall_visual_node") instance=ExtResource("52_c5b55")]
-transform = Transform3D(0.95148706, -0.30768877, 0, 0.30768877, 0.95148706, 0, 0, 0, 1, 0.6938777, 3.076334, -0.9061144)
+transform = Transform3D(0.16436222, 0.008098915, -0.9863668, 0.29861757, 0.95263416, 0.057581753, 0.94011307, -0.30401066, 0.15415858, 15.772684, 2.8404467, 0.7354836)
 digit = 4
 wall_visual_node = NodePath("../Code1")
 
@@ -2079,6 +2097,64 @@ wall_visual_node = NodePath("../Code4")
 transform = Transform3D(0.072040856, -0.023940496, 0.9971141, 0.18687217, 0.98233235, 0.010084516, -0.9797393, 0.18560651, 0.07524197, -37.631195, 3.710144, -38.4759)
 digit = 3
 wall_visual_node = NodePath("../Code5")
+
+[node name="Notas" type="Node" parent="." unique_id=1766384507]
+
+[node name="Note2" parent="Notas" unique_id=1493553949 node_paths=PackedStringArray("cabin_twin_note") instance=ExtResource("56_58e0p")]
+transform = Transform3D(-0.9131764, 0.0361023, -0.40596244, 0.00036609478, 0.9961415, 0.08776351, 0.4075644, 0.079994954, -0.909666, 4.028506, 2.6071513, 21.69798)
+text_content = "1/3
+A grande rocha na borda norte, logo atrás da cabana à esquerda, bloqueia a passagem para as terras profundas.
+Consegui esconder uma carga de dinamite na floresta. Se eu conseguir colocá-la na fenda da rocha, o caminho estará livre."
+cabin_twin_note = NodePath("../../Notas cabana/Note2")
+
+[node name="Note3" parent="Notas" unique_id=1048605514 node_paths=PackedStringArray("cabin_twin_note") instance=ExtResource("56_58e0p")]
+transform = Transform3D(-0.82082105, 0.050428573, -0.56895506, 0.00036608527, 0.99614143, 0.08776352, 0.5711854, 0.07182985, -0.81767225, 29.605137, 2.6071513, 2.9208326)
+text_content = "2/3
+Cheguei ao pilar de sustentação, mas a manivela sumiu.
+Sem a manivela para girar o mecanismo, a ponte não desce e a boca da caverna continuará fora de alcance. Posso sentir o batimento da Matriarca ecoando sob meus pés. O chão treme. Ela sabe que estou perto."
+cabin_twin_note = NodePath("../../Notas cabana/Note3")
+
+[node name="Note4" parent="Notas" unique_id=1284655231 node_paths=PackedStringArray("cabin_twin_note") instance=ExtResource("56_58e0p")]
+transform = Transform3D(0.5672965, 0.07206754, -0.8203541, 0.00036609112, 0.99614114, 0.087763496, 0.82351357, -0.05008827, 0.56508124, 9.171231, 2.6071513, -29.894524)
+text_content = "3/3
+Finalmente, a entrada. O cheiro de ferro e podridão é insuportável aqui dentro.
+A porta do covil possui uma trava mecânica. Os números que vi espalhados pela floresta devem ser a combinação. Espero ter coletado todos eles na ordem certa, ou serei devorado antes mesmo de ver o coração.
+Se o machado ainda estiver em suas mãos, use-o. Não há mais volta."
+cabin_twin_note = NodePath("../../Notas cabana/Note4")
+
+[node name="Notas cabana" type="Node" parent="." unique_id=2044573253]
+
+[node name="Note" parent="Notas cabana" unique_id=2052272234 instance=ExtResource("56_58e0p")]
+transform = Transform3D(-0.020628344, 0, 0.99978715, 0, 1, 0, -0.99978715, 0, -0.020628344, -3.4921825, 2.5146925, -2.4072464)
+text_content = "Se você está lendo isso, a floresta já te marcou.
+Não corra perto dele; o Andarilho tem ouvidos aguçados e te caçará pelo som. Se encontrar a estátua, nunca desvie o olhar. Ela se move no escuro das suas pálpebras.
+Preciso chegar à caverna e destruir o coração dela, ou o sol nunca mais voltará a brilhar. Deixei pistas de como avançar. E, por favor, anote cada número que encontrar gravado por aí... eles são a sua única chave para o fim."
+is_already_in_cabin = true
+
+[node name="Note2" parent="Notas cabana" unique_id=1718819546 instance=ExtResource("56_58e0p")]
+transform = Transform3D(-0.017036617, 0.02342591, 0.9995804, -0.011407273, 0.9996559, -0.023622103, -0.9997898, -0.011804954, -0.016763493, -3.4893093, 2.6071513, -3.095876)
+visible = false
+text_content = "1/3
+A grande rocha na borda norte, logo atrás da cabana à esquerda, bloqueia a passagem para as terras profundas.
+Consegui esconder uma carga de dinamite na floresta. Se eu conseguir colocá-la na fenda da rocha, o caminho estará livre."
+is_already_in_cabin = true
+
+[node name="Note3" parent="Notas cabana" unique_id=1573243143 instance=ExtResource("56_58e0p")]
+transform = Transform3D(-0.017036617, 0.02342591, 0.9995804, -0.011407273, 0.9996559, -0.023622103, -0.9997898, -0.011804954, -0.016763493, -3.4893093, 2.5260394, -3.7627122)
+visible = false
+text_content = "2/3
+Cheguei ao pilar de sustentação, mas a manivela sumiu.
+Sem a manivela para girar o mecanismo, a ponte não desce e a boca da caverna continuará fora de alcance. Posso sentir o batimento da Matriarca ecoando sob meus pés. O chão treme. Ela sabe que estou perto."
+is_already_in_cabin = true
+
+[node name="Note4" parent="Notas cabana" unique_id=1309874769 instance=ExtResource("56_58e0p")]
+transform = Transform3D(-0.017036617, 0.02342591, 0.9995804, -0.011407273, 0.9996559, -0.023622103, -0.9997898, -0.011804954, -0.016763493, -3.4893093, 2.6142926, -4.29584)
+visible = false
+text_content = "3/3
+Finalmente, a entrada. O cheiro de ferro e podridão é insuportável aqui dentro.
+A porta do covil possui uma trava mecânica. Os números que vi espalhados pela floresta devem ser a combinação. Espero ter coletado todos eles na ordem certa, ou serei devorado antes mesmo de ver o coração.
+Se o machado ainda estiver em suas mãos, use-o. Não há mais volta."
+is_already_in_cabin = true
 
 [connection signal="body_entered" from="rocks/rock75/damage area" to="rocks/rock75" method="_on_damage_area_body_entered"]
 

@@ -1182,5 +1182,6 @@ debug_color = Color(0.9461767, 0.090171285, 0.5371265, 0.41960785)
 
 [node name="SpottedAudio" type="AudioStreamPlayer3D" parent="." unique_id=93041457]
 stream = ExtResource("3_y4kpv")
+volume_db = -29.907
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]

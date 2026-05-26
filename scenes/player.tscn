@@ -8,8 +8,10 @@
 [ext_resource type="Texture2D" uid="uid://7eeoqfxm3v7r" path="res://gfx/UI/hand_thin_closed.svg" id="4_fjrip"]
 [ext_resource type="Texture2D" uid="uid://ce8nr4ym51s2" path="res://gfx/UI/Blood.png" id="5_60mlk"]
 [ext_resource type="ArrayMesh" uid="uid://p25mcgymubcb" path="res://gfx/models/source/Axe1.obj" id="5_f1ej7"]
+[ext_resource type="Texture2D" uid="uid://uwi6dm75coxu" path="res://gfx/UI/paper.png" id="7_4ni07"]
 [ext_resource type="Script" uid="uid://djncuvtgibvsd" path="res://scripts/interactable_area_detector.gd" id="7_fjrip"]
 [ext_resource type="PackedScene" uid="uid://kbnh57s607ew" path="res://scenes/sanity_controller.tscn" id="7_ur7pv"]
+[ext_resource type="FontFile" uid="uid://bbh1x64w6ctld" path="res://gfx/font/Please write me a song.ttf" id="8_l71n6"]
 [ext_resource type="Shader" uid="uid://cp1bbm8ih3g67" path="res://gfx/outline.gdshader" id="8_smehm"]
 [ext_resource type="Script" uid="uid://cxbhc0v5qbvle" path="res://scripts/Axe.gd" id="11_d2wvv"]
 [ext_resource type="PackedScene" uid="uid://c64cg6w2er1c7" path="res://scenes/health_component.tscn" id="12_60mlk"]
@@ -143,6 +145,34 @@ mouse_filter = 2
 texture = ExtResource("5_60mlk")
 expand_mode = 1
 
+[node name="NotificationLabel" type="Label" parent="GUI" unique_id=1907483469]
+modulate = Color(1, 1, 1, 0)
+offset_left = 532.0
+offset_top = 10.0
+offset_right = 1881.0
+offset_bottom = 65.0
+theme_override_font_sizes/font_size = 40
+horizontal_alignment = 2
+
+[node name="NotePanel" type="TextureRect" parent="GUI" unique_id=658148310]
+visible = false
+offset_left = 494.0
+offset_top = 39.0
+offset_right = 1421.0
+offset_bottom = 966.0
+texture = ExtResource("7_4ni07")
+
+[node name="Label" type="Label" parent="GUI/NotePanel" unique_id=1109791064]
+layout_mode = 0
+offset_left = 170.0
+offset_top = 143.0
+offset_right = 762.0
+offset_bottom = 795.0
+theme_override_colors/font_color = Color(0, 0, 0, 1)
+theme_override_fonts/font = ExtResource("8_l71n6")
+theme_override_font_sizes/font_size = 30
+autowrap_mode = 2
+
 [node name="Mesh" type="MeshInstance3D" parent="." unique_id=2078551516]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.9, 0)
 visible = false
@@ -263,14 +293,17 @@ volume_db = -9.477
 max_db = 1.038
 max_distance = 5.0
 
-[node name="PlayerEffects" type="Node" parent="." unique_id=1999313306 node_paths=PackedStringArray("health_component", "sanity_controller", "damage_overlay", "heartbeat_audio", "hit_audio", "whispers")]
+[node name="PlayerEffects" type="Node" parent="." unique_id=1999313306 node_paths=PackedStringArray("health_component", "sanity_controller", "damage_overlay", "notification_label", "heartbeat_audio", "hit_audio", "whispers", "note_panel", "note_text_label")]
 script = ExtResource("16_a8ls1")
 health_component = NodePath("../HealthComponent")
 sanity_controller = NodePath("../SanityController")
 damage_overlay = NodePath("../GUI/TextureRect")
+notification_label = NodePath("../GUI/NotificationLabel")
 heartbeat_audio = NodePath("HeartbeatAudio")
 hit_audio = NodePath("HitAudio")
 whispers = [NodePath("Whisper"), NodePath("Whisper2"), NodePath("Whisper3")]
+note_panel = NodePath("../GUI/NotePanel")
+note_text_label = NodePath("../GUI/NotePanel/Label")
 
 [node name="HeartbeatAudio" type="AudioStreamPlayer" parent="PlayerEffects" unique_id=1021106511]
 stream = ExtResource("17_4r5pv")

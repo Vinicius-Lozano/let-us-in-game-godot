@@ -7,7 +7,7 @@ class_name MainMenu
 # Caminho da cena do jogo em string para evitar dependência circular!
 # (main_menu.tscn é referenciada pelo main_map.tscn, então não pode
 #  referenciar o main_map.tscn de volta como PackedScene)
-@export var gameplay_scene_path: String = "res://scenes/main_map.tscn"
+@export var gameplay_scene_path: String = "res://ControlScreen.tscn"
 
 # Referências diretas aos botões
 @onready var btn_jogar: Button = $CanvasLayer/UI/BtnJogar
@@ -33,7 +33,6 @@ func _ready() -> void:
 
 func _on_btn_jogar_pressed() -> void:
 	if gameplay_scene_path != "":
-		print("[MENU] Iniciando o jogo...")
 		var packed = load(gameplay_scene_path)
 		if packed:
 			get_tree().change_scene_to_packed(packed)

@@ -38,6 +38,7 @@ func collect_piece() -> void:
 		
 	print("[SENHA] Pedaço com o número ", digit, " foi encontrado!")
 	
-	# DICA: Adicione o som de folha de papel aqui, se tiver!
+	# --- CHAMA A NOTIFICAÇÃO NA TELA ---
+	Global.show_notification.emit("Número " + str(digit) + " coletado! Cheque a cabana.")
 	
 	queue_free()

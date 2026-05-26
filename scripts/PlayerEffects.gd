@@ -6,6 +6,7 @@ extends Node
 
 @export_category("UI")
 @export var damage_overlay: TextureRect 
+@export var notification_label: Label
 
 @export_category("Áudios")
 @export var heartbeat_audio: AudioStreamPlayer
@@ -13,9 +14,14 @@ extends Node
 # Agora usamos uma lista/array para os 3 sussurros
 @export var whispers: Array[AudioStreamPlayer2D] 
 
+@export_category("Notas")
+@export var note_panel: Control
+@export var note_text_label: Label
+
 var current_hp: int = 3
 var time_passed: float = 0.0
 var heart_timer: float = 0.0
+var can_close_note: bool = false
 
 func _ready() -> void:
 	if health_component:
@@ -27,7 +33,15 @@ func _ready() -> void:
 	if damage_overlay:
 		damage_overlay.modulate.a = 0.0
 		damage_overlay.visible = true
-
+	if notification_label:
+		notification_label.modulate.a = 0.0 # Começa invisível
+		
+	# Conecta o sinal Global à nossa nova função
+	Global.show_notification.connect(_on_show_notification)
+	
+	Global.open_note_ui.connect(_on_open_note_ui)
+	if note_panel: note_panel.visible = false
+	
 func _process(delta: float) -> void:
 	time_passed += delta
 	
@@ -123,3 +137,47 @@ func _on_died() -> void:
 	# Para o som do coração batendo
 	if heartbeat_audio and heartbeat_audio.playing:
 		heartbeat_audio.stop()
+ # Arraste o label no Inspector
+
+func show_notification(text: String):
+	if notification_label == null: return
+	
+	notification_label.text = text
+	var tween = create_tween()
+	# Aparece rápido
+	tween.tween_property(notification_label, "modulate:a", 1.0, 0.3)
+	# Fica na tela por 3 segundos
+	tween.tween_interval(3.0)
+	# Some devagar
+	tween.tween_property(notification_label, "modulate:a", 0.0, 1.0)
+func _on_show_notification(message: String) -> void:
+	if notification_label == null: return
+	
+	notification_label.text = message
+	
+	var tween = create_tween()
+	# Aparece rápido
+	tween.tween_property(notification_label, "modulate:a", 1.0, 0.3)
+	# Espera 3 segundos
+	tween.tween_interval(3.0)
+	# Fica invisível devagar
+	tween.tween_property(notification_label, "modulate:a", 0.0, 1.0)
+
+func _on_open_note_ui(text: String) -> void:
+	if note_panel == null: return
+	
+	note_text_label.text = text
+	note_panel.visible = true
+	
+	# Trava o fechamento por 0.1 segundos para impedir que 
+	# o clique que abriu a nota também feche ela acidentalmente!
+	can_close_note = false
+	await get_tree().create_timer(0.1).timeout
+	can_close_note = true
+
+func _input(event: InputEvent) -> void:
+	if note_panel and note_panel.visible and can_close_note:
+		# Se for um CLIQUE do mouse (qualquer botão) OU as teclas de atalho
+		if (event is InputEventMouseButton and event.pressed) or event.is_action_pressed("interact") or event.is_action_pressed("ui_cancel"):
+			note_panel.visible = false
+			can_close_note = false
