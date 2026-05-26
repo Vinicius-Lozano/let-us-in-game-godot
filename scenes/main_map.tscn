@@ -5,7 +5,6 @@
 [ext_resource type="PackedScene" uid="uid://cq4rc42nddwng" path="res://scenes/cabin.tscn" id="4_64gt2"]
 [ext_resource type="PackedScene" uid="uid://vwqs1dteoobi" path="res://scenes/player.tscn" id="5_2xk3c"]
 [ext_resource type="Resource" uid="uid://dwcngiuske26c" path="res://items/good_pill.tres" id="5_c5b55"]
-[ext_resource type="PackedScene" uid="uid://bxquduiujafo7" path="res://tools/inventory_scripts/main_menu.tscn" id="6_0n326"]
 [ext_resource type="Script" uid="uid://rvxaxfytgjgj" path="res://scripts/spot_light_3d.gd" id="6_psaan"]
 [ext_resource type="PackedScene" uid="uid://bvnr7cuucami7" path="res://gfx/models/ModelScenes/tree_dead_pine.tscn" id="6_ulx81"]
 [ext_resource type="PackedScene" uid="uid://bpujhfqv3t6mi" path="res://gfx/models/ModelScenes/treepine.tscn" id="7_6adrn"]
@@ -345,7 +344,6 @@ spot_range = 8.0
 
 [node name="player" parent="." unique_id=2123675130 instance=ExtResource("5_2xk3c")]
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -2.0453627, 2.281813, 4.5609865)
-game_over_scene = ExtResource("6_0n326")
 
 [node name="CharacterBody3D" parent="." unique_id=2143127629 node_paths=PackedStringArray("player", "safe_zone", "patrol_points") instance=ExtResource("21_2wvi4")]
 transform = Transform3D(-0.81246024, 0, -0.5830166, 0, 1, 0, 0.5830166, 0, -0.81246024, -6.0821095, 1.8266945, 40.2834)

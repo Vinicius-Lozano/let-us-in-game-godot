@@ -216,30 +216,32 @@ func _on_player_died() -> void:
 	set_physics_process(false)
 	set_process_input(false)
 	
-	# Remove a colisão de "pé" para o jogador cair e soltar o item que estiver segurando
+	# 2. Desativa o interaction_controller para evitar interações "zumbis"
+	if interaction_controller:
+		interaction_controller.set_process(false)
+		interaction_controller.drop_item() 
+	
+	# Remove a colisão de "pé" para o jogador cair
 	standing.disabled = true
 	crouching.disabled = false
-	interaction_controller.drop_item() 
 	
-	# 2. Feedback visual dramático (A câmera tomba para o chão)
+	# 3. Feedback visual dramático (A câmera tomba para o chão)
 	var tween = create_tween()
-	# A câmera rola 90 graus para a direita
+	# A câmera rola 85 graus para a direita (simulando deitar de lado)
 	tween.tween_property(camera_3d, "rotation:z", deg_to_rad(-85.0), 0.6).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	# E a cabeça desce ao nível do chão
+	# A cabeça desce ao nível do chão
 	tween.parallel().tween_property(head, "position:y", 0.2, 0.6)
 	
-	# 3. Pausa dramática para o jogador perceber que morreu
+	# 4. Pausa dramática! A tela continua mostrando o jogo com a câmera tombada.
 	await get_tree().create_timer(2.5).timeout
 	
-	# 4. Solta o mouse para caso o jogador vá para o Menu Principal
-	Input.set_mouse_mode(Input.MOUSE_MODE_VISIBLE)
-	
-	# 5. O Padrão Fallback
+	# 5. Só AQUI, depois da pausa, o jogo muda para a tela de morte (UI).
 	if game_over_scene != null:
-		# Se você arrastou o Menu Principal no Inspector
+		# Não soltamos o mouse aqui porque o script death_scene.gd já faz isso no _ready().
 		get_tree().change_scene_to_packed(game_over_scene)
 	else:
-		# Se o campo está vazio, apenas reseta a fase atual
+		# Fallback se esquecer de plugar a Death Scene
+		push_error("[PLAYER] Você esqueceu de arrastar a Death Scene pro Inspector do Jogador!")
 		get_tree().reload_current_scene()
 
 func apply_knockback(origin_pos: Vector3, force: float):

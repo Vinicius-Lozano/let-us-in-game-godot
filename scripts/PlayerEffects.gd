@@ -117,6 +117,9 @@ func _on_health_changed(new_hp: int, _max_hp: int) -> void:
 func _on_died() -> void:
 	# Para todos os sussurros na morte
 	for w in whispers:
-		w.stop()
-	if heartbeat_audio: heartbeat_audio.stop()
-	get_tree().call_deferred("change_scene_to_file", "res://scenes/DeathScreen.tscn")
+		if w != null and w.playing:
+			w.stop()
+			
+	# Para o som do coração batendo
+	if heartbeat_audio and heartbeat_audio.playing:
+		heartbeat_audio.stop()

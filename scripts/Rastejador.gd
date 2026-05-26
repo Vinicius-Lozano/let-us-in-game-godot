@@ -207,4 +207,4 @@ func _on_damage_area_body_entered(body: Node3D) -> void:
 		health_comp.take_damage(1)
 		
 		# 2. Fica atordoado por 1.5s para o jogador não tomar hit-kill e conseguir fugir
-		stun_timer = 1.5
+		stun_timer = 3
