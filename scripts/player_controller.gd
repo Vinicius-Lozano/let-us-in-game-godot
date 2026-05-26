@@ -8,6 +8,7 @@ extends CharacterBody3D
 @onready var standup_check: RayCast3D = $StandupCheck
 @onready var interaction_controller: Node = %InteractionController
 @onready var footstep_audio: AudioStreamPlayer3D = $FootstepAudio
+@onready var death_audio: AudioStreamPlayer3D = $DeathAudio
 
 @export var health_component: HealthComponent
 # --- NOVO: Cena de transição pós-morte (Padrão Fallback) ---
@@ -216,33 +217,32 @@ func _on_player_died() -> void:
 	set_physics_process(false)
 	set_process_input(false)
 	
-	# 2. Desativa o interaction_controller para evitar interações "zumbis"
+	# 2. Toca o som de morte logo no início!
+	if death_audio:
+		death_audio.play()
+	
+	# 3. Desativa o interaction_controller
 	if interaction_controller:
 		interaction_controller.set_process(false)
 		interaction_controller.drop_item() 
 	
-	# Remove a colisão de "pé" para o jogador cair
+	# Remove a colisão de "pé"
 	standing.disabled = true
 	crouching.disabled = false
 	
-	# 3. Feedback visual dramático (A câmera tomba para o chão)
+	# 4. Feedback visual dramático
 	var tween = create_tween()
-	# A câmera rola 85 graus para a direita (simulando deitar de lado)
 	tween.tween_property(camera_3d, "rotation:z", deg_to_rad(-85.0), 0.6).set_trans(Tween.TRANS_QUAD).set_ease(Tween.EASE_IN)
-	# A cabeça desce ao nível do chão
 	tween.parallel().tween_property(head, "position:y", 0.2, 0.6)
 	
-	# 4. Pausa dramática! A tela continua mostrando o jogo com a câmera tombada.
+	# 5. Pausa dramática
 	await get_tree().create_timer(2.5).timeout
 	
-	# 5. Só AQUI, depois da pausa, o jogo muda para a tela de morte (UI).
+	# 6. Carrega a cena de morte
 	if game_over_scene != null:
-		# Não soltamos o mouse aqui porque o script death_scene.gd já faz isso no _ready().
 		get_tree().change_scene_to_packed(game_over_scene)
 	else:
-		# Fallback se esquecer de plugar a Death Scene
-		push_error("[PLAYER] Você esqueceu de arrastar a Death Scene pro Inspector do Jogador!")
-		get_tree().reload_current_scene()
+		get_tree().change_scene_to_file("res://scenes/DeathScreen.tscn")
 
 func apply_knockback(origin_pos: Vector3, force: float):
 	var push_dir = (global_position - origin_pos).normalized()

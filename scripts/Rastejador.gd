@@ -13,6 +13,7 @@ var current_state: State = State.SEARCHING
 # Nós Internos
 @onready var anim_player: AnimationPlayer = %AnimationPlayer
 @onready var audio_player: AudioStreamPlayer3D = $AudioStreamPlayer3D
+@onready var spotted_audio: AudioStreamPlayer3D = $SpottedAudio
 
 var player_camera: Camera3D 
 var gravity = ProjectSettings.get_setting("physics/3d/default_gravity")
@@ -23,6 +24,7 @@ var search_dir_timer: float = 0.0
 var search_teleport_timer: float = 15.0 # Tempo até teleportar se não achar o jogador
 var current_search_dir: Vector3 = Vector3.ZERO
 var pose_timer: float = 0.0
+var ja_viu_jogador: bool = false
 
 func _ready():
 	player_camera = get_viewport().get_camera_3d()
@@ -91,6 +93,18 @@ func process_searching(delta: float) -> void:
 	if can_see_player(hunt_radius):
 		current_state = State.HUNTING
 		search_teleport_timer = 15.0 # Reseta o timer de teleporte
+		if spotted_audio and not spotted_audio.playing:
+					if not ja_viu_jogador:
+						# Primeira vez: Toca do zero até o final
+						print("[RASTEJADOR] Primeira vez! Tocando áudio completo.")
+						spotted_audio.play(0.0)
+						ja_viu_jogador = true
+					else:
+						# Segunda vez em diante: Toca a partir do segundo 2.0
+						print("[RASTEJADOR] Já te vi antes! Tocando do seg 2 ao 7.")
+						spotted_audio.play(2.0)
+						# Chama a função que criamos para cortar o áudio após 5 segundos
+						_stop_audio_after(7.0)
 		return
 
 	# Cronômetro para mudar de direção aleatória
@@ -208,3 +222,13 @@ func _on_damage_area_body_entered(body: Node3D) -> void:
 		
 		# 2. Fica atordoado por 1.5s para o jogador não tomar hit-kill e conseguir fugir
 		stun_timer = 3
+
+# Corta o áudio após X segundos
+func _stop_audio_after(duration: float) -> void:
+	# O código vai "pausar" aqui por 5 segundos
+	await get_tree().create_timer(duration).timeout
+	
+	# Trava de Segurança Sênior: Verifica se o monstro ainda existe 
+	# e se o áudio ainda está tocando antes de tentar parar
+	if is_instance_valid(spotted_audio) and spotted_audio.playing:
+		spotted_audio.stop()

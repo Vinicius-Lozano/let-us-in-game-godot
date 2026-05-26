@@ -19,8 +19,11 @@
 [ext_resource type="PackedScene" uid="uid://sivwkuvahkv7" path="res://gfx/models/ModelScenes/dead_bush.tscn" id="13_ol44e"]
 [ext_resource type="PackedScene" uid="uid://b48p21roc5osm" path="res://gfx/models/ModelScenes/dead_bush_2.tscn" id="14_5ubli"]
 [ext_resource type="PackedScene" uid="uid://dj8qegceaw2px" path="res://gfx/models/ModelScenes/dead_bush_3.tscn" id="15_2wvi4"]
+[ext_resource type="Script" uid="uid://cypm8dsfa5iyl" path="res://scripts/random_ambient_sounds.gd" id="15_c5b55"]
+[ext_resource type="AudioStream" uid="uid://ky0q2idlmnef" path="res://gfx/audio/RandomScreams.mp3" id="16_0em68"]
 [ext_resource type="PackedScene" uid="uid://begreqikxhouq" path="res://gfx/models/ModelScenes/grass_dry.tscn" id="16_cly8o"]
 [ext_resource type="PackedScene" uid="uid://cx7hfxidc72j2" path="res://gfx/models/ModelScenes/grass_patch_dry.tscn" id="17_8yhmk"]
+[ext_resource type="AudioStream" uid="uid://hvcfest4kt8x" path="res://gfx/audio/breakingTrees.mp3" id="17_32gdk"]
 [ext_resource type="PackedScene" uid="uid://ccjxhfea42dh1" path="res://gfx/models/rock1.glb" id="18_ol44e"]
 [ext_resource type="PackedScene" uid="uid://bo7b2evf5so2c" path="res://gfx/models/rock2.glb" id="19_5ubli"]
 [ext_resource type="PackedScene" uid="uid://drbt7hn5bxid4" path="res://andarilho_placeholder.tscn" id="21_2wvi4"]
@@ -355,6 +358,12 @@ patrol_points = [NodePath("../Marker3D"), NodePath("../Marker3D2"), NodePath("..
 stream = ExtResource("8_8yhmk")
 volume_db = 1.0
 autoplay = true
+
+[node name="RandomAmbientSounds" type="AudioStreamPlayer" parent="." unique_id=578585838]
+volume_db = 1.0
+autoplay = true
+script = ExtResource("15_c5b55")
+sounds = Array[AudioStream]([ExtResource("16_0em68"), ExtResource("17_32gdk")])
 
 [node name="Bush" type="Node" parent="." unique_id=734882819]
 

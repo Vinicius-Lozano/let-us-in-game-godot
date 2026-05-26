@@ -21,6 +21,7 @@
 [ext_resource type="AudioStream" uid="uid://bhy1qbadnjjtq" path="res://gfx/audio/Heart Beat.mp3" id="17_4r5pv"]
 [ext_resource type="AudioStream" uid="uid://rut6lvedjfix" path="res://gfx/audio/hurt.mp3" id="18_60mlk"]
 [ext_resource type="AudioStream" uid="uid://cd8rds5v83a3e" path="res://gfx/audio/Whispers.mp3" id="20_60mlk"]
+[ext_resource type="AudioStream" uid="uid://g88s1khnuwi4" path="res://gfx/audio/DeathAudio.mp3" id="22_a38lo"]
 
 [sub_resource type="StandardMaterial3D" id="StandardMaterial3D_iof21"]
 albedo_color = Color(0.91806, 0.575202, 0.222449, 1)
@@ -288,6 +289,9 @@ panning_strength = 0.2
 [node name="Whisper3" type="AudioStreamPlayer2D" parent="PlayerEffects" unique_id=361281198]
 stream = ExtResource("20_60mlk")
 panning_strength = 1.8
+
+[node name="DeathAudio" type="AudioStreamPlayer3D" parent="." unique_id=1756349310]
+stream = ExtResource("22_a38lo")
 
 [connection signal="body_entered" from="InteractableAreaDetector" to="InteractableAreaDetector" method="_on_body_entered"]
 [connection signal="body_exited" from="InteractableAreaDetector" to="InteractableAreaDetector" method="_on_body_exited"]

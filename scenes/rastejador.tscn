@@ -2,6 +2,7 @@
 
 [ext_resource type="Script" uid="uid://d2yre1fyu3j88" path="res://scripts/Rastejador.gd" id="2_sclqb"]
 [ext_resource type="AudioStream" uid="uid://dmrf2gvw86rh8" path="res://gfx/audio/Rastejador.mp3" id="2_y4kpv"]
+[ext_resource type="AudioStream" uid="uid://bhhpno8helcje" path="res://gfx/audio/SpottedPlayer.mp3" id="3_y4kpv"]
 
 [sub_resource type="CapsuleShape3D" id="CapsuleShape3D_o1pjr"]
 radius = 0.22509766
@@ -1178,5 +1179,8 @@ max_distance = 30.0
 transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, 0, 0.6483154, -0.171929)
 shape = SubResource("CapsuleShape3D_sclqb")
 debug_color = Color(0.9461767, 0.090171285, 0.5371265, 0.41960785)
+
+[node name="SpottedAudio" type="AudioStreamPlayer3D" parent="." unique_id=93041457]
+stream = ExtResource("3_y4kpv")
 
 [connection signal="body_entered" from="DamageArea" to="." method="_on_damage_area_body_entered"]
