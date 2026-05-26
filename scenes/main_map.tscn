@@ -63,7 +63,7 @@ tonemap_mode = 3
 tonemap_exposure = 0.71
 sdfgi_enabled = true
 volumetric_fog_enabled = true
-volumetric_fog_density = 0.1078
+volumetric_fog_density = 0.2
 volumetric_fog_albedo = Color(0.54015934, 0.6919705, 0.7406075, 1)
 volumetric_fog_emission = Color(0.17641911, 0.17641908, 0.17641908, 1)
 adjustment_enabled = true
@@ -1717,7 +1717,7 @@ light_energy = 3.693
 spot_range = 10.0
 
 [node name="Crank" parent="." unique_id=1855826087 instance=ExtResource("27_jikhd")]
-transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, -25.067383, 3, 17.286118)
+transform = Transform3D(0.70710677, 0.70710677, 0, -0.70710677, 0.70710677, 0, 0, 0, 1, 34.301342, 3, 44.829536)
 item_data = ExtResource("28_qvxoj")
 
 [node name="CSGBox3D" type="CSGBox3D" parent="." unique_id=566364217]
@@ -1818,9 +1818,6 @@ operation = 2
 use_collision = true
 size = Vector3(1, 4, 4)
 material = SubResource("StandardMaterial3D_qvxoj")
-
-[node name="RigidBody3D" parent="." unique_id=987489329 instance=ExtResource("33_xi2te")]
-transform = Transform3D(0.0019318517, -0.0005176381, 0, 0.0005176381, 0.0019318517, 0, 0, 0, 0.002, -2.7771251, 2.604407, -4.469677)
 
 [node name="CharacterBody3D2" parent="." unique_id=1792788294 node_paths=PackedStringArray("player", "safe_zone", "teleport_points") instance=ExtResource("33_ld8ne")]
 transform = Transform3D(1.8219622, 0, 0, 0, 1.8219622, 0, 0, 0, 1.8219622, -6.7554398, 1.9225025, 10.7684765)
@@ -1965,7 +1962,7 @@ shape = SubResource("BoxShape3D_k8pig")
 [node name="bombPuzzle" type="Node" parent="." unique_id=1019724681]
 
 [node name="bombItem" parent="bombPuzzle" unique_id=1550352669 instance=ExtResource("27_jikhd")]
-transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -47.92903, 2.0317967, -38.754154)
+transform = Transform3D(1, 0, 0, 0, 1, 0, 0, 0, 1, -38.359493, 2.0317967, 11.602598)
 item_data = ExtResource("49_c5b55")
 
 [node name="bombMap" type="MeshInstance3D" parent="bombPuzzle" unique_id=1115807037]
